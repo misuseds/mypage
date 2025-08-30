@@ -119,10 +119,12 @@
     </div>
 
     <script>
-        // API密钥
-        const API_KEYS = {
-            deepseek: "sk-240e8a769152439594a0c4c17618db9c"
+        // 从localStorage获取配置（如果存在）
+        let API_KEYS = {
+            deepseek: localStorage.getItem('deepseek_api_key') || "your-placeholder-key"
         };
+        
+        let PERSONAL_INFO = localStorage.getItem('personal_info') || "默认个人信息...";
         
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {

@@ -67,34 +67,6 @@
         .loading {
             display: none;
         }
-        .config-section {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        .config-section h3 {
-            margin-top: 0;
-        }
-        .config-input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .config-textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            height: 150px;
-            resize: vertical;
-        }
     </style>
 </head>
 <body>
@@ -103,19 +75,6 @@
         <a href="index.html" style="display: inline-block; padding: 10px 15px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px;">← 返回主页</a>
     </div>
     <h1>找工作助手</h1>
-    
-    <!-- 配置区域 -->
-    <div class="config-section">
-        <h3>配置信息</h3>
-        <label for="deepseekKey">DeepSeek API Key:</label>
-        <input type="password" id="deepseekKey" class="config-input" placeholder="请输入DeepSeek API Key">
-        
-        <label for="personalInfo">个人信息:</label>
-        <textarea id="personalInfo" class="config-textarea" placeholder="请输入个人信息"></textarea>
-        
-        <button id="saveConfigBtn">保存配置</button>
-        <button id="loadConfigBtn">加载配置</button>
-    </div>
     
     <div class="controls">
         <button id="fetchJobBtn">获取并分析工作信息</button>
@@ -146,7 +105,6 @@
         // 从localStorage获取配置（如果存在）
         let API_KEYS = {
             deepseek: localStorage.getItem('deepseek_api_key') || "your-placeholder-key"
-          
         };
         
         let PERSONAL_INFO = localStorage.getItem('personal_info') || "默认个人信息...";
@@ -257,7 +215,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEYS.deepseek}`
+                        'Authorization': `Bearer ${API_KEYS.deepseek}` // 从localStorage获取的API密钥
                     },
                     body: JSON.stringify({
                         model: "deepseek-chat",
@@ -491,7 +449,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEYS.deepseek}`
+                        'Authorization': `Bearer ${API_KEYS.deepseek}` // 从localStorage获取的API密钥
                     },
                     body: JSON.stringify({
                         model: "deepseek-chat",
@@ -514,38 +472,8 @@
             }
         }
         
-        // 保存配置到localStorage
-        function saveConfig() {
-            const deepseekKey = document.getElementById('deepseekKey').value;
-            const personalInfo = document.getElementById('personalInfo').value;
-            
-            if (deepseekKey) {
-                localStorage.setItem('deepseek_api_key', deepseekKey);
-                API_KEYS.deepseek = deepseekKey;
-            }
-            
-            if (personalInfo) {
-                localStorage.setItem('personal_info', personalInfo);
-                PERSONAL_INFO = personalInfo;
-            }
-            
-            addMessage('配置已保存到本地存储', 'system');
-        }
-        
-        // 从localStorage加载配置到界面
-        function loadConfig() {
-            document.getElementById('deepseekKey').value = localStorage.getItem('deepseek_api_key') || '';
-            document.getElementById('personalInfo').value = localStorage.getItem('personal_info') || '';
-            
-            addMessage('配置已从本地存储加载到界面', 'system');
-        }
-        
         // 初始化事件监听器
         document.addEventListener('DOMContentLoaded', function() {
-            // 绑定配置区域的事件
-            document.getElementById('saveConfigBtn').addEventListener('click', saveConfig);
-            document.getElementById('loadConfigBtn').addEventListener('click', loadConfig);
-            
             // 刷新显示
             refreshMessages();
             refreshJobs();
@@ -560,9 +488,6 @@
                     sendMessage();
                 }
             });
-            
-            // 页面加载时自动加载配置到界面
-            loadConfig();
         });
     </script>
 </body>

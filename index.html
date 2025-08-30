@@ -54,6 +54,84 @@
         .card a:hover {
             background-color: #0056b3;
         }
+        
+        /* 添加模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: black;
+        }
+        
+        .config-input, .config-textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .config-textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .save-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .save-btn:hover {
+            background-color: #218838;
+        }
+        
+        /* 添加清空缓存按钮样式 */
+        .clear-cache-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        .clear-cache-btn:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
@@ -80,17 +158,106 @@
         </div>
         
         <div class="card">
-    <h2>相关链接</h2>
-
-    <div style="margin: 15px 0;">
-        <a href="https://osu.ppy.sh/users/37693060" target="_blank" style="display: block; margin: 10px 0; padding: 8px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">OSU个人页面</a>
-        <!-- 可以添加更多预设链接 -->
-        <a href="https://gitee.com/njsgcs" target="_blank" style="display: block; margin: 10px 0; padding: 8px; background-color: #6e5494; color: white; text-decoration: none; border-radius: 5px;">gittee</a>
+            <h2>相关链接</h2>
+            <div style="margin: 15px 0;">
+                <a href="https://osu.ppy.sh/users/37693060" target="_blank" style="display: block; margin: 10px 0; padding: 8px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">OSU个人页面</a>
+                <!-- 可以添加更多预设链接 -->
+                <a href="https://gitee.com/njsgcs" target="_blank" style="display: block; margin: 10px 0; padding: 8px; background-color: #6e5494; color: white; text-decoration: none; border-radius: 5px;">gittee</a>
+            </div>
+        </div>
         
+        <!-- 添加清空缓存按钮 -->
+        <button id="clearCacheBtn" class="clear-cache-btn">清空所有缓存信息</button>
     </div>
-</div>
-
-
+    
+    <!-- 添加配置模态框 -->
+    <div id="configModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>初始配置</h2>
+            <p>检测到您尚未配置DeepSeek API密钥，请先完成配置：</p>
+            
+            <label for="deepseekKey">DeepSeek API Key:</label>
+            <input type="password" id="deepseekKey" class="config-input" placeholder="请输入DeepSeek API Key">
+            
+            <label for="personalInfo">个人信息:</label>
+            <textarea id="personalInfo" class="config-textarea" placeholder="请输入个人信息"></textarea>
+            
+            <button id="saveConfigBtn" class="save-btn">保存配置并继续</button>
+        </div>
     </div>
+
+    <script>
+        // 检查本地存储中是否已保存配置
+        function checkSavedConfig() {
+            const savedDeepseekKey = localStorage.getItem('deepseek_api_key');
+            const savedPersonalInfo = localStorage.getItem('personal_info');
+            
+            return !!(savedDeepseekKey && savedPersonalInfo);
+        }
+        
+        // 显示配置模态框
+        function showConfigModal() {
+            document.getElementById('configModal').style.display = 'block';
+        }
+        
+        // 隐藏配置模态框
+        function hideConfigModal() {
+            document.getElementById('configModal').style.display = 'none';
+        }
+        
+        // 保存配置到本地存储
+        function saveConfig() {
+            const deepseekKey = document.getElementById('deepseekKey').value;
+            const personalInfo = document.getElementById('personalInfo').value;
+            
+            if (!deepseekKey || !personalInfo) {
+                alert('请填写完整的配置信息');
+                return;
+            }
+            
+            localStorage.setItem('deepseek_api_key', deepseekKey);
+            localStorage.setItem('personal_info', personalInfo);
+            
+            hideConfigModal();
+            alert('配置已保存成功！');
+        }
+        
+        // 清空所有缓存信息
+        function clearAllCache() {
+            if (confirm('确定要清空所有缓存信息吗？这将包括API密钥、个人信息以及所有助手的缓存数据。')) {
+                // 清空所有localStorage数据
+                localStorage.clear();
+                alert('所有缓存信息已清空！');
+                
+                // 重新检查配置，如果清空了配置则重新显示配置模态框
+                if (!checkSavedConfig()) {
+                    showConfigModal();
+                }
+            }
+        }
+        
+        // 页面加载完成后检查配置
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查是否已保存配置
+            if (!checkSavedConfig()) {
+                // 如果没有保存配置，则显示配置模态框
+                showConfigModal();
+            }
+            
+            // 绑定事件监听器
+            document.querySelector('.close').addEventListener('click', hideConfigModal);
+            document.getElementById('saveConfigBtn').addEventListener('click', saveConfig);
+            document.getElementById('clearCacheBtn').addEventListener('click', clearAllCache);
+            
+            // 点击模态框外部区域关闭模态框
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('configModal');
+                if (event.target === modal) {
+                    hideConfigModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
