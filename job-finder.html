@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+   <script src="config.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>找工作助手</title>
@@ -104,11 +105,15 @@
     </div>
 
     <script>
-        // API密钥（从环境变量中获取）
-        const API_KEYS = {
-            deepseek: "sk-240e8a769152439594a0c4c17618db9c", // DeepSeek API Key
-            zhipu: "d121416576624afca2902462fda1baff.Va2AyE6qDFzYTmZc"    // Zhipu API Key
-        };
+        
+// API密钥（从配置文件中获取）
+const API_KEYS = window.APP_CONFIG ? {
+    deepseek: window.APP_CONFIG.API_KEYS.deepseek,
+    zhipu: window.APP_CONFIG.API_KEYS.zhipu
+} : {
+    deepseek: "your-placeholder-key",
+    zhipu: "your-placeholder-key"
+};
         
         // 个人信息
         const PERSONAL_INFO = "男，26岁（1999年出生），本科学历，毕业于集美大学诚毅学院机械工程专业，2021年6月正式参加工作，拥有4年机械设计相关工作经验。目前处于离职状态，正在寻找新的工作机会。现居福建省漳州市芗城区，户口所在地也为漳州芗城区，期望工作地点为福建省厦门市。\n\n求职意向为机械/设备/重工业行业的机械设计岗位，工作性质为全职，期望月薪4000元。目前税前月薪为4000-5000元。未婚，政治面貌为团员，身高178cm，体重88kg。\n\n工作经历方面，曾先后就职于厦门欣机电器有限公司（机械工艺工程师）、厦门秉奥科技有限公司、漳州德创智能科技有限公司及厦门达真电机有限公司，均从事机械设计或相关技术岗位，积累了丰富的实践经验，参与过洗碗机、衡器、工装夹具及钣金结构的设计与工程图制作等工作。\n\n熟练掌握SolidWorks软件，具备良好的使用能力，并有SolidWorks二次开发经验，能更高效地完成设计任务。英语能力良好，具备基本的听说读写能力。\n\n目前居住地与户口所在地均为福建省漳州市芗城区，可随时到岗。个人优势突出，具备扎实的机械设计基础和较强的动手能力，致力于在机械设计领域持续发展。";
