@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>忏悔室(仅供娱乐)</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .confession-area {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        .controls {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            color: #666;
+        }
+        .responses {
+            margin-top: 30px;
+        }
+        .response-item {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .response-content {
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #999;
+            text-align: right;
+            margin-top: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #6c757d;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回主页</a>
+        
+        <h1>忏悔室(仅供娱乐)</h1>
+        
+        <div class="confession-area">
+            <textarea id="confessionInput" placeholder="在这里写下你的忏悔或烦恼..."></textarea>
+        </div>
+        
+        <div class="controls">
+            <button id="submitBtn">提交忏悔</button>
+        </div>
+        
+        <div id="loadingIndicator" class="loading">
+            正在获取智慧的回应...
+        </div>
+        
+        <div class="responses">
+            <h2>智慧回应</h2>
+            <div id="responsesContainer">
+                <p>暂无回应，快来写下你的第一个忏悔吧。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API密钥
+        const API_KEYS = {
+            deepseek: "sk-240e8a769152439594a0c4c17618db9c"
+        };
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshResponses();
+            
+            document.getElementById('submitBtn').addEventListener('click', handleSubmit);
+            document.getElementById('confessionInput').addEventListener('keypress', function(e) {
+                // Ctrl+Enter 提交
+                if (e.ctrlKey && e.key === 'Enter') {
+                    handleSubmit();
+                }
+            });
+        });
+        
+        // 处理提交
+        async function handleSubmit() {
+            const input = document.getElementById('confessionInput');
+            const confession = input.value.trim();
+            
+            if (!confession) {
+                alert('请先写下你的忏悔内容');
+                return;
+            }
+            
+            // 显示加载状态
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('submitBtn').disabled = true;
+            
+            try {
+                // 调用AI API获取回应
+                const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_KEYS.deepseek}`
+                    },
+                    body: JSON.stringify({
+                        model: "deepseek-chat",
+                        messages: [
+                            {
+                                role: "system",
+                                content: "你是一位慈悲为怀的佛学精通的基督教女牧师，以温和、智慧和富有同理心的方式回应用户的忏悔。请用富有哲理但简洁易懂的语言给予开导，帮助用户放下心理负担，获得内心平静。要以温暖人心的方式表达。"
+                            },
+                            {
+                                role: "user",
+                                content: confession
+                            }
+                        ],
+                        temperature: 0.7
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API请求失败: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const aiResponse = data.choices[0].message.content;
+                
+                // 保存回应
+                saveResponse(confession, aiResponse);
+                
+                // 清空输入框
+                input.value = '';
+                
+                // 刷新显示
+                refreshResponses();
+                
+            } catch (error) {
+                alert(`获取回应失败: ${error.message}`);
+            } finally {
+                // 隐藏加载状态
+                document.getElementById('loadingIndicator').style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+            }
+        }
+        
+        // 保存回应到localStorage
+        function saveResponse(confession, response) {
+            let responses = [];
+            const responsesStr = localStorage.getItem('confessionResponses');
+            if (responsesStr) {
+                responses = JSON.parse(responsesStr);
+            }
+            
+            responses.push({
+                confession: confession,
+                response: response,
+                timestamp: new Date().toLocaleString()
+            });
+            
+            // 只保留最近30条记录
+            if (responses.length > 30) {
+                responses = responses.slice(-30);
+            }
+            
+            localStorage.setItem('confessionResponses', JSON.stringify(responses));
+        }
+        
+        // 刷新回应显示
+        function refreshResponses() {
+            const container = document.getElementById('responsesContainer');
+            container.innerHTML = '';
+            
+            let responses = [];
+            const responsesStr = localStorage.getItem('confessionResponses');
+            if (responsesStr) {
+                responses = JSON.parse(responsesStr);
+            }
+            
+            if (responses.length === 0) {
+                container.innerHTML = '<p>暂无回应，快来写下你的第一个忏悔吧。</p>';
+                return;
+            }
+            
+            // 反向显示（最新的在上面）
+            responses.slice().reverse().forEach(item => {
+                const responseDiv = document.createElement('div');
+                responseDiv.className = 'response-item';
+                responseDiv.innerHTML = `
+                    <div class="response-content">${item.response}</div>
+                    <div class="timestamp">${item.timestamp}</div>
+                `;
+                container.appendChild(responseDiv);
+            });
+        }
+    </script>
+</body>
+</html>
