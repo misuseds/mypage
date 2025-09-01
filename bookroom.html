@@ -219,6 +219,10 @@
             margin: 0 5px;
             padding: 5px 10px;
         }
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -283,8 +287,10 @@
     </div>
 
     <script>
+        /*部署在infinityfree上*/
         let bookFiles = [];
         let currentBookName = '';
+        let currentBookId = null;
         let currentFontSize = 32;
         let currentImageScale = 1;
         let modalImage = null;
@@ -292,6 +298,9 @@
         let startX, startY;
         let startTransformX = 0, startTransformY = 0;
         let transformX = 0, transformY = 0;
+        
+        // API基础URL - 请根据你的实际部署路径修改
+        const API_BASE = 'bookapi/'; // 例如: 'https://yourdomain.infinityfreeapp.com/'
         
         const dropArea = document.getElementById('dropArea');
         const fileInput = document.getElementById('fileInput');
@@ -455,6 +464,7 @@
         function handleFiles(files) {
             // 显示文件处理进度
             const progressElement = document.createElement('div');
+            progressElement.className = 'loading';
             progressElement.innerHTML = `<p>正在处理 ${files.length} 个文件...</p>`;
             filesContainer.appendChild(progressElement);
             
@@ -587,7 +597,7 @@
             }
         }
         
-        // 保存书卷到本地存储
+        // 保存书卷到服务器
         saveBookBtn.addEventListener('click', () => {
             if (bookFiles.length === 0) {
                 alert('请先添加文件');
@@ -599,110 +609,190 @@
                 return;
             }
             
-            const bookData = {
-                name: bookName,
-                fileCount: bookFiles.length,
-                files: bookFiles,
-                createdAt: new Date().toISOString(),
-                lastModified: new Date().toISOString()
-            };
+            // 显示保存进度
+            const progressElement = document.createElement('div');
+            progressElement.className = 'loading';
+            progressElement.innerHTML = '<p>正在保存书卷...</p>';
+            document.body.appendChild(progressElement);
             
-            try {
-                // 保存到本地存储
-                localStorage.setItem(`book_${bookName}`, JSON.stringify(bookData));
-                currentBookName = bookName;
-                updateBookSelector();
-                alert(`成功保存书卷: ${bookName}`);
-            } catch (e) {
-                alert('保存失败，可能是存储空间不足');
-            }
+            // 发送到服务器保存
+            fetch(API_BASE + 'save_book.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: bookName,
+                    files: bookFiles
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                progressElement.remove();
+                if (data.success) {
+                    alert(`成功保存书卷: ${bookName}`);
+                    currentBookName = bookName;
+                    updateBookSelector();
+                } else {
+                    alert('保存失败: ' + data.message);
+                }
+            })
+            .catch(error => {
+                progressElement.remove();
+                alert('保存失败: ' + error.message);
+            });
         });
         
         // 更新书卷选择器
         function updateBookSelector() {
-            bookSelector.innerHTML = '';
-            
-            // 获取所有保存的书卷
-            const books = [];
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                if (key && key.startsWith('book_')) {
-                    try {
-                        const bookData = JSON.parse(localStorage.getItem(key));
-                        books.push(bookData);
-                    } catch (e) {
-                        // 忽略解析错误的项目
-                    }
+            fetch(API_BASE + 'get_books.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    bookSelector.innerHTML = '';
+                    data.books.forEach(book => {
+                        const option = document.createElement('option');
+                        option.value = book.id;
+                        option.textContent = `${book.name} (${book.file_count}个文件)`;
+                        bookSelector.appendChild(option);
+                    });
+                } else {
+                    console.error('获取书籍列表失败:', data.message);
                 }
-            }
-            
-            // 按最后修改时间排序
-            books.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
-            
-            // 添加选项
-            books.forEach(book => {
-                const option = document.createElement('option');
-                option.value = book.name;
-                option.textContent = `${book.name} (${book.fileCount}个文件)`;
-                bookSelector.appendChild(option);
+            })
+            .catch(error => {
+                console.error('获取书籍列表失败:', error);
             });
-            
-            // 如果有书卷，选择第一个
-            if (books.length > 0 && !bookSelector.value) {
-                bookSelector.value = books[0].name;
-            }
         }
         
         // 打开书卷
         loadBookBtn.addEventListener('click', () => {
-            const selectedBookName = bookSelector.value;
-            if (!selectedBookName) {
+            const selectedBookId = bookSelector.value;
+            if (!selectedBookId) {
                 alert('请先选择一个书卷');
                 return;
             }
             
-            try {
-                const bookDataStr = localStorage.getItem(`book_${selectedBookName}`);
-                if (!bookDataStr) {
-                    alert('书卷不存在');
-                    updateBookSelector();
-                    return;
+            // 显示加载进度
+            const progressElement = document.createElement('div');
+            progressElement.className = 'loading';
+            progressElement.innerHTML = '<p>正在加载书卷...</p>';
+            document.body.appendChild(progressElement);
+            
+            fetch(API_BASE + `load_book.php?id=${selectedBookId}`)
+            .then(response => response.json())
+            .then(data => {
+                progressElement.remove();
+                if (data.success) {
+                    loadBook(data);
+                } else {
+                    alert('书卷加载失败: ' + data.message);
                 }
-                
-                const bookData = JSON.parse(bookDataStr);
-                loadBook(bookData);
-            } catch (error) {
-                alert('书卷加载失败');
-            }
+            })
+            .catch(error => {
+                progressElement.remove();
+                alert('书卷加载失败: ' + error.message);
+            });
         });
         
         // 删除书卷
         deleteBookBtn.addEventListener('click', () => {
-            const selectedBookName = bookSelector.value;
-            if (!selectedBookName) {
+            const selectedBookId = bookSelector.value;
+            if (!selectedBookId) {
                 alert('请先选择一个书卷');
                 return;
             }
             
-            if (confirm(`确定要删除书卷 "${selectedBookName}" 吗？`)) {
-                try {
-                    localStorage.removeItem(`book_${selectedBookName}`);
-                    updateBookSelector();
-                    alert(`书卷 "${selectedBookName}" 已删除`);
-                } catch (error) {
-                    alert('删除失败');
-                }
+            const selectedOption = bookSelector.options[bookSelector.selectedIndex];
+            const bookName = selectedOption.text.split(' (')[0];
+            
+            if (confirm(`确定要删除书卷 "${bookName}" 吗？`)) {
+                // 显示删除进度
+                const progressElement = document.createElement('div');
+                progressElement.className = 'loading';
+                progressElement.innerHTML = '<p>正在删除书卷...</p>';
+                document.body.appendChild(progressElement);
+                
+                fetch(API_BASE + 'delete_book.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: selectedBookId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    progressElement.remove();
+                    if (data.success) {
+                        alert(`书卷 "${bookName}" 已删除`);
+                        updateBookSelector();
+                    } else {
+                        alert('删除失败: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    progressElement.remove();
+                    alert('删除失败: ' + error.message);
+                });
             }
         });
         
         // 加载书卷内容
-        function loadBook(bookData) {
-            bookFiles = bookData.files || [];
-            currentBookName = bookData.name;
-            // 加载时对文件进行排序
-            sortFiles();
+        function loadBook(data) {
+            const book = data.book;
+            const files = data.files;
+            
+            // 保存书籍信息
+            currentBookId = book.id;
+            currentBookName = book.name;
+            
+            // 构造bookFiles数组（只包含元数据，不包含实际内容）
+            bookFiles = files.map(file => ({
+                id: file.id,
+                name: file.filename,
+                type: file.file_type,
+                size: parseInt(file.file_size),
+                sort_order: parseInt(file.sort_order)
+            }));
+            
+            // 更新文件列表
             updateFileList();
-            alert(`成功加载书卷: ${bookData.name}，包含 ${bookFiles.length} 个文件`);
+            alert(`成功加载书卷: ${book.name}，包含 ${book.file_count} 个文件`);
+        }
+        
+        // 重写查看文件内容函数以从服务器获取内容
+        function viewFileContent(index) {
+            const file = bookFiles[index];
+            if (!file) return;
+            
+            viewerTitle.textContent = `文件: ${file.name}`;
+            
+            // 显示加载进度
+            viewerContent.innerHTML = '<div class="loading"><p>正在加载文件内容...</p></div>';
+            
+            // 从服务器获取文件内容
+            fetch(API_BASE + `get_file_content.php?id=${file.id}`)
+            .then(response => {
+                if (file.type.startsWith('image/')) {
+                    return response.blob();
+                } else {
+                    return response.text();
+                }
+            })
+            .then(data => {
+                if (file.type.startsWith('image/')) {
+                    const imageUrl = URL.createObjectURL(data);
+                    viewerContent.innerHTML = `<img src="${imageUrl}" alt="${file.name}" style="display: block; margin: 0 auto;">`;
+                } else {
+                    viewerContent.innerHTML = `<pre style="font-size: ${currentFontSize}px;">${data}</pre>`;
+                }
+            })
+            .catch(error => {
+                console.error('获取文件内容失败:', error);
+                viewerContent.innerHTML = '<p>文件内容加载失败</p>';
+            });
         }
         
         // 清空所有文件

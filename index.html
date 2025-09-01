@@ -132,6 +132,12 @@
         .clear-cache-btn:hover {
             background-color: #c82333;
         }
+        
+        /* 加载提示样式 */
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -188,13 +194,9 @@
     </div>
 
     <script>
-        // 检查本地存储中是否已保存配置
-        function checkSavedConfig() {
-            const savedDeepseekKey = localStorage.getItem('deepseek_api_key');
-            const savedPersonalInfo = localStorage.getItem('personal_info');
-            
-            return !!(savedDeepseekKey && savedPersonalInfo);
-        }
+        /*部署在infinityfree上*/
+        // API基础URL
+        const API_BASE = 'keyinfoapi/';
         
         // 显示配置模态框
         function showConfigModal() {
@@ -206,8 +208,26 @@
             document.getElementById('configModal').style.display = 'none';
         }
         
-        // 保存配置到本地存储
-        function saveConfig() {
+        // 检查服务器配置
+        async function checkServerConfig() {
+            try {
+                const response = await fetch(API_BASE + 'get_config.php');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const deepseekKey = data.data.deepseek_api_key || '';
+                    const personalInfo = data.data.personal_info || '';
+                    return !!(deepseekKey && personalInfo);
+                }
+                return false;
+            } catch (error) {
+                console.error('检查配置失败:', error);
+                return false;
+            }
+        }
+        
+        // 保存配置到服务器
+        async function saveConfig() {
             const deepseekKey = document.getElementById('deepseekKey').value;
             const personalInfo = document.getElementById('personalInfo').value;
             
@@ -216,32 +236,94 @@
                 return;
             }
             
-            localStorage.setItem('deepseek_api_key', deepseekKey);
-            localStorage.setItem('personal_info', personalInfo);
-            
-            hideConfigModal();
-            alert('配置已保存成功！');
+            try {
+                // 显示保存进度
+                const saveBtn = document.getElementById('saveConfigBtn');
+                const originalText = saveBtn.textContent;
+                saveBtn.textContent = '保存中...';
+                saveBtn.disabled = true;
+                
+                const response = await fetch(API_BASE + 'save_config.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        deepseekKey: deepseekKey,
+                        personalInfo: personalInfo
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // 恢复按钮状态
+                saveBtn.textContent = originalText;
+                saveBtn.disabled = false;
+                
+                if (data.success) {
+                    hideConfigModal();
+                    alert('配置已保存成功！');
+                } else {
+                    alert('保存失败: ' + data.message);
+                }
+            } catch (error) {
+                // 恢复按钮状态
+                const saveBtn = document.getElementById('saveConfigBtn');
+                saveBtn.textContent = '保存配置并继续';
+                saveBtn.disabled = false;
+                alert('保存失败: ' + error.message);
+            }
         }
         
-        // 清空所有缓存信息
-        function clearAllCache() {
-            if (confirm('确定要清空所有缓存信息吗？这将包括API密钥、个人信息以及所有助手的缓存数据。')) {
-                // 清空所有localStorage数据
-                localStorage.clear();
-                alert('所有缓存信息已清空！');
-                
-                // 重新检查配置，如果清空了配置则重新显示配置模态框
-                if (!checkSavedConfig()) {
-                    showConfigModal();
+        // 清空所有配置信息
+        async function clearAllCache() {
+            if (confirm('确定要清空所有配置信息吗？这将包括API密钥、个人信息等数据。')) {
+                try {
+                    const response = await fetch(API_BASE + 'clear_config.php', {
+                        method: 'POST'
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        alert('所有配置信息已清空！');
+                        // 重新检查配置，如果清空了配置则重新显示配置模态框
+                        const hasConfig = await checkServerConfig();
+                        if (!hasConfig) {
+                            showConfigModal();
+                        }
+                    } else {
+                        alert('清空失败: ' + data.message);
+                    }
+                } catch (error) {
+                    alert('清空失败: ' + error.message);
                 }
             }
         }
         
         // 页面加载完成后检查配置
-        document.addEventListener('DOMContentLoaded', function() {
-            // 检查是否已保存配置
-            if (!checkSavedConfig()) {
+        document.addEventListener('DOMContentLoaded', async function() {
+            // 显示加载提示
+            const loadingElement = document.createElement('div');
+            loadingElement.className = 'loading';
+            loadingElement.innerHTML = '<p>正在检查配置...</p>';
+            document.body.appendChild(loadingElement);
+            
+            try {
+                // 检查服务器配置
+                const hasConfig = await checkServerConfig();
+                
+                // 移除加载提示
+                document.body.removeChild(loadingElement);
+                
                 // 如果没有保存配置，则显示配置模态框
+                if (!hasConfig) {
+                    showConfigModal();
+                }
+            } catch (error) {
+                // 移除加载提示
+                document.body.removeChild(loadingElement);
+                console.error('检查配置时出错:', error);
                 showConfigModal();
             }
             
