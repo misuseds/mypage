@@ -102,13 +102,29 @@
     </div>
 
     <script>
-        // 从localStorage获取配置（如果存在）
-        let API_KEYS = {
-            deepseek: localStorage.getItem('deepseek_api_key') || "your-placeholder-key"
-        };
-        
-        let PERSONAL_INFO = localStorage.getItem('personal_info') || "默认个人信息...";
-        
+let API_KEYS = {
+    deepseek: ""
+};
+let PERSONAL_INFO = "";
+
+// 从数据库加载配置
+async function loadConfigFromDatabase() {
+    try {
+        const response = await fetch('./keyinfoapi/get_config.php');
+        const result = await response.json();
+        console.info('result:', result);
+        if (result.success) {
+            API_KEYS.deepseek = result.data.deepseek_api_key || "your-placeholder-key";
+            PERSONAL_INFO = result.data.personal_info || "默认个人信息...";
+        }
+    } catch (error) {
+        console.error('获取配置失败:', error);
+        // 使用默认值
+        API_KEYS.deepseek = "your-placeholder-key";
+        PERSONAL_INFO = "默认个人信息...";
+    }
+}
+
         // 获取工作信息
         async function fetchJob() {
             try {
@@ -477,7 +493,7 @@
             // 刷新显示
             refreshMessages();
             refreshJobs();
-            
+            loadConfigFromDatabase()
             // 事件监听
             document.getElementById('fetchJobBtn').addEventListener('click', fetchJob);
             document.getElementById('clearBtn').addEventListener('click', clearAll);

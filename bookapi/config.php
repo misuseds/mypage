@@ -32,7 +32,7 @@ loadEnv(__DIR__ . '/.env');
 $host = $_ENV['DB_HOST'] ?? 'sql100.byetcluster.com';
 $dbname = $_ENV['DB_NAME'] ?? 'if0_39801986_keyinfo';
 $username = $_ENV['DB_USER'] ?? 'if0_39801986';
-$password = $_ENV['DB_PASS'] ?? 'wz3KD1LBag';
+$password = $_ENV['DB_PASS'] ?? '密码';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
