@@ -2,6 +2,8 @@
 // bookapi/load_book.php
 include 'config.php';
 
+header('Content-Type: application/json'); // 添加这行
+
 if (!isset($_GET['id'])) {
     echo json_encode(['success' => false, 'message' => '缺少书籍ID']);
     exit;

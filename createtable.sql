@@ -1,25 +1,26 @@
--- 书籍表
+-- 创建书籍表
 CREATE TABLE books (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     file_count INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- 文件表
+-- 创建书籍文件表
 CREATE TABLE book_files (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    book_id INT,
+    book_id INT NOT NULL,
     filename VARCHAR(255) NOT NULL,
-    file_type VARCHAR(100),
-    file_size INT,
+    file_type VARCHAR(100) NOT NULL,
+    file_size INT DEFAULT 0,
     content LONGBLOB,
     content_text LONGTEXT,
     sort_order INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- 用户配置表
 CREATE TABLE user_configs (

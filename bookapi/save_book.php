@@ -2,8 +2,22 @@
 // bookapi/save_book.php
 include 'config.php';
 
+// 确保始终返回JSON
+header('Content-Type: application/json');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $input = json_decode(file_get_contents('php://input'), true);
+    // 检查输入数据
+    $inputData = file_get_contents('php://input');
+    if (empty($inputData)) {
+        echo json_encode(['success' => false, 'message' => '没有接收到数据']);
+        exit;
+    }
+    
+    $input = json_decode($inputData, true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        echo json_encode(['success' => false, 'message' => 'JSON解析错误: ' . json_last_error_msg()]);
+        exit;
+    }
     
     if (!isset($input['name']) || !isset($input['files'])) {
         echo json_encode(['success' => false, 'message' => '缺少必要参数']);
@@ -30,7 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // 创建新书籍
             $stmt = $pdo->prepare("INSERT INTO books (name, file_count) VALUES (?, ?)");
-            $stmt->execute([$input['name'], count($input['files'])]);
+            $result = $stmt->execute([$input['name'], count($input['files'])]);
+            if (!$result) {
+                throw new Exception("插入书籍记录失败");
+            }
             $bookId = $pdo->lastInsertId();
         }
         
@@ -39,34 +56,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $content = null;
             $contentText = null;
             
-            if (strpos($file['type'], 'image/') === 0) {
+            if (isset($file['type']) && strpos($file['type'], 'image/') === 0) {
                 // 处理图片文件 (base64数据)
-                if (preg_match('/^data:image\/(.*?);base64,(.*)$/', $file['content'], $matches)) {
-                    $content = base64_decode($matches[2]);
-                } else {
-                    $content = base64_decode($file['content']);
+                $base64Data = $file['content'] ?? '';
+                
+                // 移除可能的数据URI前缀
+                if (strpos($base64Data, 'data:') === 0) {
+                    $base64Data = substr($base64Data, strpos($base64Data, ',') + 1);
                 }
+                
+                // 解码base64数据
+                $content = base64_decode($base64Data);
             } else {
                 // 处理文本文件
-                $contentText = $file['content'];
+                $contentText = isset($file['content']) ? $file['content'] : '';
             }
             
             $stmt = $pdo->prepare("INSERT INTO book_files (book_id, filename, file_type, file_size, content, content_text, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([
+            $result = $stmt->execute([
                 $bookId,
-                $file['name'],
-                $file['type'],
-                $file['size'],
-                $content,
-                $contentText,
+                isset($file['name']) ? $file['name'] : 'unknown',
+                isset($file['type']) ? $file['type'] : 'text/plain',
+                isset($file['size']) ? $file['size'] : 0,
+                $content, // 二进制数据
+                $contentText, // 文本数据
                 $index
             ]);
+            
+            if (!$result) {
+                throw new Exception("插入文件记录失败: " . $file['name']);
+            }
         }
         
         $pdo->commit();
         echo json_encode(['success' => true, 'message' => '书籍保存成功', 'book_id' => $bookId]);
     } catch (Exception $e) {
         $pdo->rollBack();
+        error_log("Save book error: " . $e->getMessage()); // 记录错误日志
         echo json_encode(['success' => false, 'message' => '保存失败: ' . $e->getMessage()]);
     }
 } else {

@@ -584,86 +584,121 @@
         }
         
         // 查看文件内容
-        function viewFileContent(index) {
-            const file = bookFiles[index];
-            if (!file) return;
-            
-            viewerTitle.textContent = `文件: ${file.name}`;
-            
-            if (file.type.startsWith('image/')) {
-                viewerContent.innerHTML = `<img src="${file.content}" alt="${file.name}" style="display: block; margin: 0 auto;">`;
-            } else {
-                viewerContent.innerHTML = `<pre style="font-size: ${currentFontSize}px;">${file.content}</pre>`;
-            }
-        }
-        
-        // 保存书卷到服务器
-        saveBookBtn.addEventListener('click', () => {
-            if (bookFiles.length === 0) {
-                alert('请先添加文件');
-                return;
-            }
-            
-            const bookName = prompt('请输入书卷名称:', `书卷_${new Date().toLocaleString()}`);
-            if (!bookName) {
-                return;
-            }
-            
-            // 显示保存进度
-            const progressElement = document.createElement('div');
-            progressElement.className = 'loading';
-            progressElement.innerHTML = '<p>正在保存书卷...</p>';
-            document.body.appendChild(progressElement);
-            
-            // 发送到服务器保存
-            fetch(API_BASE + 'save_book.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: bookName,
-                    files: bookFiles
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                progressElement.remove();
-                if (data.success) {
-                    alert(`成功保存书卷: ${bookName}`);
-                    currentBookName = bookName;
-                    updateBookSelector();
-                } else {
-                    alert('保存失败: ' + data.message);
-                }
-            })
-            .catch(error => {
-                progressElement.remove();
-                alert('保存失败: ' + error.message);
-            });
+// 重写查看文件内容函数以从服务器获取内容
+function viewFileContent(index) {
+    const file = bookFiles[index];
+    if (!file) return;
+    
+    viewerTitle.textContent = `文件: ${file.name}`;
+    
+    // 显示加载进度
+    viewerContent.innerHTML = '<div class="loading"><p>正在加载文件内容...</p></div>';
+    
+    if (file.type.startsWith('image/')) {
+        // 对于图片文件，直接使用URL
+        const imageUrl = API_BASE + `get_file_content.php?id=${file.id}`;
+        viewerContent.innerHTML = `<img src="${imageUrl}" alt="${file.name}" style="display: block; margin: 0 auto; max-width: 100%;">`;
+    } else {
+        // 对于文本文件，获取文本内容
+        fetch(API_BASE + `get_file_content.php?id=${file.id}`)
+        .then(response => response.text())
+        .then(data => {
+            viewerContent.innerHTML = `<pre style="font-size: ${currentFontSize}px;">${data}</pre>`;
+        })
+        .catch(error => {
+            console.error('获取文件内容失败:', error);
+            viewerContent.innerHTML = '<p>文件内容加载失败</p>';
         });
+    }
+}
         
-        // 更新书卷选择器
-        function updateBookSelector() {
-            fetch(API_BASE + 'get_books.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    bookSelector.innerHTML = '';
-                    data.books.forEach(book => {
-                        const option = document.createElement('option');
-                        option.value = book.id;
-                        option.textContent = `${book.name} (${book.file_count}个文件)`;
-                        bookSelector.appendChild(option);
-                    });
-                } else {
-                    console.error('获取书籍列表失败:', data.message);
-                }
-            })
-            .catch(error => {
-                console.error('获取书籍列表失败:', error);
-            });
+// 保存书卷到服务器
+saveBookBtn.addEventListener('click', () => {
+    if (bookFiles.length === 0) {
+        alert('请先添加文件');
+        return;
+    }
+    
+    const bookName = prompt('请输入书卷名称:', `书卷_${new Date().toLocaleString()}`);
+    if (!bookName) {
+        return;
+    }
+    
+    // 显示保存进度
+    const progressElement = document.createElement('div');
+    progressElement.className = 'loading';
+    progressElement.innerHTML = '<p>正在保存书卷...</p>';
+    document.body.appendChild(progressElement);
+    
+    // 发送到服务器保存
+    fetch(API_BASE + 'save_book.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: bookName,
+            files: bookFiles
+        })
+    })
+    .then(response => {
+        // 检查响应状态
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        
+        // 检查响应是否为有效的JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('服务器返回了非JSON响应');
+        }
+        return response.json();
+    })
+    .then(data => {
+        progressElement.remove();
+        if (data.success) {
+            alert(`成功保存书卷: ${bookName}`);
+            currentBookName = bookName;
+            updateBookSelector();
+        } else {
+            alert('保存失败: ' + data.message);
+        }
+    })
+    .catch(error => {
+        progressElement.remove();
+        console.error('保存错误:', error);
+        alert('保存失败: ' + error.message);
+    });
+});
+        // 更新书卷选择器
+      // 更新书卷选择器
+function updateBookSelector() {
+    fetch(API_BASE + 'get_books.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            bookSelector.innerHTML = '';
+            data.books.forEach(book => {
+                const option = document.createElement('option');
+                option.value = book.id;
+                option.textContent = `${book.name} (${book.file_count}个文件)`;
+                bookSelector.appendChild(option);
+            });
+        } else {
+            console.error('获取书籍列表失败:', data.message);
+            alert('获取书籍列表失败: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('获取书籍列表失败:', error);
+        alert('获取书籍列表失败: ' + error.message);
+    });
+}
         
         // 打开书卷
         loadBookBtn.addEventListener('click', () => {

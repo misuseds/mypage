@@ -1,6 +1,7 @@
 <?php
 // bookapi/config.php
-header('Content-Type: application/json');
+// 注意：不要在这里设置Content-Type，让每个API自行设置
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -9,6 +10,11 @@ header('Access-Control-Allow-Headers: Content-Type');
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
 }
+
+// 开启错误报告（仅用于调试环境）
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 function loadEnv($path) {
     if (!file_exists($path)) return;
     
@@ -27,14 +33,15 @@ $host = $_ENV['DB_HOST'] ?? 'sql100.byetcluster.com';
 $dbname = $_ENV['DB_NAME'] ?? 'if0_39801986_keyinfo';
 $username = $_ENV['DB_USER'] ?? 'if0_39801986';
 $password = $_ENV['DB_PASS'] ?? 'wz3KD1LBag';
+
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch(PDOException $e) {
-    // 不要直接输出错误信息，避免泄露敏感信息
     error_log("Database connection failed: " . $e->getMessage());
-    echo json_encode(['success' => false, 'message' => '数据库连接失败']);
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => '数据库连接失败: ' . $e->getMessage()]);
     exit;
 }
 ?>
-
