@@ -67,19 +67,44 @@
         .loading {
             display: none;
         }
-        .monitor-status {
+        /* 通知样式 */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 300px;
+        }
+        .notification button {
+            float: right;
+            background: none;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* 倒计时样式 */
+        .countdown {
             margin-left: 10px;
-            padding: 5px 10px;
-            border-radius: 3px;
+            color: #ff6b6b;
             font-weight: bold;
         }
-        .monitor-active {
-            background-color: #d4edda;
-            color: #155724;
+        /* 计数器样式 */
+        .counter-control {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
         }
-        .monitor-inactive {
-            background-color: #f8d7da;
-            color: #721c24;
+        .counter-control input {
+            width: 60px;
+            padding: 5px;
+            margin: 0 10px;
         }
     </style>
 </head>
@@ -92,11 +117,18 @@
     
     <div class="controls">
         <button id="fetchJobBtn">获取并分析工作信息</button>
-        <button id="startMonitorBtn">开始自动检查</button>
-        <button id="stopMonitorBtn">停止自动检查</button>
+        <span id="countdown" class="countdown"></span>
         <button id="clearBtn">清空消息</button>
-        <span id="monitorStatus" class="monitor-status monitor-inactive">未运行</span>
         <span id="loadingIndicator" class="loading">正在获取工作信息...</span>
+    </div>
+    
+    <!-- 添加计数器控制 -->
+    <div class="counter-control">
+        <label for="runCount">设置运行次数:</label>
+        <input type="number" id="runCount" min="1" value="5">
+        <button id="startCounterBtn">开始计数运行</button>
+        <button id="stopCounterBtn">停止计数运行</button>
+        <span id="counterStatus"></span>
     </div>
     
     <div id="jobInfo" style="display: none;">
@@ -123,9 +155,18 @@ let API_KEYS = {
     deepseek: ""
 };
 let PERSONAL_INFO = "";
-let jobCheckInterval = null;
-let lastJobId = null;
-let isMonitoring = false;
+let lastFetchTime = 0;
+let knownJobIds = new Set();
+let countdownInterval = null;
+
+// 计数器相关变量
+let runCounter = 0;
+let totalRuns = 0;
+let counterInterval = null;
+let isCounterRunning = false;
+
+// 通知相关变量
+let pendingNotifications = [];
 
 // 从数据库加载配置
 async function loadConfigFromDatabase() {
@@ -145,14 +186,100 @@ async function loadConfigFromDatabase() {
     }
 }
 
+// 显示通知
+function showNotification(message) {
+    // 检查页面是否可见
+    if (document.hidden) {
+        // 如果页面不可见，将通知存储起来
+        pendingNotifications.push({
+            message: message,
+            timestamp: Date.now()
+        });
+        // 页面重新可见时显示通知
+        document.addEventListener('visibilitychange', showPendingNotifications, { once: true });
+    } else {
+        // 页面可见时直接显示通知
+        displayNotification(message);
+    }
+}
+
+// 实际显示通知的函数
+function displayNotification(message) {
+    // 创建通知元素
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `
+        <strong>新工作提醒</strong><br>
+        ${message}
+        <button onclick="this.parentElement.remove()">×</button>
+    `;
+    
+    // 添加到页面中
+    document.body.appendChild(notification);
+    
+    // 20秒后自动移除通知（原来是5秒）
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 20000);
+}
+
+// 显示待处理通知的函数
+function showPendingNotifications() {
+    // 当页面重新可见时，显示所有待处理的通知
+    while (pendingNotifications.length > 0) {
+        const notification = pendingNotifications.shift();
+        // 检查通知是否仍然有效（例如，1分钟内的通知才显示）
+        if (Date.now() - notification.timestamp < 60000) {
+            displayNotification(notification.message);
+        }
+    }
+}
+
+// 更新倒计时显示
+function updateCountdown() {
+    const currentTime = Date.now();
+    const timeRemaining = 5 * 60 * 1000 - (currentTime - lastFetchTime);
+    
+    if (timeRemaining > 0) {
+        const seconds = Math.ceil(timeRemaining / 1000);
+        document.getElementById('countdown').textContent = `还有 ${seconds} 秒可以获取`;
+        document.getElementById('fetchJobBtn').disabled = true;
+    } else {
+        document.getElementById('countdown').textContent = '';
+        document.getElementById('fetchJobBtn').disabled = false;
+    }
+}
+
+// 启动倒计时
+function startCountdown() {
+    // 先立即更新一次
+    updateCountdown();
+    
+    // 清除之前的倒计时（如果有的话）
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+    }
+    
+    // 启动新的倒计时
+    countdownInterval = setInterval(updateCountdown, 1000);
+}
+
 // 获取工作信息
-async function fetchJob(autoCheck = false) {
+async function fetchJob() {
+    // 检查是否在5分钟内已经获取过工作信息
+    const currentTime = Date.now();
+    if (currentTime - lastFetchTime < 5 * 60 * 1000) {
+        const remainingTime = Math.ceil((5 * 60 * 1000 - (currentTime - lastFetchTime)) / 1000);
+        addMessage(`请等待 ${remainingTime} 秒后再获取新的工作信息`, 'system');
+        return;
+    }
+
     try {
         // 显示加载状态
         document.getElementById('loadingIndicator').style.display = 'inline';
-        if (!autoCheck) {
-            document.getElementById('fetchJobBtn').disabled = true;
-        }
+        document.getElementById('fetchJobBtn').disabled = true;
         addMessage('正在获取工作信息...', 'system');
         
         // 调用真实的API获取工作信息
@@ -212,59 +339,97 @@ async function fetchJob(autoCheck = false) {
         }
         
         const jobData = result.Data.Items[0];
+        const jobId = jobData.Id;
         
-        // 如果是自动检查模式，只在有新工作时才处理
-        if (autoCheck) {
-            if (lastJobId !== jobData.Id) {
-                lastJobId = jobData.Id;
-                addMessage(`发现新工作: ${jobData.JobName || '未知职位'}`, 'system');
-                window.currentJob = jobData;
-                
-                document.getElementById('jobDetails').innerHTML = `
-                    <p><strong>职位:</strong> ${jobData.JobName || '未知'}</p>
-                    <p><strong>公司:</strong> ${jobData.CompanyName || '未知'}</p>
-                    <p><strong>工作详情:</strong> ${jobData.JobDetail || '无详情'}</p>
-                    <p><strong>工作地址:</strong> ${jobData.Address || '未提供'}</p>
-                    <p><strong>薪资:</strong> ${jobData.SalaryName || '面议'}</p>
-                    <p><strong>学历要求:</strong> ${jobData.DegreeName || '不限'}</p>
-                    <p><strong>工作经验:</strong> ${jobData.WorkYearName || '不限'}</p>
-                    <p><strong>ID:</strong> ${jobData.Id || '未知'}</p>
-                `;
-                document.getElementById('jobInfo').style.display = 'block';
-                
-                // 自动分析新工作
-                await analyzeJob();
-            } else {
-                addMessage('自动检查完成，暂无新工作', 'system');
-            }
-        } else {
-            // 手动获取模式，总是更新显示
-            window.currentJob = jobData;
-            lastJobId = jobData.Id;
+        // 检查是否为新ID
+        const isNewJob = !knownJobIds.has(jobId);
+
+        window.currentJob = jobData;
+        lastFetchTime = currentTime; // 更新最后获取时间
+                // 如果是新ID，则添加到已知ID集合中
+        if (isNewJob) {
+            knownJobIds.add(jobId);
+            // 显示右下角提示弹窗
             
-            document.getElementById('jobDetails').innerHTML = `
-                <p><strong>职位:</strong> ${jobData.JobName || '未知'}</p>
-                <p><strong>公司:</strong> ${jobData.CompanyName || '未知'}</p>
-                <p><strong>工作详情:</strong> ${jobData.JobDetail || '无详情'}</p>
-                <p><strong>工作地址:</strong> ${jobData.Address || '未提供'}</p>
-                <p><strong>薪资:</strong> ${jobData.SalaryName || '面议'}</p>
-                <p><strong>学历要求:</strong> ${jobData.DegreeName || '不限'}</p>
-                <p><strong>工作经验:</strong> ${jobData.WorkYearName || '不限'}</p>
-                <p><strong>ID:</strong> ${jobData.Id || '未知'}</p>
-            `;
-            document.getElementById('jobInfo').style.display = 'block';
-            
-            addMessage(`获取到工作: ${jobData.JobName || '未知职位'}`, 'system');
-            
-            // 自动分析工作
-            await analyzeJob();
+           document.getElementById('jobDetails').innerHTML = `
+            <p><strong>职位:</strong> ${jobData.JobName || '未知'}</p>
+            <p><strong>公司:</strong> ${jobData.CompanyName || '未知'}</p>
+            <p><strong>工作详情:</strong> ${jobData.JobDetail || '无详情'}</p>
+            <p><strong>工作地址:</strong> ${jobData.Address || '未提供'}</p>
+            <p><strong>薪资:</strong> ${jobData.SalaryName || '面议'}</p>
+            <p><strong>学历要求:</strong> ${jobData.DegreeName || '不限'}</p>
+            <p><strong>工作经验:</strong> ${jobData.WorkYearName || '不限'}</p>
+            <p><strong>ID:</strong> ${jobData.Id || '未知'}</p>
+            <p><strong>状态:</strong> ${isNewJob ? '新工作' : '已查看过'}</p>
+        `;
+        document.getElementById('jobInfo').style.display = 'block';
+        
+        addMessage(`获取到工作: ${jobData.JobName || '未知职位'} (${isNewJob ? '新工作' : '已查看过'})`, 'system');
+        
+        // 自动分析工作
+        await analyzeJob();
+   
         }
+        
+             else {
+            addMessage(`已查看过工作: ${jobData.JobName || '未知职位'}`, 'system');
+        }
+        
+        // 保存已知ID列表和最后获取时间
+        localStorage.setItem('knownJobIds', JSON.stringify(Array.from(knownJobIds)));
+        localStorage.setItem('lastFetchTime', lastFetchTime.toString());
+        
+        // 启动倒计时
+        startCountdown();
     } catch (error) {
         addMessage(`获取工作信息失败: ${error.message}`, 'system');
     } finally {
         document.getElementById('loadingIndicator').style.display = 'none';
         document.getElementById('fetchJobBtn').disabled = false;
     }
+}
+
+// 计数器运行函数
+async function runCounterFetch() {
+    if (runCounter < totalRuns) {
+        runCounter++;
+        document.getElementById('counterStatus').textContent = `正在运行第 ${runCounter}/${totalRuns} 次`;
+        await fetchJob();
+        
+        // 如果已完成所有运行次数，停止计数器
+        if (runCounter >= totalRuns) {
+            stopCounterRun();
+            document.getElementById('counterStatus').textContent = `已完成所有 ${totalRuns} 次运行`;
+        }
+    }
+}
+
+// 开始计数器运行
+function startCounterRun() {
+    if (isCounterRunning) return;
+    
+    const countInput = document.getElementById('runCount');
+    totalRuns = parseInt(countInput.value) ||1;
+    runCounter = 0;
+    isCounterRunning = true;
+    
+    document.getElementById('counterStatus').textContent = `开始运行，总共 ${totalRuns} 次`;
+    
+    // 立即执行第一次
+    runCounterFetch();
+    
+   
+    counterInterval = setInterval(runCounterFetch, 305000);
+}
+
+// 停止计数器运行
+function stopCounterRun() {
+    if (counterInterval) {
+        clearInterval(counterInterval);
+        counterInterval = null;
+    }
+    isCounterRunning = false;
+    document.getElementById('counterStatus').textContent = '计数器已停止';
 }
 
 // 分析工作
@@ -277,23 +442,29 @@ async function analyzeJob() {
     try {
         addMessage('正在分析工作...', 'system');
         
+        // 确保API密钥已加载
+        if (!API_KEYS.deepseek || API_KEYS.deepseek === "your-placeholder-key") {
+            await loadConfigFromDatabase();
+        }
+        const attention="排除包含独立或者忠诚字样的或者是主管职位或者位置泉州,要求太多的,涉及到流体力学的，材料的也不要推,排除之后还觉得匹配度超过80%的话回答要带*请推荐给主人*,我之后代码会读取这句话"
         // 使用DeepSeek API进行分析
         const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEYS.deepseek}` // 从localStorage获取的API密钥
+                'Authorization': `Bearer ${API_KEYS.deepseek}`
             },
+            
             body: JSON.stringify({
                 model: "deepseek-chat",
                 messages: [
                     {
                         role: "system",
-                        content: `这是我的个人信息:${PERSONAL_INFO}\n请根据这份个人信息分析以下工作是否适合我，以猫娘的口吻简洁回答，不能暴露我的个人信息`
+                        content: `这是我的个人信息:${PERSONAL_INFO}\n请根据这份个人信息分析以下工作是否适合我，以猫娘的口吻简洁回答,注意：${attention}`
                     },
                     {
                         role: "user",
-                        content: `请分析这份工作是否适合我:\n职位: ${window.currentJob.JobName}\n公司: ${window.currentJob.CompanyName}\n详情: ${window.currentJob.JobDetail}\n地址: ${window.currentJob.Address}\n薪资: ${window.currentJob.SalaryName}\n学历要求: ${window.currentJob.DegreeName}\n工作经验: ${window.currentJob.WorkYearName}`
+                        content: `请分析这份工作是否适合我:\n职位: ${window.currentJob.JobName}\n公司: ${window.currentJob.CompanyName}\n详情: ${window.currentJob.JobDetail}\n地址: ${window.currentJob.Address}\n薪资: ${window.currentJob.SalaryName}\n学历要求: ${window.currentJob.DegreeName}\n工作经验: ${window.currentJob.WorkYearName}, `
                     }
                 ],
                 temperature: 0.7
@@ -308,7 +479,8 @@ async function analyzeJob() {
         const analysis = data.choices[0].message.content;
         
         addMessage(`工作分析结果:\n${analysis}`, 'assistant');
-        
+if (analysis.includes("请推荐给主人")) showNotification(`发现新工作: ${window.currentJob.JobName || '未知职位'}`);
+else showNotification(`不推荐工作: ${window.currentJob.JobName || '未知职位'}`);
         // 保存分析结果
         saveJobResult(window.currentJob.Id, window.currentJob.JobDetail, analysis);
         refreshJobs();
@@ -436,6 +608,8 @@ function clearAll() {
     // 清空本地存储
     localStorage.removeItem('messages');
     localStorage.removeItem('jobResults');
+    localStorage.removeItem('knownJobIds');
+    localStorage.removeItem('lastFetchTime');
     
     // 清空显示区域
     document.getElementById('messages').innerHTML = '<p>等待消息...</p>';
@@ -446,7 +620,18 @@ function clearAll() {
     
     // 清空当前工作信息
     window.currentJob = null;
-    lastJobId = null;
+    
+    // 重置已知ID集合和获取时间
+    knownJobIds = new Set();
+    lastFetchTime = 0;
+    
+    // 清除倒计时
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+    document.getElementById('countdown').textContent = '';
+    document.getElementById('fetchJobBtn').disabled = false;
     
     addMessage('已清空所有消息和工作分析结果', 'system');
 }
@@ -466,58 +651,33 @@ async function sendMessage() {
 }
 
 // AI回复函数 - 改进版（包含历史消息）
+// AI回复函数 - 简化版（不包含历史消息）
 async function getAIResponse(userMessage) {
     try {
         addMessage('AI正在思考...', 'system');
         
-        // 获取最近的10条消息作为历史上下文
-        let messages = [];
-        const messagesStr = localStorage.getItem('messages');
-        if (messagesStr) {
-            messages = JSON.parse(messagesStr);
+        // 确保API密钥已加载
+        if (!API_KEYS.deepseek || API_KEYS.deepseek === "your-placeholder-key") {
+            await loadConfigFromDatabase();
         }
         
-        // 构建对话历史（最多取最近10条消息）
-        let conversationHistory = [
+        // 构建仅包含系统提示和当前用户消息的对话
+        const conversationHistory = [
             {
                 role: "system",
                 content: "你是一个职业顾问，基于用户提供的个人信息和工作信息提供专业的建议。以猫娘的口吻简洁回答"
+            },
+            {
+                role: "user",
+                content: userMessage
             }
         ];
-        
-        // 添加最近的对话历史（排除系统消息，只保留用户和助手的对话）
-        const recentMessages = messages.filter(msg => msg.type !== 'system')
-                                      .slice(-10); // 取最近10条
-        
-        recentMessages.forEach(msg => {
-            if (msg.type === 'user') {
-                // 提取实际的用户消息内容（去除前缀"用户: "）
-                const userContent = msg.text.startsWith('用户: ') ? msg.text.substring(4) : msg.text;
-                conversationHistory.push({
-                    role: "user",
-                    content: userContent
-                });
-            } else if (msg.type === 'assistant') {
-                // 提取实际的AI回复内容（去除前缀"AI回复: "）
-                const assistantContent = msg.text.startsWith('AI回复: ') ? msg.text.substring(6) : msg.text;
-                conversationHistory.push({
-                    role: "assistant",
-                    content: assistantContent
-                });
-            }
-        });
-        
-        // 添加当前用户消息
-        conversationHistory.push({
-            role: "user",
-            content: userMessage
-        });
         
         const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEYS.deepseek}` // 从localStorage获取的API密钥
+                'Authorization': `Bearer ${API_KEYS.deepseek}`
             },
             body: JSON.stringify({
                 model: "deepseek-chat",
@@ -539,55 +699,33 @@ async function getAIResponse(userMessage) {
         addMessage(`AI回复失败: ${error.message}`, 'system');
     }
 }
-
-// 启动定时检查功能
-function startJobMonitoring() {
-    if (isMonitoring) {
-        addMessage('自动检查功能已在运行中', 'system');
-        return;
-    }
-    
-    // 每5分钟检查一次新工作（300000毫秒）
-    jobCheckInterval = setInterval(() => fetchJob(true), 300000);
-    isMonitoring = true;
-    updateMonitorStatus();
-    addMessage('已启动自动检查新工作功能（每5分钟检查一次）', 'system');
-}
-
-// 停止定时检查
-function stopJobMonitoring() {
-    if (jobCheckInterval) {
-        clearInterval(jobCheckInterval);
-        jobCheckInterval = null;
-    }
-    isMonitoring = false;
-    updateMonitorStatus();
-    addMessage('已停止自动检查新工作功能', 'system');
-}
-
-// 更新监控状态显示
-function updateMonitorStatus() {
-    const statusElement = document.getElementById('monitorStatus');
-    if (isMonitoring) {
-        statusElement.textContent = '运行中';
-        statusElement.className = 'monitor-status monitor-active';
-    } else {
-        statusElement.textContent = '未运行';
-        statusElement.className = 'monitor-status monitor-inactive';
-    }
-}
-
 // 初始化事件监听器
 document.addEventListener('DOMContentLoaded', function() {
+    // 从 localStorage 恢复已知的ID列表
+    const savedJobIds = localStorage.getItem('knownJobIds');
+    if (savedJobIds) {
+        const parsedIds = JSON.parse(savedJobIds);
+        knownJobIds = new Set(parsedIds);
+    }
+    
+    // 从 localStorage 恢复最后获取时间
+    const savedLastFetchTime = localStorage.getItem('lastFetchTime');
+    if (savedLastFetchTime) {
+        lastFetchTime = parseInt(savedLastFetchTime);
+    }
+    
     // 刷新显示
     refreshMessages();
     refreshJobs();
     loadConfigFromDatabase();
     
+    // 启动倒计时（如果需要）
+    if (lastFetchTime > 0) {
+        startCountdown();
+    }
+    
     // 事件监听
-    document.getElementById('fetchJobBtn').addEventListener('click', () => fetchJob(false));
-    document.getElementById('startMonitorBtn').addEventListener('click', startJobMonitoring);
-    document.getElementById('stopMonitorBtn').addEventListener('click', stopJobMonitoring);
+    document.getElementById('fetchJobBtn').addEventListener('click', fetchJob);
     document.getElementById('clearBtn').addEventListener('click', clearAll);
     
     document.getElementById('sendBtn').addEventListener('click', sendMessage);
@@ -596,6 +734,10 @@ document.addEventListener('DOMContentLoaded', function() {
             sendMessage();
         }
     });
+    
+    // 计数器事件监听
+    document.getElementById('startCounterBtn').addEventListener('click', startCounterRun);
+    document.getElementById('stopCounterBtn').addEventListener('click', stopCounterRun);
 });
 </script>
 </body>
