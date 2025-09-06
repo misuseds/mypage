@@ -448,12 +448,11 @@ async function analyzeJob() {
         }
         const attention="排除包含独立设计,性格外向或者忠诚字样的或者是主管职位或者位置泉州,要求太多的,涉及到流体力学的，材料的也不要推,排除之后还觉得匹配度超过80%的话回答要带*请推荐给主人*,我之后代码会读取这句话"
         // 使用DeepSeek API进行分析
-        const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEYS.deepseek}`
-            },
+        const response = await fetch('./keyinfoapi/deepseek_proxy.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
             
             body: JSON.stringify({
                 model: "deepseek-chat",
