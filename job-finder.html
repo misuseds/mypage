@@ -306,8 +306,8 @@ async function fetchJob() {
                     "DegreeName": "不限",
                     "Age": -1,
                     "AgeName": "不限",
-                    "WorkYear": -1,
-                    "WorkYearName": "不限",
+                    "WorkYear":2,
+                    "WorkYearName": "1-3年",
                     "SalaryType": -1,
                     "SalaryTypeName": "不限",
                     "Salary": -1,
@@ -340,7 +340,7 @@ async function fetchJob() {
         
         const jobData = result.Data.Items[0];
         const jobId = jobData.Id;
-        
+       // console.log('获取到的工作信息:', jobData);
         // 检查是否为新ID
         const isNewJob = !knownJobIds.has(jobId);
 
@@ -353,12 +353,16 @@ async function fetchJob() {
             
            document.getElementById('jobDetails').innerHTML = `
             <p><strong>职位:</strong> ${jobData.JobName || '未知'}</p>
+                       <p><strong>学历要求:</strong> ${jobData.NeedEduBackgroundName || '不限'}</p>
+             <p><strong>薪资:</strong> ${jobData.RealSalary || '面议'}</p>
             <p><strong>公司:</strong> ${jobData.CompanyName || '未知'}</p>
             <p><strong>工作详情:</strong> ${jobData.JobDetail || '无详情'}</p>
             <p><strong>工作地址:</strong> ${jobData.Address || '未提供'}</p>
-            <p><strong>薪资:</strong> ${jobData.SalaryName || '面议'}</p>
-            <p><strong>学历要求:</strong> ${jobData.DegreeName || '不限'}</p>
-            <p><strong>工作经验:</strong> ${jobData.WorkYearName || '不限'}</p>
+            <p><strong>公司性质:</strong> ${jobData.CompanyTypeName|| '无描述'}</p>
+ 
+            <p><strong>工作经验:</strong> ${jobData.NeedWorkLengthName || '不限'}</p>
+                        <p><strong>职位类型:</strong> ${jobData.JobTypesName || '未知'}</p>
+            <p><strong>公司规模:</strong> ${jobData.CompanySizeName || '无描述'}</p>
             <p><strong>ID:</strong> ${jobData.Id || '未知'}</p>
             <p><strong>状态:</strong> ${isNewJob ? '新工作' : '已查看过'}</p>
         `;
@@ -368,7 +372,7 @@ async function fetchJob() {
         
         // 自动分析工作
         await analyzeJob();
-   
+
         }
         
              else {
@@ -461,10 +465,10 @@ async function analyzeJob() {
                         role: "system",
                         content: `这是我的个人信息:${PERSONAL_INFO}\n请根据这份个人信息分析以下工作是否适合我，以猫娘的口吻简洁回答,注意：${attention}`
                     },
-                    {
-                        role: "user",
-                        content: `请分析这份工作是否适合我:\n职位: ${window.currentJob.JobName}\n公司: ${window.currentJob.CompanyName}\n详情: ${window.currentJob.JobDetail}\n地址: ${window.currentJob.Address}\n薪资: ${window.currentJob.SalaryName}\n学历要求: ${window.currentJob.DegreeName}\n工作经验: ${window.currentJob.WorkYearName}, `
-                    }
+                  {
+    role: "user",
+    content: `请分析这份工作是否适合我:\n职位: ${window.currentJob.JobName}\n公司: ${window.currentJob.CompanyName}\n详情: ${window.currentJob.JobDetail}\n地址: ${window.currentJob.Address}\n薪资: ${window.currentJob.RealSalary || '面议'}\n学历要求: ${window.currentJob.NeedEduBackgroundName || '不限'}\n工作经验: ${window.currentJob.NeedWorkLengthName || '不限'}\n公司性质: ${window.currentJob.CompanyTypeName || '无描述'}\n职位类型: ${window.currentJob.JobTypesName || '未知'}\n公司规模: ${window.currentJob.CompanySizeName || '无描述'}, `
+}
                 ],
                 temperature: 0.7
             })
