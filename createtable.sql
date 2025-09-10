@@ -34,4 +34,5 @@ CREATE TABLE user_configs (
 -- 初始化配置项
 INSERT INTO user_configs (config_key, config_value) VALUES 
 ('deepseek_api_key', ''),
+('ipv6_address', ''),
 ('personal_info', '');
