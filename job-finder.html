@@ -245,7 +245,7 @@ function showPendingNotifications() {
 // 更新倒计时显示
 function updateCountdown() {
     const currentTime = Date.now();
-    const timeRemaining = 5 * 60 * 1000 - (currentTime - lastFetchTime);
+    const timeRemaining = 3 * 60 * 1000 - (currentTime - lastFetchTime);
     
     if (timeRemaining > 0) {
         const seconds = Math.ceil(timeRemaining / 1000);
@@ -311,8 +311,8 @@ async function fetchJob() {
                     "DegreeName": "不限",
                     "Age": -1,
                     "AgeName": "不限",
-                    "WorkYear":2,
-                    "WorkYearName": "1-3年",
+                    "WorkYear":-1,
+                    "WorkYearName": "不限",
                     "SalaryType": -1,
                     "SalaryTypeName": "不限",
                     "Salary": -1,
@@ -343,7 +343,29 @@ async function fetchJob() {
             throw new Error('未找到相关工作信息');
         }
         
-        const jobData = result.Data.Items[0];
+        let jobData = result.Data.Items[0];
+        const filteredJobs = result.Data.Items.filter(job => 
+    !job.Address.includes('泉州') && 
+         !job.JobName.includes('经理')
+     && !job.JobName.includes('主管')&&
+      !job.JobName.includes('电工')&&
+       
+     !job.JobName.includes('应届生')&&
+    !job.JobDetail.includes('独立')&& 
+    !job.JobDetail.includes('忠诚')&&
+    !job.JobDetail.includes('流体')&&
+    !job.JobDetail.includes('材料')&&
+    !job.JobDetail.includes('稳定')&&
+     !job.JobDetail.includes('外向')
+
+    
+);
+
+if (filteredJobs.length != 0) {
+   jobData = filteredJobs[0];
+}
+
+
         const jobId = jobData.Id;
        // console.log('获取到的工作信息:', jobData);
         // 检查是否为新ID
