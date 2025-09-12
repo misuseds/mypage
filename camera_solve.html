@@ -35,6 +35,7 @@
             height: auto;
             border: 2px solid #ddd;
             border-radius: 8px;
+            background-color: #000;
         }
         .controls {
             margin: 20px 0;
@@ -112,6 +113,24 @@
         .facing-mode-selector {
             margin: 15px 0;
         }
+        
+        /* 添加加载动画样式 */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -122,7 +141,7 @@
         <h1>摄像机处理</h1>
         
         <div class="video-container">
-            <video id="videoElement" autoplay playsinline></video>
+            <video id="videoElement" autoplay playsinline muted></video>
         </div>
         
         <div class="facing-mode-selector">
@@ -145,6 +164,8 @@
             <button id="startCameraBtn">启动摄像机</button>
             <button id="stopCameraBtn" disabled>停止摄像机</button>
             <button id="snapshotBtn" disabled>拍照</button>
+            <button id="detectBtn" disabled>发送检测</button>
+            <button id="realTimeBtn" disabled>开始实时识别</button>
         </div>
         
         <div id="statusMessage" class="status info">
@@ -169,84 +190,184 @@
         const canvasContext = snapshotCanvas.getContext('2d');
         const cameraSelect = document.getElementById('cameraSelect');
         const facingModeRadios = document.getElementsByName('facingMode');
+        const detectBtn = document.getElementById('detectBtn');
+        const realTimeBtn = document.getElementById('realTimeBtn');
         
         // 存储媒体流对象和设备列表
         let mediaStream = null;
         let availableCameras = [];
+        let isRealTimeDetection = false;
+        let realTimeDetectionInterval = null;
+        const detectionInterval = 1500; 
+        let backendUrl = null;
         
         // 更新状态消息
         function updateStatus(message, type = 'info') {
-            statusMessage.textContent = message;
+            // 如果是处理中的状态，添加加载动画
+            if (type === 'info' && message.includes('正在处理')) {
+                statusMessage.innerHTML = '<div class="loading"></div>' + message;
+            } else {
+                statusMessage.textContent = message;
+            }
             statusMessage.className = `status ${type}`;
         }
-        const response = await fetch('./keyinfoapi/get_config.php');
-        const result = await response.json();
-        let ipaddress = "";
-        console.info('result:', result);
-        if (result.success) {
-            ipaddress = result.data.ipv6_address;
+
+        async function initializeApp() {
+            try {
+                // 使用你提供的 FRP 地址
+                let ipaddress = "ns3.llmfindworksnjsgcs.fwh.is";
+         
+                // 构建后端检测URL
+                backendUrl = `http://${ipaddress}/detect`;
+                const healthUrl = `http://${ipaddress}/health`;
+                
+                // 测试健康检查端点（使用代理方式避免混合内容问题）
+                try {
+                    console.log('正在测试健康检查端点:', healthUrl);
+                    
+                    // 创建代理请求来避免混合内容问题
+                    const proxyResponse = await fetch('./cameraapi/proxy_api.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            url: healthUrl,
+                            method: 'GET'
+                        })
+                    });
+                    
+                    const proxyResult = await proxyResponse.json();
+                    console.log('代理完整响应:', proxyResult);
+                    
+                    if (proxyResult.success) {
+                        const healthData = JSON.parse(proxyResult.data);
+                        console.log('健康检查成功:', healthData);
+                        updateStatus('健康检查通过，后端服务正常运行', 'success');
+                    } else {
+                        console.warn('健康检查失败:', proxyResult.error);
+                        updateStatus('后端服务可能不可用: ' + proxyResult.error, 'info');
+                        
+                        // 显示更多错误信息
+                        if (proxyResult.url) {
+                            console.log('请求的URL:', proxyResult.url);
+                        }
+                        if (proxyResult.httpCode) {
+                            console.log('HTTP状态码:', proxyResult.httpCode);
+                        }
+                    }
+                } catch (healthError) {
+                    console.error('健康检查失败:', healthError);
+                    updateStatus('无法连接到后端服务: ' + healthError.message, 'error');
+                }
+                
+                return backendUrl;
+            } catch (error) {
+                console.error('获取配置失败:', error);
+                updateStatus('获取后端配置失败: ' + error.message, 'error');
+                return null;
+            }
         }
-        const backendUrl = `http://[${ipaddress}]:5000/detect`; // FRP映射后的地址
+
+        // 压缩图像函数
+        function compressImage(canvas, maxWidth, quality) {
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            if (width <= maxWidth) {
+                // 如果图像宽度已经小于等于最大宽度，直接压缩质量
+                return canvas.toDataURL('image/jpeg', quality);
+            }
+            
+            // 创建临时画布用于缩放图像
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            // 计算新的尺寸
+            const scale = maxWidth / width;
+            tempCanvas.width = maxWidth;
+            tempCanvas.height = height * scale;
+            
+            // 绘制缩放后的图像
+            tempCtx.drawImage(canvas, 0, 0, tempCanvas.width, tempCanvas.height);
+            
+            // 返回压缩后的图像数据
+            return tempCanvas.toDataURL('image/jpeg', quality);
+        }
 
         async function sendToBackendForDetection() {
-    if (!mediaStream) {
-        updateStatus('请先启动摄像头', 'error');
-        return;
-    }
-    
-    try {
-        // 拍照
-        takeSnapshot();
-        
-        // 将画布内容转换为base64
-        const imageData = snapshotCanvas.toDataURL('image/jpeg', 0.8);
-        
-        // 发送到后端进行检测
-        updateStatus('正在处理图像...', 'info');
-        
-        const response = await fetch(backendUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ image: imageData })
-        });
-        
-        const result = await response.json();
-        
-        if (result.status === 'success') {
-            // 显示处理后的图像
-            const processedImage = new Image();
-            processedImage.onload = function() {
-                // 调整画布大小
-                snapshotCanvas.width = processedImage.width;
-                snapshotCanvas.height = processedImage.height;
+            if (!mediaStream) {
+                updateStatus('请先启动摄像头', 'error');
+                return;
+            }
+            
+            try {
+                // 拍照
+                takeSnapshot();
                 
-                // 在画布上显示处理后的图像
-                canvasContext.clearRect(0, 0, snapshotCanvas.width, snapshotCanvas.height);
-                canvasContext.drawImage(processedImage, 0, 0);
                 
-                // 显示画布
-                snapshotCanvas.style.display = 'block';
+                const imageData = compressImage(snapshotCanvas, 640, 0.8);
                 
-                updateStatus(`检测完成，发现 ${result.detections.length} 个目标`, 'success');
+                // 发送到后端进行检测
+                updateStatus('正在处理图像...', 'info');
                 
-                // 显示检测信息
-                if (result.detections.length > 0) {
-                    console.log('检测结果:', result.detections);
+                // 使用代理发送请求避免混合内容问题
+                const proxyResponse = await fetch('./cameraapi/proxy_api.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: backendUrl,
+                        method: 'POST',
+                        body: JSON.stringify({ image: imageData })
+                    })
+                });
+                
+                const proxyResult = await proxyResponse.json();
+                
+                if (!proxyResult.success) {
+                    throw new Error(proxyResult.error || 'Proxy request failed');
                 }
-            };
-            processedImage.src = 'data:image/jpeg;base64,' + result.processed_image;
-        } else {
-            updateStatus('检测失败: ' + result.error, 'error');
+                
+                const result = JSON.parse(proxyResult.data);
+                
+                if (result.status === 'success') {
+                    // 显示处理后的图像
+                    const processedImage = new Image();
+                    processedImage.onload = function() {
+                        // 固定画布尺寸以避免忽大忽小
+                        const displayWidth = 640;
+                        const scale = displayWidth / processedImage.width;
+                        const displayHeight = processedImage.height * scale;
+                        
+                        snapshotCanvas.width = displayWidth;
+                        snapshotCanvas.height = displayHeight;
+                        
+                        // 在画布上显示处理后的图像
+                        canvasContext.clearRect(0, 0, snapshotCanvas.width, snapshotCanvas.height);
+                        canvasContext.drawImage(processedImage, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
+                        
+                        // 显示画布
+                        snapshotCanvas.style.display = 'block';
+                        
+                        updateStatus(`检测完成，发现 ${result.detections.length} 个目标`, 'success');
+                        
+                        // 显示检测信息
+                        if (result.detections.length > 0) {
+                            console.log('检测结果:', result.detections);
+                        }
+                    };
+                    processedImage.src = 'data:image/jpeg;base64,' + result.processed_image;
+                } else {
+                    updateStatus('检测失败: ' + result.error, 'error');
+                }
+            } catch (error) {
+                console.error('处理图像时出错:', error);
+                updateStatus('处理图像时出错: ' + error.message, 'error');
+            }
         }
-    } catch (error) {
-        console.error('处理图像时出错:', error);
-        updateStatus('处理图像时出错: ' + error.message, 'error');
-    }
-}
 
-        // 获取可用摄像头列表
         async function getAvailableCameras() {
             try {
                 // 获取媒体设备列表
@@ -277,34 +398,34 @@
             }
         }
         
-        // 启动指定摄像头
+        // 启动指定摄像头 - 使用更简单的实现方式
         async function startCamera(options = {}) {
             try {
                 // 更新状态
                 updateStatus('正在请求访问摄像头...', 'info');
                 
-                // 构建约束条件
-                const constraints = {
-                    video: {
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 }
-                    },
-                    audio: false
-                };
-                
-                // 如果指定了摄像头ID，则使用具体设备
-                if (options.deviceId) {
-                    constraints.video.deviceId = { exact: options.deviceId };
-                } 
-                // 否则使用 facingMode
-                else if (options.facingMode) {
-                    constraints.video.facingMode = options.facingMode;
-                }
-                
                 // 如果当前正在使用摄像头，先停止
                 if (mediaStream) {
                     const tracks = mediaStream.getTracks();
                     tracks.forEach(track => track.stop());
+                }
+                
+                // 构建约束条件 - 使用更简单的实现
+                let constraints = { video: true, audio: false };
+                
+                // 如果指定了摄像头ID，则使用具体设备
+                if (options.deviceId) {
+                    constraints = {
+                        video: { deviceId: { exact: options.deviceId } },
+                        audio: false
+                    };
+                } 
+                // 否则使用 facingMode
+                else if (options.facingMode) {
+                    constraints = {
+                        video: { facingMode: options.facingMode },
+                        audio: false
+                    };
                 }
                 
                 // 获取用户媒体设备权限
@@ -313,11 +434,16 @@
                 // 将视频流设置为视频元素的源
                 videoElement.srcObject = mediaStream;
                 
+                // 确保视频开始播放
+                videoElement.play().catch(e => console.error("视频播放失败:", e));
+                
                 // 更新按钮状态
                 startCameraBtn.disabled = true;
                 stopCameraBtn.disabled = false;
                 snapshotBtn.disabled = false;
                 cameraSelect.disabled = false;
+                detectBtn.disabled = false;
+                realTimeBtn.disabled = false;
                 
                 // 更新状态消息
                 updateStatus('摄像头已启动，正在显示视频流', 'success');
@@ -327,6 +453,8 @@
                 startCameraBtn.disabled = false;
                 stopCameraBtn.disabled = true;
                 snapshotBtn.disabled = true;
+                detectBtn.disabled = true;
+                realTimeBtn.disabled = true;
             }
         }
         
@@ -344,9 +472,16 @@
                 startCameraBtn.disabled = false;
                 stopCameraBtn.disabled = true;
                 snapshotBtn.disabled = true;
+                detectBtn.disabled = true;
+                realTimeBtn.disabled = true;
                 
                 // 更新状态消息
                 updateStatus('摄像头已停止', 'info');
+                
+                // 如果正在实时识别，则停止
+                if (isRealTimeDetection) {
+                    toggleRealTimeDetection();
+                }
             }
         }
         
@@ -368,8 +503,123 @@
             updateStatus('拍照成功！', 'success');
         }
         
+        // 切换实时识别状态
+        function toggleRealTimeDetection() {
+            if (!isRealTimeDetection) {
+                // 开始实时识别
+                isRealTimeDetection = true;
+                realTimeBtn.textContent = '停止实时识别';
+                updateStatus('开始实时识别...', 'info');
+                
+                // 设置定时器，定期发送检测请求
+                realTimeDetectionInterval = setInterval(sendFrameForDetection, detectionInterval);
+            } else {
+                // 停止实时识别
+                isRealTimeDetection = false;
+                realTimeBtn.textContent = '开始实时识别';
+                updateStatus('已停止实时识别', 'info');
+                
+                // 清除定时器
+                if (realTimeDetectionInterval) {
+                    clearInterval(realTimeDetectionInterval);
+                    realTimeDetectionInterval = null;
+                }
+            }
+        }
+
+        // 发送当前帧进行检测 - 添加性能计时和图像压缩
+        async function sendFrameForDetection() {
+            if (!mediaStream) {
+                updateStatus('请先启动摄像头', 'error');
+                toggleRealTimeDetection(); // 停止实时识别
+                return;
+            }
+            
+            // 开始计时
+            const startTime = performance.now();
+            
+            try {
+                // 拍照获取当前帧
+                takeSnapshot();
+                
+                // 压缩图像（最大宽度320px，质量0.6）
+                const imageData = compressImage(snapshotCanvas, 320, 0.6);
+                
+                // 发送到后端进行检测
+                updateStatus('正在处理图像...', 'info');
+                
+                // 使用代理发送请求避免混合内容问题
+                const proxyResponse = await fetch('./cameraapi/proxy_api.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: backendUrl,
+                        method: 'POST',
+                        body: JSON.stringify({ image: imageData })
+                    })
+                });
+                
+                // 计算请求发送时间
+                const requestTime = performance.now() - startTime;
+                console.log(`请求发送耗时: ${requestTime.toFixed(2)}ms`);
+                
+                const proxyResult = await proxyResponse.json();
+                
+                // 计算总耗时
+                const totalTime = performance.now() - startTime;
+                console.log(`总处理耗时: ${totalTime.toFixed(2)}ms`);
+                
+                if (!proxyResult.success) {
+                    throw new Error(proxyResult.error || 'Proxy request failed');
+                }
+                
+                const result = JSON.parse(proxyResult.data);
+                
+                if (result.status === 'success') {
+                    // 显示处理后的图像
+                    const processedImage = new Image();
+                    processedImage.onload = function() {
+                        // 固定画布尺寸以避免忽大忽小
+                        const displayWidth = 640;
+                        const scale = displayWidth / processedImage.width;
+                        const displayHeight = processedImage.height * scale;
+                        
+                        snapshotCanvas.width = displayWidth;
+                        snapshotCanvas.height = displayHeight;
+                        
+                        // 在画布上显示处理后的图像
+                        canvasContext.clearRect(0, 0, snapshotCanvas.width, snapshotCanvas.height);
+                        canvasContext.drawImage(processedImage, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
+                        
+                        // 显示画布
+                        snapshotCanvas.style.display = 'block';
+                        
+                        updateStatus(`实时检测完成，发现 ${result.detections.length} 个目标 | 耗时: ${totalTime.toFixed(0)}ms`, 'success');
+                        
+                        // 显示检测信息
+                        if (result.detections.length > 0) {
+                            console.log('检测结果:', result.detections);
+                        }
+                    };
+                    processedImage.src = 'data:image/jpeg;base64,' + result.processed_image;
+                } else {
+                    updateStatus('检测失败: ' + result.error, 'error');
+                }
+            } catch (error) {
+                const totalTime = performance.now() - startTime;
+                console.error('处理图像时出错:', error);
+                updateStatus('处理图像时出错: ' + error.message + ` | 耗时: ${totalTime.toFixed(0)}ms`, 'error');
+                
+                // 出错时停止实时识别
+                toggleRealTimeDetection();
+            }
+        }
         // 页面加载完成后绑定事件
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
+            await initializeApp();
+            
             // 检查浏览器是否支持媒体设备API
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                 updateStatus('您的浏览器不支持访问媒体设备，请更换浏览器重试', 'error');
@@ -393,6 +643,8 @@
             
             stopCameraBtn.addEventListener('click', stopCamera);
             snapshotBtn.addEventListener('click', takeSnapshot);
+            detectBtn.addEventListener('click', sendToBackendForDetection);
+            realTimeBtn.addEventListener('click', toggleRealTimeDetection);
             
             // 摄像头选择事件
             cameraSelect.addEventListener('change', async function() {
@@ -421,28 +673,6 @@
             
             // 获取可用摄像头列表
             getAvailableCameras();
-
-             // 添加检测按钮
-    const detectBtn = document.createElement('button');
-    detectBtn.id = 'detectBtn';
-    detectBtn.textContent = '发送检测';
-    detectBtn.disabled = true;
-    detectBtn.addEventListener('click', sendToBackendForDetection);
-    
-    // 将检测按钮插入到控制区域
-    const controlsDiv = document.querySelector('.controls');
-    controlsDiv.appendChild(detectBtn);
-    
-    // 更新按钮状态控制
-    snapshotBtn.addEventListener('click', function() {
-        takeSnapshot();
-        // 启用检测按钮
-        document.getElementById('detectBtn').disabled = false;
-    });
-    
-    // 在 startCamera 成功后也启用检测按钮
-    // 需要修改 startCamera 函数，在成功启动摄像头后添加:
-    // document.getElementById('detectBtn').disabled = false;
         });
     </script>
 </body>
