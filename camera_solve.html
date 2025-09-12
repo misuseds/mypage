@@ -126,7 +126,7 @@
             margin-right: 10px;
             vertical-align: middle;
         }
-
+ 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -178,7 +178,7 @@
         
         <a href="index.html" class="back-link">返回主页</a>
     </div>
-
+ 
     <script>
         // 获取页面元素
         const videoElement = document.getElementById('videoElement');
@@ -211,7 +211,7 @@
             }
             statusMessage.className = `status ${type}`;
         }
-
+ 
         async function initializeApp() {
             try {
                 // 使用你提供的 FRP 地址
@@ -268,7 +268,7 @@
                 return null;
             }
         }
-
+ 
         // 压缩图像函数
         function compressImage(canvas, maxWidth, quality) {
             const width = canvas.width;
@@ -294,7 +294,7 @@
             // 返回压缩后的图像数据
             return tempCanvas.toDataURL('image/jpeg', quality);
         }
-
+ 
         async function sendToBackendForDetection() {
             if (!mediaStream) {
                 updateStatus('请先启动摄像头', 'error');
@@ -367,7 +367,7 @@
                 updateStatus('处理图像时出错: ' + error.message, 'error');
             }
         }
-
+ 
         async function getAvailableCameras() {
             try {
                 // 获取媒体设备列表
@@ -526,7 +526,7 @@
                 }
             }
         }
-
+ 
         // 发送当前帧进行检测 - 添加性能计时和图像压缩
         async function sendFrameForDetection() {
             if (!mediaStream) {
