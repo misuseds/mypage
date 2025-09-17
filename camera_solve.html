@@ -215,10 +215,10 @@
         async function initializeApp() {
             try {
                 // 使用你提供的 FRP 地址
-                let ipaddress = "ns3.llmfindworksnjsgcs.fwh.is";
+                let ipaddress = "ns2.llmfindworksnjsgcs.fwh.is";
          
                 // 构建后端检测URL
-                backendUrl = `http://${ipaddress}/detect`;
+                backendUrl = `http://${ipaddress}/predict`;
                 const healthUrl = `http://${ipaddress}/health`;
                 
                 // 测试健康检查端点（使用代理方式避免混合内容问题）

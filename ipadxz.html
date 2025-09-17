@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按键控制界面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        .key-button {
+            width: 200px;
+            height: 200px;
+            font-size: 72px;
+            font-weight: bold;
+            margin: 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .key-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        #x-button {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        #z-button {
+            background-color: #4ecdc4;
+            color: white;
+        }
+        
+        .status {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        
+        .pressed {
+            background-color: #ffd166 !important;
+            color: #333 !important;
+        }
+        
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .connection-status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .connected {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回主页</a>
+    <div class="container">
+        <h1>按键控制界面</h1>
+        <div id="connection-status" class="connection-status connected">
+            连接状态: 使用HTTP轮询
+        </div>
+        <button id="x-button" class="key-button">X</button>
+        <button id="z-button" class="key-button">Z</button>
+        <div class="status">
+            <p>状态: <span id="status-text">等待操作</span></p>
+            <p>最后更新: <span id="last-update">无</span></p>
+        </div>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const xButton = document.getElementById('x-button');
+        const zButton = document.getElementById('z-button');
+        const statusText = document.getElementById('status-text');
+        const lastUpdate = document.getElementById('last-update');
+        const connectionStatus = document.getElementById('connection-status');
+        
+        // 更新按钮样式
+        function updateButtonStyles(keyState) {
+            if (keyState.X) {
+                xButton.classList.add('pressed');
+            } else {
+                xButton.classList.remove('pressed');
+            }
+            
+            if (keyState.Z) {
+                zButton.classList.add('pressed');
+            } else {
+                zButton.classList.remove('pressed');
+            }
+        }
+
+        // 使用PHP代理发送请求
+        async function sendRequest(action, data = {}) {
+            try {
+                const response = await fetch('/ipadxzapi/proxy.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: action,
+                        ...data
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (!result.success) {
+                    throw new Error(result.error || '请求失败');
+                }
+                
+                return result.data;
+            } catch (error) {
+                console.error('请求失败:', error);
+                statusText.textContent = '连接服务器失败: ' + error.message;
+                throw error;
+            }
+        }
+
+        // 获取当前按键状态
+        async function getKeyState() {
+            try {
+                const state = await sendRequest('get_state');
+                updateButtonStyles(state);
+                statusText.textContent = '状态已更新';
+                if (state.last_updated) {
+                    lastUpdate.textContent = new Date(state.last_updated).toLocaleString();
+                }
+                return state;
+            } catch (error) {
+                statusText.textContent = '获取状态失败';
+            }
+        }
+
+        // 发送按键控制消息
+        async function sendKeyControl(key, action) {
+            try {
+                const result = await sendRequest('control', {
+                    key: key,
+                    key_action: action
+                });
+                // 更新状态显示
+                await getKeyState();
+                statusText.textContent = `按键 ${key} 已${action}`;
+            } catch (error) {
+                statusText.textContent = '控制失败: ' + error.message;
+            }
+        }
+
+        // 为按钮添加事件监听器
+        xButton.addEventListener('mousedown', () => {
+            sendKeyControl('X', 'press');
+        });
+
+        xButton.addEventListener('mouseup', () => {
+            sendKeyControl('X', 'release');
+        });
+
+        xButton.addEventListener('mouseleave', () => {
+            sendKeyControl('X', 'release');
+        });
+
+        zButton.addEventListener('mousedown', () => {
+            sendKeyControl('Z', 'press');
+        });
+
+        zButton.addEventListener('mouseup', () => {
+            sendKeyControl('Z', 'release');
+        });
+
+        zButton.addEventListener('mouseleave', () => {
+            sendKeyControl('Z', 'release');
+        });
+
+        // 添加键盘事件支持
+        document.addEventListener('keydown', (event) => {
+            if ((event.key === 'x' || event.key === 'X') && event.target.tagName !== 'INPUT') {
+                event.preventDefault();
+                sendKeyControl('X', 'press');
+            } else if ((event.key === 'z' || event.key === 'Z') && event.target.tagName !== 'INPUT') {
+                event.preventDefault();
+                sendKeyControl('Z', 'press');
+            }
+        });
+
+        document.addEventListener('keyup', (event) => {
+            if ((event.key === 'x' || event.key === 'X') && event.target.tagName !== 'INPUT') {
+                event.preventDefault();
+                sendKeyControl('X', 'release');
+            } else if ((event.key === 'z' || event.key === 'Z') && event.target.tagName !== 'INPUT') {
+                event.preventDefault();
+                sendKeyControl('Z', 'release');
+            }
+        });
+
+        // 页面加载时获取当前状态
+        window.addEventListener('load', () => {
+            getKeyState();
+            
+            // 定期更新状态（每秒更新一次）
+            setInterval(getKeyState, 1000);
+        });
+    </script>
+</body>
+</html>
