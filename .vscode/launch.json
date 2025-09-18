@@ -7,18 +7,19 @@
       "request": "launch",
       "program": "E:/mouse_control/mousecontrol.py",
       "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}",
-      "env": {}
+      "cwd": "E:/mouse_control/",
+      "env": {},
+      "python": "E:/mouse_control/.venv/python.exe"
     },
     {
-      "name": "启动mouse_control FRP 客户端",
+      "name": "启动 mouse_control FRP 客户端",
       "type": "debugpy",
       "request": "launch",
       "program": "E:/mouse_control/start_frpc.py",
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}",
       "args": [
-        "E:/mouse_control/mefrpc",
+        "E:/mouse_control/mefrpc.exe",
         "-t",
         "fce7119c467660bf844e2a0d35033fe6",
         "-p",
@@ -31,8 +32,9 @@
       "request": "launch",
       "program": "E:/yolo-local/predict_server.py",
       "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}",
-      "env": {}
+      "cwd": "E:/yolo-local/",
+      "env": {},
+        "python": "E:/yolo-local/.venv/python.exe"
     },
     {
       "name": "启动YOLO FRP 客户端",
@@ -42,18 +44,18 @@
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}",
       "args": [
-        "E:/yolo-local/mefrpc",
+        "E:/yolo-local/mefrpc.exe",
         "-t",
         "fce7119c467660bf844e2a0d35033fe6",
         "-p",
-        "116933"
+        "117044"
       ]
     }
   ],
   "compounds": [
     {
       "name": "启动 YOLO 服务和 FRP 客户端 (并行)",
-      "configurations": ["启动 YOLO 服务", "启动YOLO FRP 客户端"],
+      "configurations": ["启动 YOLO 服务", "启动YOLO FRP 客户端", "启动 mouse_control 服务", "启动 mouse_control FRP 客户端"],
       "stopAll": true
     }
   ]
