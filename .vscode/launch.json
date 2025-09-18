@@ -16,10 +16,16 @@
       "request": "launch",
       "program": "E:/mouse_control/start_frpc.py",
       "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}"
-    }
-    ,
-       {
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "E:/mouse_control/mefrpc",
+        "-t",
+        "fce7119c467660bf844e2a0d35033fe6",
+        "-p",
+        "116933"
+      ]
+    },
+    {
       "name": "启动 YOLO 服务",
       "type": "debugpy",
       "request": "launch",
@@ -34,7 +40,14 @@
       "request": "launch",
       "program": "E:\\yolo-local\\start_frpc.py",
       "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "E:/yolo-local/mefrpc",
+        "-t",
+        "fce7119c467660bf844e2a0d35033fe6",
+        "-p",
+        "116933"
+      ]
     }
   ],
   "compounds": [
