@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI终端</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .panel {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .messages {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+        .user {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+        .assistant {
+            background-color: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+        }
+        .system {
+            background-color: #e8f5e8;
+            border-left: 4px solid #4caf50;
+        }
+        .input-area {
+            display: flex;
+            margin-top: 10px;
+            gap: 10px;
+        }
+        .input-area input, .input-area textarea {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0b7dda;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .screenshot-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        .action-buttons button {
+            flex: 1;
+            min-width: 120px;
+        }
+        .detection-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+        }
+        .loading {
+            display: none;
+            color: #2196f3;
+            font-style: italic;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI终端</h1>
+    <a href="index.html" class="back-link">← 返回主页</a>
+    
+    <div class="container">
+        <div class="panel">
+            <h2>屏幕截图与图像分析</h2>
+            
+            <div class="controls">
+                <div class="screenshot-container">
+                    <div id="imagePreviewContainer" style="display:none;">
+                        <h3>截图预览:</h3>
+                        <img id="imagePreview" class="image-preview" alt="截图预览">
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="captureScreenBtn">截取屏幕</button>
+                    <button id="analyzeBtn" disabled>分析图像</button>
+                    <button id="resetBtn">重置</button>
+                </div>
+                
+                <div id="loadingIndicator" class="loading">正在处理中...</div>
+            </div>
+            
+            <div class="detection-info" id="detectionInfo" style="display:none;">
+                <h3>检测结果:</h3>
+                <div id="detectionResults"></div>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>AI交互终端</h2>
+            
+            <div class="messages" id="messages">
+                <div class="message system">
+                    <strong>系统 [初始化]</strong><br>
+                    欢迎使用AI终端！您可以发送消息与AI交互，或使用屏幕截图功能进行图像分析。
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <textarea id="messageInput" placeholder="输入您的消息..." rows="3"></textarea>
+                <button id="sendBtn">发送</button>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="analyzeImageBtn" disabled>分析当前截图</button>
+                <button id="clickDetectedBtn" disabled>点击检测目标</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量
+        let capturedImage = null;
+        let detectionData = null;
+        const imagePreview = document.getElementById('imagePreview');
+        
+        // DOM元素
+        const captureScreenBtn = document.getElementById('captureScreenBtn');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const sendBtn = document.getElementById('sendBtn');
+        const analyzeImageBtn = document.getElementById('analyzeImageBtn');
+        const clickDetectedBtn = document.getElementById('clickDetectedBtn');
+        const messageInput = document.getElementById('messageInput');
+        const messagesDiv = document.getElementById('messages');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+        const detectionInfo = document.getElementById('detectionInfo');
+        const detectionResults = document.getElementById('detectionResults');
+        
+        // 事件监听器
+        captureScreenBtn.addEventListener('click', captureScreen);
+        analyzeBtn.addEventListener('click', analyzeImage);
+        resetBtn.addEventListener('click', resetAll);
+        sendBtn.addEventListener('click', sendMessage);
+        analyzeImageBtn.addEventListener('click', analyzeCurrentImage);
+        clickDetectedBtn.addEventListener('click', clickDetectedObject);
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        // 截取屏幕
+        async function captureScreen() {
+            try {
+                addMessage('正在截取屏幕...', 'system');
+                
+                // 通过PHP代理调用截图服务
+                const response = await fetch('cameraapi/proxy_api.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: 'http://localhost:5002/screenshot',
+                        method: 'GET'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success && result.data) {
+                    const screenshotResult = JSON.parse(result.data);
+                    
+                    if (screenshotResult.status === 'success') {
+                        // 显示截图
+                        capturedImage = 'data:image/png;base64,' + screenshotResult.image;
+                        imagePreview.src = capturedImage;
+                        imagePreviewContainer.style.display = 'block';
+                        analyzeBtn.disabled = false;
+                        
+                        addMessage('屏幕截图完成', 'system');
+                    } else {
+                        addMessage('截图失败: ' + (screenshotResult.message || '未知错误'), 'system');
+                    }
+                } else {
+                    addMessage('截图请求失败: ' + (result.error || '未知错误'), 'system');
+                }
+            } catch (error) {
+                console.error('截图时出错:', error);
+                addMessage('截图时出错: ' + error.message, 'system');
+            }
+        }
+        
+        // 分析图像
+        async function analyzeImage() {
+            if (!capturedImage) {
+                addMessage('请先截取屏幕', 'system');
+                return;
+            }
+            
+            showLoading(true);
+            
+            try {
+                // 通过PHP代理调用YOLO服务
+                const response = await fetch('cameraapi/proxy_api.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: 'http://localhost:5000/predict',
+                        method: 'POST',
+                        body: JSON.stringify({
+                            image: capturedImage.split(',')[1] // 移除data:image/png;base64,前缀
+                        })
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success && result.data) {
+                    const predictionResult = JSON.parse(result.data);
+                    
+                    if (predictionResult.status === 'success') {
+                        // 显示处理后的图像
+                        imagePreview.src = 'data:image/png;base64,' + predictionResult.processed_image;
+                        capturedImage = imagePreview.src;
+                        
+                        // 保存检测数据
+                        detectionData = predictionResult;
+                        
+                        // 显示检测结果
+                        displayDetectionResults(predictionResult);
+                        
+                        addMessage('图像分析完成', 'system');
+                        analyzeImageBtn.disabled = false;
+                        
+                        // 如果检测到对象，启用点击按钮
+                        if (predictionResult.detection_count > 0) {
+                            clickDetectedBtn.disabled = false;
+                        }
+                    } else {
+                        addMessage('分析失败: ' + (predictionResult.error || '未知错误'), 'system');
+                    }
+                } else {
+                    addMessage('分析请求失败: ' + (result.error || '未知错误'), 'system');
+                }
+            } catch (error) {
+                console.error('分析图像时出错:', error);
+                addMessage('分析图像时出错: ' + error.message, 'system');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // 显示检测结果
+        function displayDetectionResults(data) {
+            detectionInfo.style.display = 'block';
+            
+            let html = `
+                <p><strong>检测用时:</strong> ${data.processing_time.toFixed(2)} 秒</p>
+                <p><strong>检测到对象数:</strong> ${data.detection_count}</p>
+            `;
+            
+            if (data.detections && data.detections.length > 0) {
+                html += '<h4>检测详情:</h4><ul>';
+                data.detections.forEach(detection => {
+                    html += `
+                        <li>
+                            ${detection.class_name} 
+                            (置信度: ${(detection.confidence * 100).toFixed(1)}%)
+                        </li>
+                    `;
+                });
+                html += '</ul>';
+            }
+            
+            detectionResults.innerHTML = html;
+        }
+        
+        // 分析当前图像
+        async function analyzeCurrentImage() {
+            if (!capturedImage) {
+                addMessage('请先截取屏幕', 'system');
+                return;
+            }
+            
+            await analyzeImage();
+        }
+        
+        // 点击检测到的对象
+        async function clickDetectedObject() {
+            if (!detectionData || !detectionData.detections || detectionData.detections.length === 0) {
+                addMessage('没有检测到可点击的对象', 'system');
+                return;
+            }
+            
+            showLoading(true);
+            
+            try {
+                // 获取第一个检测到的对象的边界框中心点
+                const firstDetection = detectionData.detections[0];
+                const bbox = firstDetection.bbox;
+                const centerX = (bbox[0] + bbox[2]) / 2;
+                const centerY = (bbox[1] + bbox[3]) / 2;
+                
+                // 通过PHP代理调用鼠标控制服务
+                const response = await fetch('cameraapi/proxy_api.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: 'http://localhost:5002/click',
+                        method: 'POST',
+                        body: JSON.stringify({
+                            x: Math.round(centerX),
+                            y: Math.round(centerY),
+                            type: 'left',
+                            clicks: 1
+                        })
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    addMessage(`已点击检测到的 ${firstDetection.class_name} (位置: ${Math.round(centerX)}, ${Math.round(centerY)})`, 'system');
+                } else {
+                    addMessage('点击操作失败: ' + (result.message || '未知错误'), 'system');
+                }
+            } catch (error) {
+                console.error('点击操作时出错:', error);
+                addMessage('点击操作时出错: ' + error.message, 'system');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // 发送消息
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            messageInput.value = '';
+            
+            showLoading(true);
+            
+            try {
+                // 这里可以调用AI服务处理文本消息
+                // 为简化示例，我们模拟AI回复
+                setTimeout(() => {
+                    addMessage('这是AI的回复: ' + message, 'assistant');
+                    showLoading(false);
+                }, 1000);
+            } catch (error) {
+                console.error('发送消息时出错:', error);
+                addMessage('发送消息时出错: ' + error.message, 'system');
+                showLoading(false);
+            }
+        }
+        
+        // 重置所有
+        function resetAll() {
+            // 重置图像和检测数据
+            capturedImage = null;
+            detectionData = null;
+            imagePreviewContainer.style.display = 'none';
+            detectionInfo.style.display = 'none';
+            
+            // 重置按钮状态
+            analyzeBtn.disabled = true;
+            analyzeImageBtn.disabled = true;
+            clickDetectedBtn.disabled = true;
+            
+            addMessage('已重置所有内容', 'system');
+        }
+        
+        // 添加消息到显示区域
+        function addMessage(text, type) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${type}`;
+            msgDiv.innerHTML = `<strong>${type === 'user' ? '用户' : type === 'assistant' ? 'AI助手' : '系统'} [${new Date().toLocaleString()}]</strong><br>${text}`;
+            messagesDiv.appendChild(msgDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        
+        // 显示/隐藏加载指示器
+        function showLoading(show) {
+            loadingIndicator.style.display = show ? 'block' : 'none';
+        }
+        
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            addMessage('AI终端已就绪', 'system');
+        });
+    </script>
+</body>
+</html>
