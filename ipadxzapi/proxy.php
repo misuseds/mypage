@@ -10,8 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Flask服务地址 - 主服务运行在5000端口
-define('FLASK_SERVICE_URL', 'http://ns2.llmfindworksnjsgcs.fwh.is');
+// 修改Flask服务地址 - 使用本地地址和正确的端口
+// 根据您的controlxz.py文件，Flask服务运行在5001端口而不是5000端口
+define('FLASK_SERVICE_URL', 'http://ns3.llmfindworksnjsgcs.fwh.is');
 
 // 记录请求日志
 error_log("HTTP Proxy - 收到请求: " . $_SERVER['REQUEST_METHOD'] . " " . $_SERVER['REQUEST_URI']);
@@ -35,7 +36,7 @@ switch ($action) {
         error_log("HTTP Proxy - 从Flask服务获取当前状态");
         
         // 直接获取按键状态
-        $url = FLASK_SERVICE_URL . '/key-state';
+        $url = FLASK_SERVICE_URL . '/state'; // 修改为/state端点
         error_log("HTTP Proxy - 请求URL: " . $url);
         $response = fetchFromFlask($url, 'GET');
         
