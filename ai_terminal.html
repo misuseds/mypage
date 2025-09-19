@@ -195,10 +195,51 @@
     </div>
 
     <script>
+        // 计时工具函数
+        function withTiming(operationName, asyncFn) {
+            return async function(...args) {
+                const startTime = performance.now();
+                console.log(`开始执行 ${operationName}...`);
+                addMessage(`开始执行 ${operationName}...`, 'system');
+                
+                try {
+                    const result = await asyncFn.apply(this, args);
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.log(`${operationName} 执行完成，耗时: ${duration.toFixed(2)}ms`);
+                    addMessage(`${operationName} 执行完成，耗时: ${duration.toFixed(2)}ms`, 'system');
+                    return result;
+                } catch (error) {
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.error(`${operationName} 执行失败，耗时: ${duration.toFixed(2)}ms，错误: ${error.message}`);
+                    addMessage(`${operationName} 执行失败，耗时: ${duration.toFixed(2)}ms，错误: ${error.message}`, 'system');
+                    throw error;
+                }
+            };
+        }
+        
         // 全局变量
         let capturedImage = null;
         let detectionData = null;
         const imagePreview = document.getElementById('imagePreview');
+        
+        // 对话历史记录
+        let conversationHistory = [
+            {
+                role: "system",
+                content: "你是一个智能助手，能够帮助用户解决问题和提供信息。你还可以调用工具来执行特定操作。\n" +
+                         "可用工具列表：\n" +
+                         "1. capture_screen - 截取屏幕截图\n" +
+                         "2. analyze_image - 分析当前截图中的对象\n" +
+                         "3. click_detected_object - 点击检测到的对象\n\n" +
+                         "当需要执行操作时，请使用工具调用格式：\n" +
+                         "<tool_call>{\"name\": \"capture_screen\"}</tool_call>\n" +
+                         "</tool_call>{\"name\": \"analyze_image\"}</tool_call>\n" +
+                         "<tool_call>{\"name\": \"click_detected_object\", \"arguments\": {\"object_name\": \"指定对象名称\"}}</tool_call>\n\n" +
+                         "请根据用户请求决定是否需要调用工具，并在调用后解释结果。"
+            }
+        ];
         
         // DOM元素
         const captureScreenBtn = document.getElementById('captureScreenBtn');
@@ -228,11 +269,13 @@
             }
         });
         
-        // 截取屏幕
+        // 截取屏幕 - 添加计时
         async function captureScreen() {
+            const startTime = performance.now();
+            console.log('开始截取屏幕...');
+            addMessage('正在截取屏幕...', 'system');
+            
             try {
-                addMessage('正在截取屏幕...', 'system');
-                
                 // 通过PHP代理调用截图服务
                 const response = await fetch('cameraapi/proxy_api.php', {
                     method: 'POST',
@@ -240,15 +283,25 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        url: 'http://localhost:5002/screenshot',
+                        url: 'http://ns3.llmfindworksnjsgcs.fwh.is/screenshot',
                         method: 'GET'
                     })
                 });
                 
+                const proxyResponseTime = performance.now();
+                const proxyDuration = proxyResponseTime - startTime;
+                console.log(`截图服务代理响应时间: ${proxyDuration.toFixed(2)}ms`);
+                
                 const result = await response.json();
+                const resultParseTime = performance.now();
+                const resultParseDuration = resultParseTime - startTime;
+                console.log(`截图服务结果解析时间: ${resultParseDuration.toFixed(2)}ms`);
                 
                 if (result.success && result.data) {
                     const screenshotResult = JSON.parse(result.data);
+                    const parseTime = performance.now();
+                    const parseDuration = parseTime - startTime;
+                    console.log(`截图服务数据解析时间: ${parseDuration.toFixed(2)}ms`);
                     
                     if (screenshotResult.status === 'success') {
                         // 显示截图
@@ -257,26 +310,40 @@
                         imagePreviewContainer.style.display = 'block';
                         analyzeBtn.disabled = false;
                         
-                        addMessage('屏幕截图完成', 'system');
+                        const endTime = performance.now();
+                        const duration = endTime - startTime;
+                        console.log(`屏幕截图完成，总耗时: ${duration.toFixed(2)}ms`);
+                        addMessage(`屏幕截图完成，总耗时: ${duration.toFixed(2)}ms`, 'system');
                     } else {
-                        addMessage('截图失败: ' + (screenshotResult.message || '未知错误'), 'system');
+                        const endTime = performance.now();
+                        const duration = endTime - startTime;
+                        console.error(`截图失败，总耗时: ${duration.toFixed(2)}ms: ${screenshotResult.message || '未知错误'}`);
+                        addMessage(`截图失败，总耗时: ${duration.toFixed(2)}ms: ${screenshotResult.message || '未知错误'}`, 'system');
                     }
                 } else {
-                    addMessage('截图请求失败: ' + (result.error || '未知错误'), 'system');
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.error(`截图请求失败，总耗时: ${duration.toFixed(2)}ms: ${result.error || '未知错误'}`);
+                    addMessage(`截图请求失败，总耗时: ${duration.toFixed(2)}ms: ${result.error || '未知错误'}`, 'system');
                 }
             } catch (error) {
-                console.error('截图时出错:', error);
-                addMessage('截图时出错: ' + error.message, 'system');
+                const endTime = performance.now();
+                const duration = endTime - startTime;
+                console.error(`截图时出错，总耗时: ${duration.toFixed(2)}ms:`, error);
+                addMessage(`截图时出错，总耗时: ${duration.toFixed(2)}ms: ${error.message}`, 'system');
             }
         }
         
-        // 分析图像
+        // 分析图像 - 添加计时
         async function analyzeImage() {
             if (!capturedImage) {
                 addMessage('请先截取屏幕', 'system');
                 return;
             }
             
+            const startTime = performance.now();
+            console.log('开始调用YOLO服务...');
+            addMessage('调用YOLO服务...', 'system');
             showLoading(true);
             
             try {
@@ -287,18 +354,28 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        url: 'http://localhost:5000/predict',
+                        url: 'http://ns2.llmfindworksnjsgcs.fwh.is/predict',
                         method: 'POST',
                         body: JSON.stringify({
-                            image: capturedImage.split(',')[1] // 移除data:image/png;base64,前缀
+                            image: capturedImage
                         })
                     })
                 });
                 
+                const proxyResponseTime = performance.now();
+                const proxyDuration = proxyResponseTime - startTime;
+                console.log(`YOLO服务代理响应时间: ${proxyDuration.toFixed(2)}ms`);
+                
                 const result = await response.json();
+                const proxyResultTime = performance.now();
+                const proxyResultDuration = proxyResultTime - startTime;
+                console.log(`YOLO服务代理结果解析时间: ${proxyResultDuration.toFixed(2)}ms`);
                 
                 if (result.success && result.data) {
                     const predictionResult = JSON.parse(result.data);
+                    const parseTime = performance.now();
+                    const parseDuration = parseTime - startTime;
+                    console.log(`YOLO服务结果解析时间: ${parseDuration.toFixed(2)}ms`);
                     
                     if (predictionResult.status === 'success') {
                         // 显示处理后的图像
@@ -311,7 +388,10 @@
                         // 显示检测结果
                         displayDetectionResults(predictionResult);
                         
-                        addMessage('图像分析完成', 'system');
+                        const endTime = performance.now();
+                        const duration = endTime - startTime;
+                        console.log(`图像分析完成，总耗时: ${duration.toFixed(2)}ms`);
+                        addMessage(`图像分析完成，总耗时: ${duration.toFixed(2)}ms`, 'system');
                         analyzeImageBtn.disabled = false;
                         
                         // 如果检测到对象，启用点击按钮
@@ -319,14 +399,22 @@
                             clickDetectedBtn.disabled = false;
                         }
                     } else {
-                        addMessage('分析失败: ' + (predictionResult.error || '未知错误'), 'system');
+                        const endTime = performance.now();
+                        const duration = endTime - startTime;
+                        console.error(`分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`);
+                        addMessage(`分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`, 'system');
                     }
                 } else {
-                    addMessage('分析请求失败: ' + (result.error || '未知错误'), 'system');
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.error(`分析请求失败，总耗时: ${duration.toFixed(2)}ms: ${result.error || '未知错误'}`);
+                    addMessage(`分析请求失败，总耗时: ${duration.toFixed(2)}ms: ${result.error || '未知错误'}`, 'system');
                 }
             } catch (error) {
-                console.error('分析图像时出错:', error);
-                addMessage('分析图像时出错: ' + error.message, 'system');
+                const endTime = performance.now();
+                const duration = endTime - startTime;
+                console.error(`分析图像时出错，总耗时: ${duration.toFixed(2)}ms:`, error);
+                addMessage(`分析图像时出错，总耗时: ${duration.toFixed(2)}ms: ${error.message}`, 'system');
             } finally {
                 showLoading(false);
             }
@@ -367,13 +455,16 @@
             await analyzeImage();
         }
         
-        // 点击检测到的对象
+        // 点击检测到的对象 - 添加计时
         async function clickDetectedObject() {
             if (!detectionData || !detectionData.detections || detectionData.detections.length === 0) {
                 addMessage('没有检测到可点击的对象', 'system');
                 return;
             }
             
+            const startTime = performance.now();
+            console.log('开始点击检测到的对象...');
+            addMessage('正在点击检测到的对象...', 'system');
             showLoading(true);
             
             try {
@@ -383,6 +474,10 @@
                 const centerX = (bbox[0] + bbox[2]) / 2;
                 const centerY = (bbox[1] + bbox[3]) / 2;
                 
+                const calcTime = performance.now();
+                const calcDuration = calcTime - startTime;
+                console.log(`点击位置计算完成，耗时: ${calcDuration.toFixed(2)}ms`);
+                
                 // 通过PHP代理调用鼠标控制服务
                 const response = await fetch('cameraapi/proxy_api.php', {
                     method: 'POST',
@@ -390,7 +485,7 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        url: 'http://localhost:5002/click',
+                        url: 'http://ns3.llmfindworksnjsgcs.fwh.is/click',
                         method: 'POST',
                         body: JSON.stringify({
                             x: Math.round(centerX),
@@ -401,41 +496,308 @@
                     })
                 });
                 
+                const proxyResponseTime = performance.now();
+                const proxyDuration = proxyResponseTime - startTime;
+                console.log(`鼠标点击代理响应时间: ${proxyDuration.toFixed(2)}ms`);
+                
                 const result = await response.json();
+                const endTime = performance.now();
+                const duration = endTime - startTime;
                 
                 if (result.success) {
-                    addMessage(`已点击检测到的 ${firstDetection.class_name} (位置: ${Math.round(centerX)}, ${Math.round(centerY)})`, 'system');
+                    console.log(`点击操作完成，总耗时: ${duration.toFixed(2)}ms`);
+                    addMessage(`已点击检测到的 ${firstDetection.class_name} (位置: ${Math.round(centerX)}, ${Math.round(centerY)})，总耗时: ${duration.toFixed(2)}ms`, 'system');
                 } else {
-                    addMessage('点击操作失败: ' + (result.message || '未知错误'), 'system');
+                    console.error(`点击操作失败，总耗时: ${duration.toFixed(2)}ms: ${result.message || '未知错误'}`);
+                    addMessage(`点击操作失败，总耗时: ${duration.toFixed(2)}ms: ${result.message || '未知错误'}`, 'system');
                 }
             } catch (error) {
-                console.error('点击操作时出错:', error);
-                addMessage('点击操作时出错: ' + error.message, 'system');
+                const endTime = performance.now();
+                const duration = endTime - startTime;
+                console.error(`点击操作时出错，总耗时: ${duration.toFixed(2)}ms:`, error);
+                addMessage(`点击操作时出错，总耗时: ${duration.toFixed(2)}ms: ${error.message}`, 'system');
             } finally {
                 showLoading(false);
             }
         }
         
-        // 发送消息
+        // 根据名称点击检测到的对象 - 添加计时
+        async function clickDetectedObjectByName(objectName) {
+            if (!detectionData || !detectionData.detections || detectionData.detections.length === 0) {
+                return "没有检测到可点击的对象";
+            }
+            
+            const startTime = performance.now();
+            console.log(`开始点击对象: ${objectName || '默认第一个对象'}...`);
+            
+            let targetDetection = null;
+            
+            if (objectName) {
+                // 查找指定名称的对象
+                targetDetection = detectionData.detections.find(d => d.class_name === objectName);
+                if (!targetDetection) {
+                    const message = `未找到名为 "${objectName}" 的对象，将点击第一个检测到的对象`;
+                    addMessage(message, 'system');
+                    targetDetection = detectionData.detections[0];
+                }
+            } else {
+                // 默认点击第一个对象
+                targetDetection = detectionData.detections[0];
+            }
+            
+            const findTime = performance.now();
+            const findDuration = findTime - startTime;
+            console.log(`对象查找完成，耗时: ${findDuration.toFixed(2)}ms`);
+            
+            try {
+                const bbox = targetDetection.bbox;
+                const centerX = (bbox[0] + bbox[2]) / 2;
+                const centerY = (bbox[1] + bbox[3]) / 2;
+                
+                const calcTime = performance.now();
+                const calcDuration = calcTime - startTime;
+                console.log(`点击位置计算完成，耗时: ${calcDuration.toFixed(2)}ms`);
+                
+                // 通过PHP代理调用鼠标控制服务
+                const response = await fetch('cameraapi/proxy_api.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: 'http://ns3.llmfindworksnjsgcs.fwh.is/click',
+                        method: 'POST',
+                        body: JSON.stringify({
+                            x: Math.round(centerX),
+                            y: Math.round(centerY),
+                            type: 'left',
+                            clicks: 1
+                        })
+                    })
+                });
+                
+                const proxyResponseTime = performance.now();
+                const proxyDuration = proxyResponseTime - startTime;
+                console.log(`鼠标点击代理响应时间: ${proxyDuration.toFixed(2)}ms`);
+                
+                const result = await response.json();
+                const endTime = performance.now();
+                const duration = endTime - startTime;
+                
+                if (result.success) {
+                    const successMessage = `已点击 ${targetDetection.class_name} (位置: ${Math.round(centerX)}, ${Math.round(centerY)})，总耗时: ${duration.toFixed(2)}ms`;
+                    console.log(successMessage);
+                    return successMessage;
+                } else {
+                    const errorMessage = `点击操作失败: ${result.message || '未知错误'}，总耗时: ${duration.toFixed(2)}ms`;
+                    console.error(errorMessage);
+                    return errorMessage;
+                }
+            } catch (error) {
+                const endTime = performance.now();
+                const duration = endTime - startTime;
+                console.error(`点击操作时出错，总耗时: ${duration.toFixed(2)}ms:`, error);
+                return `点击操作时出错: ${error.message}，总耗时: ${duration.toFixed(2)}ms`;
+            }
+        }
+        
+        // 解析工具调用
+        function parseToolCalls(response) {
+            // 匹配工具调用的正则表达式
+            const toolCallRegex = /<tool_call>(.*?)<\/tool_call>/g;
+            const matches = [];
+            let match;
+            
+            while ((match = toolCallRegex.exec(response)) !== null) {
+                try {
+                    // 尝试解析为JSON格式
+                    const toolCall = JSON.parse(match[1]);
+                    matches.push(toolCall);
+                } catch (e) {
+                    // 如果不是JSON格式，尝试解析为函数调用格式
+                    const funcMatch = match[1].match(/(\w+)\((.*)\)/);
+                    if (funcMatch) {
+                        const toolName = funcMatch[1];
+                        const argsStr = funcMatch[2];
+                        const args = {};
+                        
+                        // 解析参数
+                        if (argsStr) {
+                            argsStr.split(',').forEach(arg => {
+                                const [key, value] = arg.split('=');
+                                if (key && value) {
+                                    args[key.trim()] = value.trim().replace(/["']/g, '');
+                                }
+                            });
+                        }
+                        
+                        matches.push({
+                            name: toolName,
+                            arguments: args
+                        });
+                    }
+                }
+            }
+            
+            return matches;
+        }
+        
+        // 执行工具调用
+        async function executeToolCalls(toolCalls) {
+            const results = [];
+            
+            for (const toolCall of toolCalls) {
+                try {
+                    switch (toolCall.name) {
+                        case 'capture_screen':
+                            await captureScreen();
+                            results.push({
+                                name: 'capture_screen',
+                                result: "屏幕截图已完成"
+                            });
+                            break;
+                            
+                        case 'analyze_image':
+                            await analyzeImage();
+                            if (detectionData && detectionData.detections) {
+                                let detectionInfo = `检测到 ${detectionData.detection_count} 个对象: `;
+                                detectionInfo += detectionData.detections.map(d => d.class_name).join(', ');
+                                results.push({
+                                    name: 'analyze_image',
+                                    result: detectionInfo
+                                });
+                            } else {
+                                results.push({
+                                    name: 'analyze_image',
+                                    result: "图像分析完成，未检测到对象"
+                                });
+                            }
+                            break;
+                            
+                        case 'click_detected_object':
+                            const objectName = toolCall.arguments.object_name;
+                            const clickResult = await clickDetectedObjectByName(objectName);
+                            results.push({
+                                name: 'click_detected_object',
+                                result: clickResult
+                            });
+                            break;
+                            
+                        default:
+                            results.push({
+                                name: toolCall.name,
+                                result: `未知工具: ${toolCall.name}`
+                            });
+                    }
+                } catch (error) {
+                    results.push({
+                        name: toolCall.name,
+                        result: `执行工具 ${toolCall.name} 时出错: ${error.message}`
+                    });
+                }
+            }
+            
+            return results;
+        }
+        
+        // 发送消息 - 添加计时
         async function sendMessage() {
             const message = messageInput.value.trim();
             if (!message) return;
             
+            const startTime = performance.now();
+            console.log('开始发送消息...');
             addMessage(message, 'user');
             messageInput.value = '';
+            
+            // 将用户消息添加到对话历史
+            conversationHistory.push({
+                role: "user",
+                content: message
+            });
             
             showLoading(true);
             
             try {
-                // 这里可以调用AI服务处理文本消息
-                // 为简化示例，我们模拟AI回复
-                setTimeout(() => {
-                    addMessage('这是AI的回复: ' + message, 'assistant');
+                // 调用AI服务处理文本消息，支持工具调用
+                const response = await fetch('./keyinfoapi/deepseek_proxy.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: "deepseek-chat",
+                        messages: conversationHistory,
+                        temperature: 0.7
+                    })
+                });
+                
+                const aiResponseTime = performance.now();
+                const aiDuration = aiResponseTime - startTime;
+                console.log(`AI响应时间: ${aiDuration.toFixed(2)}ms`);
+                
+                if (!response.ok) {
+                    throw new Error(`API请求失败: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const dataParseTime = performance.now();
+                const dataParseDuration = dataParseTime - startTime;
+                console.log(`AI响应解析时间: ${dataParseDuration.toFixed(2)}ms`);
+                
+                const aiResponse = data.choices[0].message.content;
+                
+                // 将AI响应添加到对话历史
+                conversationHistory.push({
+                    role: "assistant",
+                    content: aiResponse
+                });
+                
+                // 检查是否有工具调用
+                const toolCalls = parseToolCalls(aiResponse);
+                
+                if (toolCalls.length > 0) {
+                    addMessage(aiResponse, 'assistant');
+                    
+                    // 执行工具调用
+                    showLoading(true);
+                    const results = await executeToolCalls(toolCalls);
                     showLoading(false);
-                }, 1000);
+                    
+                    // 将结果添加到消息中
+                    let finalResponse = "工具调用结果:\n";
+                    results.forEach((result, index) => {
+                        finalResponse += `${index + 1}. ${result.name}: ${result.result}\n`;
+                    });
+                    
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.log(`工具调用完成，总耗时: ${duration.toFixed(2)}ms`);
+                    addMessage(finalResponse, 'assistant');
+                    
+                    // 将工具调用结果也添加到对话历史中
+                    conversationHistory.push({
+                        role: "assistant",
+                        content: finalResponse
+                    });
+                } else {
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.log(`消息发送完成，总耗时: ${duration.toFixed(2)}ms`);
+                    addMessage(aiResponse, 'assistant');
+                }
+                
+                // 限制对话历史长度，避免过长
+                if (conversationHistory.length > 20) {
+                    // 保留系统消息和最近的19条消息
+                    conversationHistory = [conversationHistory[0], ...conversationHistory.slice(-19)];
+                }
             } catch (error) {
-                console.error('发送消息时出错:', error);
-                addMessage('发送消息时出错: ' + error.message, 'system');
+                const endTime = performance.now();
+                const duration = endTime - startTime;
+                console.error(`发送消息时出错，总耗时: ${duration.toFixed(2)}ms:`, error);
+                addMessage(`发送消息时出错，总耗时: ${duration.toFixed(2)}ms: ${error.message}`, 'system');
+            } finally {
                 showLoading(false);
             }
         }
@@ -452,6 +814,9 @@
             analyzeBtn.disabled = true;
             analyzeImageBtn.disabled = true;
             clickDetectedBtn.disabled = true;
+            
+            // 重置对话历史，只保留系统消息
+            conversationHistory = [conversationHistory[0]];
             
             addMessage('已重置所有内容', 'system');
         }
