@@ -13,9 +13,9 @@ CORS(app)
 class LLMService:
     def __init__(self):
         # 从环境变量中获取 DeepSeek 参数
-        self.api_url = os.getenv('DEEPSEEK_API_URL')
-        self.model_name = os.getenv('DEEPSEEK_MODEL_NAME')
-        self.api_key = os.getenv('DEEPSEEK_API_KEY')
+        self.api_url = os.getenv('deepseek_OPENAI_API_URL')
+        self.model_name = os.getenv('deepseek_MODEL_NAME')
+        self.api_key = os.getenv('deepseek_OPENAI_API_KEY')
 
     def create(self, messages, tools=None):
         # 解析 URL（去掉协议部分）
