@@ -124,7 +124,7 @@
         // 使用PHP代理发送请求
         async function sendRequest(action, data = {}) {
             try {
-                const response = await fetch('/ipadxzapi/proxy.php', {
+                const response = await fetch(`http://localhost:5001/${action}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

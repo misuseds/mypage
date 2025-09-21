@@ -448,11 +448,7 @@ async function analyzeJob() {
         addMessage('请先获取工作信息', 'system');
         return;
     }
-     const response = await fetch('./keyinfoapi/get_config.php');
-        const result = await response.json();
-        if (result.success) {
-            PERSONAL_INFO = result.data.personal_info || "默认个人信息...";
-        }
+
     try {
         addMessage('正在分析工作...', 'system');
         
