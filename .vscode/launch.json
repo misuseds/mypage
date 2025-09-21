@@ -5,11 +5,17 @@
       "name": "启动 mouse_control 服务",
       "type": "debugpy",
       "request": "launch",
-      "program": "E:/mouse_control/mousecontrol.py",
+      "program": "E:/llm-findwork/python/mousecontrol.py",
       "console": "integratedTerminal",
-      "cwd": "E:/mouse_control/",
-      "env": {},
-      "python": "E:/mouse_control/.venv/python.exe"
+
+    },
+      {
+      "name": "启动 llm 服务",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "E:/llm-findwork/python/llm_server.py",
+      "console": "integratedTerminal",
+
     },
     {
       "name": "启动 YOLO 服务",
@@ -25,20 +31,20 @@
       "name": "启动 index 服务",
       "type": "debugpy",
       "request": "launch",
-      "program": "E:\\llm-findwork\\secure_server.py",
+      "program": "E:/llm-findwork/secure_server.py",
       "console": "integratedTerminal",
-      "cwd":"${workspaceFolder}",
+      
       
     },
     {
       "name": "启动FRP 客户端",
       "type": "debugpy",
       "request": "launch",
-      "program": "E:\\llm-findwork\\start_frpc.py",
+      "program": "E:/llm-findwork/python/start_frpc.py",
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}",
       "args": [
-        "E:\\llm-findwork/mefrpc.exe",
+        "E:/llm-findwork/python/mefrpc.exe",
         "-t",
         "fce7119c467660bf844e2a0d35033fe6",
         "-p",
@@ -50,7 +56,7 @@
  
      {
       "name": "启动 main (并行)",
-      "configurations": [ "启动 mouse_control 服务", "启动FRP 客户端","启动 index 服务"],
+      "configurations": [ "启动 mouse_control 服务", "启动FRP 客户端","启动 index 服务","启动 llm 服务"],
       "stopAll": true
     }
   ]

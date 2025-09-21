@@ -4,12 +4,12 @@ import json
 import http.client
 from urllib.parse import urlparse
 from flask import Flask, request, jsonify
-
+from flask_cors import CORS
 # 加载 .env 文件中的环境变量
 load_dotenv()
 
 app = Flask(__name__)
-
+CORS(app)
 class LLMService:
     def __init__(self):
         # 从环境变量中获取 DeepSeek 参数

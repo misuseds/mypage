@@ -17,7 +17,9 @@ ALLOWED_FILES = [
     'ai_terminal.html',
     'Repentance_room.html',
     '图片/558046.png',
-    'favicon.ico'
+    'favicon.ico',
+    '音频/蓝手帕.mp3'
+
     # 可以根据需要添加其他文件
 ]
 

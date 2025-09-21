@@ -453,45 +453,43 @@ async function analyzeJob() {
         addMessage('正在分析工作...', 'system');
         
         const attention="排除包含独立设计,性格外向或者忠诚字样的或者是主管职位或者位置泉州,要求太多的,涉及到流体力学的，材料的也不要推,排除之后还觉得匹配度超过80%的话回答要带*请推荐给主人*,我之后代码会读取这句话"
-        // 使用DeepSeek API进行分析
-        const response = await fetch('./keyinfoapi/deepseek_proxy.php', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-            
+        // 使用自建 llm_server 进行分析
+        const response = await fetch('http://localhost:5003/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
-                model: "deepseek-chat",
                 messages: [
                     {
                         role: "system",
                         content: `这是我的个人信息:${PERSONAL_INFO}\n请根据这份个人信息分析以下工作是否适合我，以猫娘的口吻简洁回答,注意：${attention}`
                     },
-                  {
-    role: "user",
-    content: `请分析这份工作是否适合我:\n职位: ${window.currentJob.JobName}\n公司: ${window.currentJob.CompanyName}\n详情: ${window.currentJob.JobDetail}\n地址: ${window.currentJob.Address}\n薪资: ${window.currentJob.RealSalary || '面议'}\n学历要求: ${window.currentJob.NeedEduBackgroundName || '不限'}\n工作经验: ${window.currentJob.NeedWorkLengthName || '不限'}\n公司性质: ${window.currentJob.CompanyTypeName || '无描述'}\n职位类型: ${window.currentJob.JobTypesName || '未知'}\n公司规模: ${window.currentJob.CompanySizeName || '无描述'}, `
-}
-                ],
-                temperature: 0.7
+                    {
+                        role: "user",
+                        content: `请分析这份工作是否适合我:\n职位: ${window.currentJob.JobName}\n公司: ${window.currentJob.CompanyName}\n详情: ${window.currentJob.JobDetail}\n地址: ${window.currentJob.Address}\n薪资: ${window.currentJob.RealSalary || '面议'}\n学历要求: ${window.currentJob.NeedEduBackgroundName || '不限'}\n工作经验: ${window.currentJob.NeedWorkLengthName || '不限'}\n公司性质: ${window.currentJob.CompanyTypeName || '无描述'}\n职位类型: ${window.currentJob.JobTypesName || '未知'}\n公司规模: ${window.currentJob.CompanySizeName || '无描述'}, `
+                    }
+                ]
             })
         });
         
         if (!response.ok) {
             throw new Error(`API请求失败: ${response.status}`);
         }
-        PERSONAL_INFO=""
+        
         const data = await response.json();
         const analysis = data.choices[0].message.content;
         
         addMessage(`工作分析结果:\n${analysis}`, 'assistant');
-if (analysis.includes("请推荐给主人")) 
-{showNotification(`发现新工作: ${window.currentJob.JobName || '未知职位'}`);
-        if (sound) {
-        sound.currentTime = 0; // 重置音频到开头
-        sound.play().catch(e => console.log('音频播放失败:', e));
-    }
-}
-else showNotification(`不推荐工作: ${window.currentJob.JobName || '未知职位'}`);
+        if (analysis.includes("请推荐给主人")) {
+            showNotification(`发现新工作: ${window.currentJob.JobName || '未知职位'}`);
+            if (sound) {
+                sound.currentTime = 0; // 重置音频到开头
+                sound.play().catch(e => console.log('音频播放失败:', e));
+            }
+        } else {
+            showNotification(`不推荐工作: ${window.currentJob.JobName || '未知职位'}`);
+        }
         // 保存分析结果
         saveJobResult(window.currentJob.Id, window.currentJob.JobDetail, analysis);
         refreshJobs();
@@ -661,19 +659,18 @@ async function sendMessage() {
     }
 }
 
-// AI回复函数 - 使用PHP代理方式（统一调用方式）
+// AI回复函数 - 使用自建 llm_server
 async function getAIResponse(userMessage) {
     try {
         addMessage('AI正在思考...', 'system');
         
-        // 使用PHP代理方式调用API（与analyzeJob保持一致）
-        const response = await fetch('./keyinfoapi/deepseek_proxy.php', {
+        // 使用自建 llm_server 调用API
+        const response = await fetch('http://localhost:5003/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: "deepseek-chat",
                 messages: [
                     {
                         role: "system",
@@ -683,8 +680,7 @@ async function getAIResponse(userMessage) {
                         role: "user",
                         content: userMessage
                     }
-                ],
-                temperature: 0.7
+                ]
             })
         });
         
