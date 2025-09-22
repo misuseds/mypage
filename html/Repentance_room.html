@@ -119,33 +119,9 @@
     </div>
 
     <script>
-let API_KEYS = {
-    deepseek: ""
-};
-let PERSONAL_INFO = "";
-
-// 从数据库加载配置
-async function loadConfigFromDatabase() {
-    try {
-        const response = await fetch('./keyinfoapi/get_config.php');
-        const result = await response.json();
-        console.info('result:', result);
-        if (result.success) {
-            API_KEYS.deepseek = result.data.deepseek_api_key || "your-placeholder-key";
-            PERSONAL_INFO = result.data.personal_info || "默认个人信息...";
-        }
-    } catch (error) {
-        console.error('获取配置失败:', error);
-        // 使用默认值
-        API_KEYS.deepseek = "your-placeholder-key";
-        PERSONAL_INFO = "默认个人信息...";
-    }
-}
-
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
             refreshResponses();
-            loadConfigFromDatabase()
             document.getElementById('submitBtn').addEventListener('click', handleSubmit);
             document.getElementById('confessionInput').addEventListener('keypress', function(e) {
                 // Ctrl+Enter 提交
@@ -170,14 +146,13 @@ async function loadConfigFromDatabase() {
             document.getElementById('submitBtn').disabled = true;
             
             try {
-                // 调用AI API获取回应
-                const response =  await fetch('./keyinfoapi/deepseek_proxy.php', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
+                // 调用本地AI服务获取回应
+                const response = await fetch('http://localhost:5003/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({
-                        model: "deepseek-chat",
                         messages: [
                             {
                                 role: "system",
@@ -187,8 +162,7 @@ async function loadConfigFromDatabase() {
                                 role: "user",
                                 content: confession
                             }
-                        ],
-                        temperature: 0.7
+                        ]
                     })
                 });
                 
@@ -197,6 +171,7 @@ async function loadConfigFromDatabase() {
                 }
                 
                 const data = await response.json();
+                // 根据 llm_server.py 的返回格式调整访问路径
                 const aiResponse = data.choices[0].message.content;
                 
                 // 保存回应

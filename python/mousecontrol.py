@@ -4,9 +4,28 @@ import pyautogui
 import logging
 import base64
 import io
-from PIL import Image 
+from PIL import Image
+import argparse
+import sys
+
+# 解析命令行参数
+parser = argparse.ArgumentParser()
+parser.add_argument('--log-file', help='日志文件路径')
+args = parser.parse_args()
+
 # 配置日志
-logging.basicConfig(level=logging.INFO)
+if args.log_file:
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(args.log_file, encoding='utf-8'),
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
+else:
+    logging.basicConfig(level=logging.INFO)
+
 logger = logging.getLogger(__name__)
 
 # 创建Flask应用
@@ -66,11 +85,13 @@ def get_position():
     """
     try:
         x, y = pyautogui.position()
+        logger.info(f"获取鼠标位置: ({x}, {y})")
         return jsonify({
             "status": "success",
             "position": {"x": x, "y": y}
         })
     except Exception as e:
+        logger.error(f"获取鼠标位置失败: {str(e)}")
         return jsonify({
             "status": "error",
             "message": f"获取鼠标位置失败: {str(e)}"
@@ -88,6 +109,7 @@ def move_mouse():
         duration = data.get('duration', 0.0)  # 移动持续时间
         
         if x is None or y is None:
+            logger.warning("移动鼠标请求缺少坐标参数")
             return jsonify({
                 "status": "error",
                 "message": "请提供x和y坐标"
@@ -115,6 +137,7 @@ def take_screenshot():
     截取屏幕截图并返回base64编码的图像（调整为384x640分辨率）
     """
     try:
+        logger.info("开始屏幕截图")
         # 截取整个屏幕
         screenshot = pyautogui.screenshot()
         
@@ -141,11 +164,13 @@ def take_screenshot():
             "status": "error",
             "message": f"截图失败: {str(e)}"
         }), 500
+
 @app.route('/health', methods=['GET'])
 def health_check():
     """
     健康检查接口
     """
+    logger.info("健康检查请求")
     return jsonify({
         "status": "healthy",
         "message": "鼠标控制服务运行正常"
@@ -156,6 +181,7 @@ def index():
     """
     根路径，返回API说明
     """
+    logger.info("根路径访问")
     return jsonify({
         "message": "鼠标控制API服务",
         "endpoints": {
@@ -169,7 +195,7 @@ def index():
     })
 
 if __name__ == '__main__':
-    print("启动鼠标控制API服务...")
-    print("访问端口: 5002")
-    print("请确保以管理员权限运行此程序")
+    logger.info("启动鼠标控制API服务...")
+    logger.info("访问端口: 5002")
+    logger.info("请确保以管理员权限运行此程序")
     app.run(host='0.0.0.0', port=5002, debug=False)

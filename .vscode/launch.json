@@ -6,7 +6,7 @@
       "type": "debugpy",
       "request": "launch",
       "program": "E:/llm-findwork/python/mousecontrol.py",
-      "console": "integratedTerminal",
+      "console": "internalConsole",
       "args": ["--log-file", "E:/llm-findwork/logs/mouse_control.log"]
     },
     {
@@ -14,15 +14,23 @@
       "type": "debugpy",
       "request": "launch",
       "program": "E:/llm-findwork/python/llm_server.py",
-      "console": "integratedTerminal",
+      "console": "internalConsole",
       "args": ["--log-file", "E:/llm-findwork/logs/llm_server.log"]
+    },
+        {
+      "name": "启动 ipadxz 服务",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "E:/llm-findwork/python/controlxz.py",
+      "console": "internalConsole",
+      "args": ["--log-file", "E:/llm-findwork/logs/controlxz.log"]
     },
     {
       "name": "启动 YOLO 服务",
       "type": "debugpy",
       "request": "launch",
       "program": "E:/yolo-local/predict_server.py",
-      "console": "integratedTerminal",
+      "console": "internalConsole",
       "cwd": "E:/yolo-local/",
       "env": {},
       "python": "E:/yolo-local/.venv/python.exe",
@@ -33,7 +41,7 @@
       "type": "debugpy",
       "request": "launch",
       "program": "E:/llm-findwork/secure_server.py",
-      "console": "integratedTerminal",
+      "console": "internalConsole",
       "args": ["--log-file", "E:/llm-findwork/logs/index_server.log"]
     },
     {
@@ -41,7 +49,7 @@
       "type": "debugpy",
       "request": "launch",
       "program": "E:/llm-findwork/python/start_frpc.py",
-      "console": "integratedTerminal",
+      "console": "internalConsole",
       "cwd": "${workspaceFolder}",
       "args": [
         "E:/llm-findwork/python/mefrpc.exe",
@@ -52,26 +60,33 @@
         "--log-file",
         "E:/llm-findwork/logs/frp_client.log"
       ]
-    },
-    {
-      "name": "启动 Log Pusher 服务",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "E:/llm-findwork/python/log_pusher.py",
-      "console": "integratedTerminal"
     }
   ],
   "compounds": [
     {
-      "name": "启动 main (并行)",
+      "name": "启动 main (yolo)",
       "configurations": [
         "启动 mouse_control 服务",
         "启动FRP 客户端",
         "启动 index 服务",
         "启动 llm 服务",
         "启动 YOLO 服务",
-        "启动 Log Pusher 服务"
+       
       ],
+    
+      "stopAll": true
+    },
+    {
+      "name": "启动 main (ipadxz)",
+      "configurations": [
+        "启动 mouse_control 服务",
+        "启动FRP 客户端",
+        "启动 index 服务",
+        "启动 llm 服务",
+        "启动 ipadxz 服务",
+       
+      ],
+    
       "stopAll": true
     }
   ]
