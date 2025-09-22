@@ -276,55 +276,34 @@
             addMessage('正在截取屏幕...', 'system');
             
             try {
-                // 通过PHP代理调用截图服务
-                const response = await fetch('cameraapi/proxy_api.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        url: 'http://ns3.llmfindworksnjsgcs.fwh.is/screenshot',
-                        method: 'GET'
-                    })
-                });
+                // 直接调用本地截图服务
+                const response = await fetch('http://localhost:5002/screenshot');
                 
                 const proxyResponseTime = performance.now();
                 const proxyDuration = proxyResponseTime - startTime;
-                console.log(`截图服务代理响应时间: ${proxyDuration.toFixed(2)}ms`);
+                console.log(`截图服务响应时间: ${proxyDuration.toFixed(2)}ms`);
                 
-                const result = await response.json();
+                const screenshotResult = await response.json();
                 const resultParseTime = performance.now();
                 const resultParseDuration = resultParseTime - startTime;
                 console.log(`截图服务结果解析时间: ${resultParseDuration.toFixed(2)}ms`);
                 
-                if (result.success && result.data) {
-                    const screenshotResult = JSON.parse(result.data);
-                    const parseTime = performance.now();
-                    const parseDuration = parseTime - startTime;
-                    console.log(`截图服务数据解析时间: ${parseDuration.toFixed(2)}ms`);
+                if (screenshotResult.status === 'success') {
+                    // 显示截图
+                    capturedImage = 'data:image/png;base64,' + screenshotResult.image;
+                    imagePreview.src = capturedImage;
+                    imagePreviewContainer.style.display = 'block';
+                    analyzeBtn.disabled = false;
                     
-                    if (screenshotResult.status === 'success') {
-                        // 显示截图
-                        capturedImage = 'data:image/png;base64,' + screenshotResult.image;
-                        imagePreview.src = capturedImage;
-                        imagePreviewContainer.style.display = 'block';
-                        analyzeBtn.disabled = false;
-                        
-                        const endTime = performance.now();
-                        const duration = endTime - startTime;
-                        console.log(`屏幕截图完成，总耗时: ${duration.toFixed(2)}ms`);
-                        addMessage(`屏幕截图完成，总耗时: ${duration.toFixed(2)}ms`, 'system');
-                    } else {
-                        const endTime = performance.now();
-                        const duration = endTime - startTime;
-                        console.error(`截图失败，总耗时: ${duration.toFixed(2)}ms: ${screenshotResult.message || '未知错误'}`);
-                        addMessage(`截图失败，总耗时: ${duration.toFixed(2)}ms: ${screenshotResult.message || '未知错误'}`, 'system');
-                    }
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.log(`屏幕截图完成，总耗时: ${duration.toFixed(2)}ms`);
+                    addMessage(`屏幕截图完成，总耗时: ${duration.toFixed(2)}ms`, 'system');
                 } else {
                     const endTime = performance.now();
                     const duration = endTime - startTime;
-                    console.error(`截图请求失败，总耗时: ${duration.toFixed(2)}ms: ${result.error || '未知错误'}`);
-                    addMessage(`截图请求失败，总耗时: ${duration.toFixed(2)}ms: ${result.error || '未知错误'}`, 'system');
+                    console.error(`截图失败，总耗时: ${duration.toFixed(2)}ms: ${screenshotResult.message || '未知错误'}`);
+                    addMessage(`截图失败，总耗时: ${duration.toFixed(2)}ms: ${screenshotResult.message || '未知错误'}`, 'system');
                 }
             } catch (error) {
                 const endTime = performance.now();
@@ -347,68 +326,52 @@
             showLoading(true);
             
             try {
-                // 通过PHP代理调用YOLO服务
-                const response = await fetch('cameraapi/proxy_api.php', {
+                // 直接调用本地YOLO服务
+                const response = await fetch('http://localhost:5001/predict', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        url: 'http://ns2.llmfindworksnjsgcs.fwh.is/predict',
-                        method: 'POST',
-                        body: JSON.stringify({
-                            image: capturedImage
-                        })
+                        image: capturedImage
                     })
                 });
                 
                 const proxyResponseTime = performance.now();
                 const proxyDuration = proxyResponseTime - startTime;
-                console.log(`YOLO服务代理响应时间: ${proxyDuration.toFixed(2)}ms`);
+                console.log(`YOLO服务响应时间: ${proxyDuration.toFixed(2)}ms`);
                 
-                const result = await response.json();
+                const predictionResult = await response.json();
                 const proxyResultTime = performance.now();
                 const proxyResultDuration = proxyResultTime - startTime;
-                console.log(`YOLO服务代理结果解析时间: ${proxyResultDuration.toFixed(2)}ms`);
+                console.log(`YOLO服务结果解析时间: ${proxyResultDuration.toFixed(2)}ms`);
                 
-                if (result.success && result.data) {
-                    const predictionResult = JSON.parse(result.data);
-                    const parseTime = performance.now();
-                    const parseDuration = parseTime - startTime;
-                    console.log(`YOLO服务结果解析时间: ${parseDuration.toFixed(2)}ms`);
+                if (predictionResult.status === 'success') {
+                    // 显示处理后的图像
+                    imagePreview.src = 'data:image/png;base64,' + predictionResult.processed_image;
+                    capturedImage = imagePreview.src;
                     
-                    if (predictionResult.status === 'success') {
-                        // 显示处理后的图像
-                        imagePreview.src = 'data:image/png;base64,' + predictionResult.processed_image;
-                        capturedImage = imagePreview.src;
-                        
-                        // 保存检测数据
-                        detectionData = predictionResult;
-                        
-                        // 显示检测结果
-                        displayDetectionResults(predictionResult);
-                        
-                        const endTime = performance.now();
-                        const duration = endTime - startTime;
-                        console.log(`图像分析完成，总耗时: ${duration.toFixed(2)}ms`);
-                        addMessage(`图像分析完成，总耗时: ${duration.toFixed(2)}ms`, 'system');
-                        analyzeImageBtn.disabled = false;
-                        
-                        // 如果检测到对象，启用点击按钮
-                        if (predictionResult.detection_count > 0) {
-                            clickDetectedBtn.disabled = false;
-                        }
-                    } else {
-                        const endTime = performance.now();
-                        const duration = endTime - startTime;
-                        console.error(`分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`);
-                        addMessage(`分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`, 'system');
+                    // 保存检测数据
+                    detectionData = predictionResult;
+                    
+                    // 显示检测结果
+                    displayDetectionResults(predictionResult);
+                    
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.log(`图像分析完成，总耗时: ${duration.toFixed(2)}ms`);
+                    addMessage(`图像分析完成，总耗时: ${duration.toFixed(2)}ms`, 'system');
+                    analyzeImageBtn.disabled = false;
+                    
+                    // 如果检测到对象，启用点击按钮
+                    if (predictionResult.detection_count > 0) {
+                        clickDetectedBtn.disabled = false;
                     }
                 } else {
                     const endTime = performance.now();
                     const duration = endTime - startTime;
-                    console.error(`分析请求失败，总耗时: ${duration.toFixed(2)}ms: ${result.error || '未知错误'}`);
-                    addMessage(`分析请求失败，总耗时: ${duration.toFixed(2)}ms: ${result.error || '未知错误'}`, 'system');
+                    console.error(`分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`);
+                    addMessage(`分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`, 'system');
                 }
             } catch (error) {
                 const endTime = performance.now();
@@ -478,33 +441,29 @@
                 const calcDuration = calcTime - startTime;
                 console.log(`点击位置计算完成，耗时: ${calcDuration.toFixed(2)}ms`);
                 
-                // 通过PHP代理调用鼠标控制服务
-                const response = await fetch('cameraapi/proxy_api.php', {
+                // 直接调用本地鼠标控制服务
+                const response = await fetch('http://localhost:5002/click', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        url: 'http://ns3.llmfindworksnjsgcs.fwh.is/click',
-                        method: 'POST',
-                        body: JSON.stringify({
-                            x: Math.round(centerX),
-                            y: Math.round(centerY),
-                            type: 'left',
-                            clicks: 1
-                        })
+                        x: Math.round(centerX),
+                        y: Math.round(centerY),
+                        type: 'left',
+                        clicks: 1
                     })
                 });
                 
                 const proxyResponseTime = performance.now();
                 const proxyDuration = proxyResponseTime - startTime;
-                console.log(`鼠标点击代理响应时间: ${proxyDuration.toFixed(2)}ms`);
+                console.log(`鼠标点击响应时间: ${proxyDuration.toFixed(2)}ms`);
                 
                 const result = await response.json();
                 const endTime = performance.now();
                 const duration = endTime - startTime;
                 
-                if (result.success) {
+                if (result.status === 'success') {
                     console.log(`点击操作完成，总耗时: ${duration.toFixed(2)}ms`);
                     addMessage(`已点击检测到的 ${firstDetection.class_name} (位置: ${Math.round(centerX)}, ${Math.round(centerY)})，总耗时: ${duration.toFixed(2)}ms`, 'system');
                 } else {
@@ -558,33 +517,29 @@
                 const calcDuration = calcTime - startTime;
                 console.log(`点击位置计算完成，耗时: ${calcDuration.toFixed(2)}ms`);
                 
-                // 通过PHP代理调用鼠标控制服务
-                const response = await fetch('cameraapi/proxy_api.php', {
+                // 直接调用本地鼠标控制服务
+                const response = await fetch('http://localhost:5002/click', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        url: 'http://ns3.llmfindworksnjsgcs.fwh.is/click',
-                        method: 'POST',
-                        body: JSON.stringify({
-                            x: Math.round(centerX),
-                            y: Math.round(centerY),
-                            type: 'left',
-                            clicks: 1
-                        })
+                        x: Math.round(centerX),
+                        y: Math.round(centerY),
+                        type: 'left',
+                        clicks: 1
                     })
                 });
                 
                 const proxyResponseTime = performance.now();
                 const proxyDuration = proxyResponseTime - startTime;
-                console.log(`鼠标点击代理响应时间: ${proxyDuration.toFixed(2)}ms`);
+                console.log(`鼠标点击响应时间: ${proxyDuration.toFixed(2)}ms`);
                 
                 const result = await response.json();
                 const endTime = performance.now();
                 const duration = endTime - startTime;
                 
-                if (result.success) {
+                if (result.status === 'success') {
                     const successMessage = `已点击 ${targetDetection.class_name} (位置: ${Math.round(centerX)}, ${Math.round(centerY)})，总耗时: ${duration.toFixed(2)}ms`;
                     console.log(successMessage);
                     return successMessage;
@@ -719,8 +674,8 @@
             showLoading(true);
             
             try {
-                // 调用AI服务处理文本消息，支持工具调用
-                const response = await fetch('./keyinfoapi/deepseek_proxy.php', {
+                // 调用本地LLM服务处理文本消息，支持工具调用
+                const response = await fetch('http://localhost:5003/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

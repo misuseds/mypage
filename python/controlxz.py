@@ -22,6 +22,8 @@ keyboard = Controller()
 # Flask应用
 app = Flask(__name__)
 
+from flask_cors import CORS
+CORS(app)
 def press_key(key):
     """模拟按键按下"""
     logger.info(f"模拟按键按下: {key}")

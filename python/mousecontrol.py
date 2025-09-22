@@ -11,7 +11,8 @@ logger = logging.getLogger(__name__)
 
 # 创建Flask应用
 app = Flask(__name__)
-
+from flask_cors import CORS
+CORS(app)
 # 禁用pyautogui的安全限制（在生产环境中请谨慎使用）
 pyautogui.FAILSAFE = False
 
