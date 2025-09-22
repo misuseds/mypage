@@ -431,7 +431,7 @@ if __name__ == '__main__':
     logger.info("按 Ctrl+C 停止服务器")
     
     try:
-        app.run(host='0.0.0.0', port=PORT, debug=False)
+        app.run(host='0.0.0.0', port=PORT, debug=False,use_reloader=False)
     except KeyboardInterrupt:
         logger.info("服务器已停止")
         print("\n服务器已停止")

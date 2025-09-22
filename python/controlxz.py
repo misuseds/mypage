@@ -224,4 +224,4 @@ def handle_health_check():
 if __name__ == '__main__':
     logger.info("启动控制服务...")
     logger.info("请确保以管理员权限运行此程序")
-    socketio.run(app, host='192.168.1.5', port=5001, debug=True)
+    socketio.run(app, host='192.168.1.5', port=5001, debug=True,use_reloader=False)

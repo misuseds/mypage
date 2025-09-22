@@ -151,4 +151,4 @@ def index():
 if __name__ == "__main__":
     logger.info("启动LLM API服务...")
     logger.info("访问端口: 5003")
-    app.run(host='0.0.0.0', port=5003, debug=False)
+    app.run(host='0.0.0.0', port=5003, debug=False,use_reloader=False)

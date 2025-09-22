@@ -22,3 +22,131 @@
  * Running on http://127.0.0.1:5003
  * Running on http://192.168.1.5:5003
 2025-09-22 14:21:22,344 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 14:30:38,164 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 14:30:38,175 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 14:30:38,175 - __main__ - INFO - 访问端口: 5003
+2025-09-22 14:30:38,229 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 14:30:38,229 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:00:23,507 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:00:23,518 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:00:23,518 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:00:23,568 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:00:23,568 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:02:19,683 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:02:19,695 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:02:19,699 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:02:19,753 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:02:19,753 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:06:08,199 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:06:08,203 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:06:08,203 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:06:08,257 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:06:08,257 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:08:39,343 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:08:39,351 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:08:39,351 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:08:39,400 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:08:39,400 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:10:44,014 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:10:44,022 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:10:44,022 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:10:44,074 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:10:44,074 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:12:44,838 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:12:44,852 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:12:44,852 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:12:44,900 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:12:44,900 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:17:50,454 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:17:50,463 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:17:50,463 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:17:50,505 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:17:50,505 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:18:35,459 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:18:35,466 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:18:35,466 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:18:35,515 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:18:35,517 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:46:48,725 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:46:48,730 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:46:48,730 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:46:48,767 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:46:48,767 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 15:54:01,569 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 15:54:01,574 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 15:54:01,577 - __main__ - INFO - 访问端口: 5003
+2025-09-22 15:54:01,619 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 15:54:01,619 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 16:01:36,577 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 16:01:36,585 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 16:01:36,585 - __main__ - INFO - 访问端口: 5003
+2025-09-22 16:01:36,618 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 16:01:36,618 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 16:05:04,806 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 16:05:04,820 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 16:05:04,822 - __main__ - INFO - 访问端口: 5003
+2025-09-22 16:05:04,859 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 16:05:04,862 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 16:10:34,799 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 16:10:34,809 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 16:10:34,809 - __main__ - INFO - 访问端口: 5003
+2025-09-22 16:10:34,856 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 16:10:34,856 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 16:12:16,681 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 16:12:16,691 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 16:12:16,691 - __main__ - INFO - 访问端口: 5003
+2025-09-22 16:12:16,729 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 16:12:16,729 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 16:18:26,267 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 16:18:26,276 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 16:18:26,276 - __main__ - INFO - 访问端口: 5003
+2025-09-22 16:18:26,317 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 16:18:26,317 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

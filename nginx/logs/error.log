@@ -1,0 +1,7 @@
+2025/09/22 16:11:01 [notice] 17208#19068: signal process started
+2025/09/22 16:11:01 [error] 17208#19068: OpenEvent("Global\ngx_reload_19944") failed (2: The system cannot find the file specified)
+2025/09/22 16:13:43 [warn] 9608#9004: server name "http://103.236.92.21:58272/" has suspicious symbols in E:\llm-findwork\nginx/conf/nginx.conf:35
+2025/09/22 16:13:43 [notice] 9608#9004: signal process started
+2025/09/22 16:13:43 [warn] 25088#16568: server name "http://103.236.92.21:58272/" has suspicious symbols in E:/llm-findwork/nginx/conf/nginx.conf:35
+2025/09/22 16:14:53 [notice] 14488#22116: signal process started
+2025/09/22 16:24:03 [notice] 7904#7668: signal process started

@@ -198,4 +198,4 @@ if __name__ == '__main__':
     logger.info("启动鼠标控制API服务...")
     logger.info("访问端口: 5002")
     logger.info("请确保以管理员权限运行此程序")
-    app.run(host='0.0.0.0', port=5002, debug=False)
+    app.run(host='0.0.0.0', port=5002, debug=False,use_reloader=False)
