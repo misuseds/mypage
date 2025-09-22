@@ -176,7 +176,7 @@
             <canvas id="snapshotCanvas"></canvas>
         </div>
         
-        <a href="index.html" class="back-link">返回主页</a>
+        <a href="../index.html" class="back-link">返回主页</a>
     </div>
  
     <script>
@@ -214,47 +214,24 @@
  
         async function initializeApp() {
             try {
-                // 使用你提供的 FRP 地址
-                let ipaddress = "ns2.llmfindworksnjsgcs.fwh.is";
-         
-                // 构建后端检测URL
-                backendUrl = `http://${ipaddress}/predict`;
-                const healthUrl = `http://${ipaddress}/health`;
+                // 设置本地后端URL
+                backendUrl = 'http://localhost:5000/predict';
+                const healthUrl = 'http://localhost:5000/health';
                 
-                // 测试健康检查端点（使用代理方式避免混合内容问题）
+                // 测试健康检查端点
                 try {
                     console.log('正在测试健康检查端点:', healthUrl);
                     
-                    // 创建代理请求来避免混合内容问题
-                    const proxyResponse = await fetch('./cameraapi/proxy_api.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            url: healthUrl,
-                            method: 'GET'
-                        })
-                    });
+                    // 直接调用本地健康检查端点
+                    const healthResponse = await fetch(healthUrl);
                     
-                    const proxyResult = await proxyResponse.json();
-                    console.log('代理完整响应:', proxyResult);
-                    
-                    if (proxyResult.success) {
-                        const healthData = JSON.parse(proxyResult.data);
+                    if (healthResponse.ok) {
+                        const healthData = await healthResponse.json();
                         console.log('健康检查成功:', healthData);
                         updateStatus('健康检查通过，后端服务正常运行', 'success');
                     } else {
-                        console.warn('健康检查失败:', proxyResult.error);
-                        updateStatus('后端服务可能不可用: ' + proxyResult.error, 'info');
-                        
-                        // 显示更多错误信息
-                        if (proxyResult.url) {
-                            console.log('请求的URL:', proxyResult.url);
-                        }
-                        if (proxyResult.httpCode) {
-                            console.log('HTTP状态码:', proxyResult.httpCode);
-                        }
+                        console.warn('健康检查失败:', healthResponse.status);
+                        updateStatus('后端服务可能不可用: ' + healthResponse.status, 'info');
                     }
                 } catch (healthError) {
                     console.error('健康检查失败:', healthError);
@@ -305,32 +282,25 @@
                 // 拍照
                 takeSnapshot();
                 
-                
                 const imageData = compressImage(snapshotCanvas, 640, 0.8);
                 
                 // 发送到后端进行检测
                 updateStatus('正在处理图像...', 'info');
                 
-                // 使用代理发送请求避免混合内容问题
-                const proxyResponse = await fetch('./cameraapi/proxy_api.php', {
+                // 直接调用本地YOLO服务
+                const response = await fetch(backendUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        url: backendUrl,
-                        method: 'POST',
-                        body: JSON.stringify({ image: imageData })
-                    })
+                    body: JSON.stringify({ image: imageData })
                 });
                 
-                const proxyResult = await proxyResponse.json();
-                
-                if (!proxyResult.success) {
-                    throw new Error(proxyResult.error || 'Proxy request failed');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                const result = JSON.parse(proxyResult.data);
+                const result = await response.json();
                 
                 if (result.status === 'success') {
                     // 显示处理后的图像
@@ -548,34 +518,28 @@
                 // 发送到后端进行检测
                 updateStatus('正在处理图像...', 'info');
                 
-                // 使用代理发送请求避免混合内容问题
-                const proxyResponse = await fetch('./cameraapi/proxy_api.php', {
+                // 直接调用本地YOLO服务
+                const response = await fetch(backendUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        url: backendUrl,
-                        method: 'POST',
-                        body: JSON.stringify({ image: imageData })
-                    })
+                    body: JSON.stringify({ image: imageData })
                 });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 
                 // 计算请求发送时间
                 const requestTime = performance.now() - startTime;
                 console.log(`请求发送耗时: ${requestTime.toFixed(2)}ms`);
                 
-                const proxyResult = await proxyResponse.json();
+                const result = await response.json();
                 
                 // 计算总耗时
                 const totalTime = performance.now() - startTime;
                 console.log(`总处理耗时: ${totalTime.toFixed(2)}ms`);
-                
-                if (!proxyResult.success) {
-                    throw new Error(proxyResult.error || 'Proxy request failed');
-                }
-                
-                const result = JSON.parse(proxyResult.data);
                 
                 if (result.status === 'success') {
                     // 显示处理后的图像

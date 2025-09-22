@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>终端日志监控</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+        }
+        .log-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .service-log {
+            flex: 1;
+            border: 1px solid #3c3c3c;
+            margin-bottom: 10px;
+            background-color: #1e1e1e;
+            overflow-y: auto;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .service-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        .log-line {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+     <a href="../index.html" class="back-link">← 返回主页</a>
+        
+    <h1>终端日志监控</h1>
+    <div class="log-container">
+        <div class="service-log">
+            <div class="service-title">mouse_control</div>
+            <div id="mouse_control" class="log-content"></div>
+        </div>
+        <div class="service-log">
+            <div class="service-title">llm_server</div>
+            <div id="llm_server" class="log-content"></div>
+        </div>
+        <div class="service-log">
+            <div class="service-title">yolo_server</div>
+            <div id="yolo_server" class="log-content"></div>
+        </div>
+        <div class="service-log">
+            <div class="service-title">index_server</div>
+            <div id="index_server" class="log-content"></div>
+        </div>
+        <div class="service-log">
+            <div class="service-title">frp_client</div>
+            <div id="frp_client" class="log-content"></div>
+        </div>
+    </div>
+
+    <script>
+        const ws = new WebSocket('ws://127.0.0.1:5678');
+        
+        ws.onopen = function() {
+            console.log('已连接到日志服务器');
+        };
+        
+        ws.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const logContainer = document.getElementById(data.service);
+            
+            const logLine = document.createElement('div');
+            logLine.className = 'log-line';
+            logLine.textContent = data.log;
+            
+            logContainer.appendChild(logLine);
+            
+            // 自动滚动到底部
+            logContainer.scrollTop = logContainer.scrollHeight;
+        };
+        
+        ws.onerror = function(error) {
+            console.error('WebSocket错误:', error);
+        };
+        
+        ws.onclose = function() {
+            console.log('与日志服务器断开连接');
+        };
+    </script>
+</body>
+</html>

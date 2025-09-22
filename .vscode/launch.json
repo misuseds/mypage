@@ -7,15 +7,15 @@
       "request": "launch",
       "program": "E:/llm-findwork/python/mousecontrol.py",
       "console": "integratedTerminal",
-
+      "args": ["--log-file", "E:/llm-findwork/logs/mouse_control.log"]
     },
-      {
+    {
       "name": "启动 llm 服务",
       "type": "debugpy",
       "request": "launch",
       "program": "E:/llm-findwork/python/llm_server.py",
       "console": "integratedTerminal",
-
+      "args": ["--log-file", "E:/llm-findwork/logs/llm_server.log"]
     },
     {
       "name": "启动 YOLO 服务",
@@ -25,16 +25,16 @@
       "console": "integratedTerminal",
       "cwd": "E:/yolo-local/",
       "env": {},
-        "python": "E:/yolo-local/.venv/python.exe"
+      "python": "E:/yolo-local/.venv/python.exe",
+      "args": ["--log-file", "E:/llm-findwork/logs/yolo_server.log"]
     },
-       {
+    {
       "name": "启动 index 服务",
       "type": "debugpy",
       "request": "launch",
       "program": "E:/llm-findwork/secure_server.py",
       "console": "integratedTerminal",
-      
-      
+      "args": ["--log-file", "E:/llm-findwork/logs/index_server.log"]
     },
     {
       "name": "启动FRP 客户端",
@@ -48,15 +48,30 @@
         "-t",
         "fce7119c467660bf844e2a0d35033fe6",
         "-p",
-        "117714"
+        "117714",
+        "--log-file",
+        "E:/llm-findwork/logs/frp_client.log"
       ]
+    },
+    {
+      "name": "启动 Log Pusher 服务",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "E:/llm-findwork/python/log_pusher.py",
+      "console": "integratedTerminal"
     }
   ],
   "compounds": [
- 
-     {
+    {
       "name": "启动 main (并行)",
-      "configurations": [ "启动 mouse_control 服务", "启动FRP 客户端","启动 index 服务","启动 llm 服务"],
+      "configurations": [
+        "启动 mouse_control 服务",
+        "启动FRP 客户端",
+        "启动 index 服务",
+        "启动 llm 服务",
+        "启动 YOLO 服务",
+        "启动 Log Pusher 服务"
+      ],
       "stopAll": true
     }
   ]
