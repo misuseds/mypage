@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI终端</title>
+    <script src="../js/config.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -223,6 +224,7 @@
         let capturedImage = null;
         let detectionData = null;
         const imagePreview = document.getElementById('imagePreview');
+        const BASE_URL = APP_CONFIG.BASE_URL;
         
         // 对话历史记录
         let conversationHistory = [
@@ -276,8 +278,8 @@
             addMessage('正在截取屏幕...', 'system');
             
             try {
-                // 直接调用本地截图服务
-                const response = await fetch('http://localhost:5002/screenshot');
+                // 使用配置文件中的 BASE_URL
+                const response = await fetch(`${BASE_URL}/mouse/screenshot`);
                 
                 const proxyResponseTime = performance.now();
                 const proxyDuration = proxyResponseTime - startTime;
@@ -326,8 +328,8 @@
             showLoading(true);
             
             try {
-                // 直接调用本地YOLO服务
-                const response = await fetch('http://localhost:5000/predict', {
+                // 使用配置文件中的 BASE_URL
+                const response = await fetch(`${BASE_URL}/yolo/predict`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -441,8 +443,8 @@
                 const calcDuration = calcTime - startTime;
                 console.log(`点击位置计算完成，耗时: ${calcDuration.toFixed(2)}ms`);
                 
-                // 直接调用本地鼠标控制服务
-                const response = await fetch('http://localhost:5002/click', {
+                // 使用配置文件中的 BASE_URL
+                const response = await fetch(`${BASE_URL}/mouse/click`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -517,8 +519,8 @@
                 const calcDuration = calcTime - startTime;
                 console.log(`点击位置计算完成，耗时: ${calcDuration.toFixed(2)}ms`);
                 
-                // 直接调用本地鼠标控制服务
-                const response = await fetch('http://localhost:5002/click', {
+                // 使用配置文件中的 BASE_URL
+                const response = await fetch(`${BASE_URL}/mouse/click`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -674,8 +676,8 @@
             showLoading(true);
             
             try {
-                // 调用本地LLM服务处理文本消息，支持工具调用
-                const response = await fetch('http://localhost:5003/chat', {
+                // 使用配置文件中的 BASE_URL
+                const response = await fetch(`${BASE_URL}/chat`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

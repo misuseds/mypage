@@ -150,3 +150,75 @@
  * Running on http://127.0.0.1:5003
  * Running on http://192.168.1.5:5003
 2025-09-22 16:18:26,317 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 18:11:29,273 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 18:11:29,279 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 18:11:29,279 - __main__ - INFO - 访问端口: 5003
+2025-09-22 18:11:29,315 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 18:11:29,315 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 18:14:19,760 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 18:14:19,766 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 18:14:19,766 - __main__ - INFO - 访问端口: 5003
+2025-09-22 18:14:19,800 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 18:14:19,802 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 18:15:05,137 - __main__ - INFO - 收到聊天请求
+2025-09-22 18:15:05,137 - __main__ - INFO - 开始调用LLM服务
+2025-09-22 18:15:05,454 - __main__ - INFO - LLM服务响应状态码: 200
+2025-09-22 18:15:09,571 - __main__ - INFO - LLM服务调用完成
+2025-09-22 18:15:09,573 - __main__ - INFO - 聊天请求处理完成
+2025-09-22 18:15:09,577 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:15:09] "POST /chat HTTP/1.0" 200 -
+2025-09-22 18:26:21,268 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 18:26:21,273 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 18:26:21,273 - __main__ - INFO - 访问端口: 5003
+2025-09-22 18:26:21,303 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 18:26:21,303 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 18:28:09,645 - __main__ - INFO - 收到聊天请求
+2025-09-22 18:28:09,645 - __main__ - INFO - 开始调用LLM服务
+2025-09-22 18:28:09,882 - __main__ - INFO - LLM服务响应状态码: 200
+2025-09-22 18:29:37,050 - __main__ - INFO - 收到聊天请求
+2025-09-22 18:29:37,050 - __main__ - INFO - 开始调用LLM服务
+2025-09-22 18:29:41,508 - __main__ - INFO - LLM服务调用完成
+2025-09-22 18:29:41,510 - __main__ - INFO - 聊天请求处理完成
+2025-09-22 18:29:41,516 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:29:41] "POST /chat HTTP/1.0" 200 -
+2025-09-22 18:29:56,499 - __main__ - ERROR - 聊天请求处理失败: Remote end closed connection without response
+2025-09-22 18:29:56,502 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:29:56] "[35m[1mPOST /chat HTTP/1.0[0m" 500 -
+2025-09-22 18:30:48,976 - __main__ - INFO - 收到聊天请求
+2025-09-22 18:30:48,976 - __main__ - INFO - 开始调用LLM服务
+2025-09-22 18:30:49,230 - __main__ - INFO - LLM服务响应状态码: 200
+2025-09-22 18:31:00,438 - __main__ - INFO - LLM服务调用完成
+2025-09-22 18:31:00,439 - __main__ - INFO - 聊天请求处理完成
+2025-09-22 18:31:00,441 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:31:00] "POST /chat HTTP/1.0" 200 -
+2025-09-22 18:32:40,373 - __main__ - INFO - LLM服务初始化完成，模型: deepseek-chat
+2025-09-22 18:32:40,380 - __main__ - INFO - 启动LLM API服务...
+2025-09-22 18:32:40,380 - __main__ - INFO - 访问端口: 5003
+2025-09-22 18:32:40,411 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.5:5003
+2025-09-22 18:32:40,411 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 18:32:48,128 - __main__ - INFO - 收到聊天请求
+2025-09-22 18:32:48,133 - __main__ - INFO - 开始调用LLM服务
+2025-09-22 18:32:48,397 - __main__ - INFO - LLM服务响应状态码: 200
+2025-09-22 18:32:52,830 - __main__ - INFO - LLM服务调用完成
+2025-09-22 18:32:52,832 - __main__ - INFO - 聊天请求处理完成
+2025-09-22 18:32:52,837 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:32:52] "POST /chat HTTP/1.0" 200 -
+2025-09-22 18:33:09,588 - __main__ - INFO - 收到聊天请求
+2025-09-22 18:33:09,588 - __main__ - INFO - 开始调用LLM服务
+2025-09-22 18:33:09,825 - __main__ - INFO - LLM服务响应状态码: 200
+2025-09-22 18:33:13,784 - __main__ - INFO - LLM服务调用完成
+2025-09-22 18:33:13,786 - __main__ - INFO - 聊天请求处理完成
+2025-09-22 18:33:13,788 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:33:13] "POST /chat HTTP/1.0" 200 -
+2025-09-22 18:33:47,732 - __main__ - INFO - 收到聊天请求
+2025-09-22 18:33:47,732 - __main__ - INFO - 开始调用LLM服务
+2025-09-22 18:33:47,994 - __main__ - INFO - LLM服务响应状态码: 200
+2025-09-22 18:33:51,849 - __main__ - INFO - LLM服务调用完成
+2025-09-22 18:33:51,850 - __main__ - INFO - 聊天请求处理完成
+2025-09-22 18:33:51,851 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:33:51] "POST /chat HTTP/1.0" 200 -

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>找工作助手</title>
+    <!-- 引入全局配置文件 -->
+    <script src="../js/config.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -110,10 +112,9 @@
 </head>
 <body>
     <!-- 在<body>标签内添加 -->
-<audio id="notificationSound" preload="auto">
-    <source src="../voice/a.mp3" type="audio/mpeg">
- 
-</audio>
+    <audio id="notificationSound" preload="auto">
+        <source src="../voice/a.mp3" type="audio/mpeg">
+    </audio>
     <!-- 添加返回主页的链接 -->
     <div style="margin-bottom: 20px;">
         <a href="../index.html" style="display: inline-block; padding: 10px 15px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px;">← 返回主页</a>
@@ -161,6 +162,9 @@ let lastFetchTime = 0;
 let knownJobIds = new Set();
 let countdownInterval = null;
 const sound = document.getElementById('notificationSound');
+// 使用配置文件中的 BASE_URL
+const BASE_URL = APP_CONFIG.BASE_URL;
+
 // 计数器相关变量
 let runCounter = 0;
 let totalRuns = 0;
@@ -453,8 +457,8 @@ async function analyzeJob() {
         addMessage('正在分析工作...', 'system');
         
         const attention="排除包含独立设计,性格外向或者忠诚字样的或者是主管职位或者位置泉州,要求太多的,涉及到流体力学的，材料的也不要推,排除之后还觉得匹配度超过80%的话回答要带*请推荐给主人*,我之后代码会读取这句话"
-        // 使用自建 llm_server 进行分析
-        const response = await fetch('http://localhost:5003/chat', {
+        // 使用配置文件中的 BASE_URL
+        const response = await fetch(`${BASE_URL}/chat`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -659,13 +663,13 @@ async function sendMessage() {
     }
 }
 
-// AI回复函数 - 使用自建 llm_server
+// AI回复函数 - 使用配置文件中的 BASE_URL
 async function getAIResponse(userMessage) {
     try {
         addMessage('AI正在思考...', 'system');
         
-        // 使用自建 llm_server 调用API
-        const response = await fetch('http://localhost:5003/chat', {
+        // 使用配置文件中的 BASE_URL
+        const response = await fetch(`${BASE_URL}/chat`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -161,3 +161,44 @@
  * Running on http://127.0.0.1:5002
  * Running on http://192.168.1.5:5002
 2025-09-22 16:18:26,547 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 18:11:29,710 - __main__ - INFO - 启动鼠标控制API服务...
+2025-09-22 18:11:29,710 - __main__ - INFO - 访问端口: 5002
+2025-09-22 18:11:29,710 - __main__ - INFO - 请确保以管理员权限运行此程序
+2025-09-22 18:11:29,754 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.1.5:5002
+2025-09-22 18:11:29,754 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 18:14:19,998 - __main__ - INFO - 启动鼠标控制API服务...
+2025-09-22 18:14:19,998 - __main__ - INFO - 访问端口: 5002
+2025-09-22 18:14:19,998 - __main__ - INFO - 请确保以管理员权限运行此程序
+2025-09-22 18:14:20,049 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.1.5:5002
+2025-09-22 18:14:20,049 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 18:14:32,615 - __main__ - INFO - 开始屏幕截图
+2025-09-22 18:14:32,886 - __main__ - INFO - 屏幕截图完成（已调整为384x640分辨率）
+2025-09-22 18:14:32,892 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:14:32] "GET /screenshot HTTP/1.0" 200 -
+2025-09-22 18:14:55,279 - __main__ - INFO - 开始屏幕截图
+2025-09-22 18:14:55,389 - __main__ - INFO - 屏幕截图完成（已调整为384x640分辨率）
+2025-09-22 18:14:55,390 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:14:55] "GET /screenshot HTTP/1.0" 200 -
+2025-09-22 18:15:09,695 - __main__ - INFO - 开始屏幕截图
+2025-09-22 18:15:09,817 - __main__ - INFO - 屏幕截图完成（已调整为384x640分辨率）
+2025-09-22 18:15:09,822 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 18:15:09] "GET /screenshot HTTP/1.0" 200 -
+2025-09-22 18:26:21,371 - __main__ - INFO - 启动鼠标控制API服务...
+2025-09-22 18:26:21,371 - __main__ - INFO - 访问端口: 5002
+2025-09-22 18:26:21,371 - __main__ - INFO - 请确保以管理员权限运行此程序
+2025-09-22 18:26:21,419 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.1.5:5002
+2025-09-22 18:26:21,419 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-22 18:32:40,480 - __main__ - INFO - 启动鼠标控制API服务...
+2025-09-22 18:32:40,483 - __main__ - INFO - 访问端口: 5002
+2025-09-22 18:32:40,483 - __main__ - INFO - 请确保以管理员权限运行此程序
+2025-09-22 18:32:40,533 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.1.5:5002
+2025-09-22 18:32:40,533 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
