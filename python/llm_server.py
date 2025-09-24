@@ -43,6 +43,13 @@ class LLMService:
         self.api_url = os.getenv('deepseek_OPENAI_API_URL')
         self.model_name = os.getenv('deepseek_MODEL_NAME')
         self.api_key = os.getenv('deepseek_OPENAI_API_KEY')
+            # 检查必需的环境变量是否存在
+        if not self.api_url:
+            raise ValueError("环境变量 'deepseek_OPENAI_API_URL' 未设置或为空")
+        if not self.model_name:
+            raise ValueError("环境变量 'deepseek_MODEL_NAME' 未设置或为空")
+        if not self.api_key:
+            raise ValueError("环境变量 'deepseek_OPENAI_API_KEY' 未设置或为空")
         logger.info(f"LLM服务初始化完成，模型: {self.model_name}")
 
     def create(self, messages, tools=None):

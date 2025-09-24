@@ -1,7 +1,7 @@
 // config.js - 全局配置文件
 const APP_CONFIG = {
     // 生产环境配置（内网穿透地址）
-    BASE_URL: 'http://171.80.1.215:21815',
+    BASE_URL: 'http://115.231.35.117:56329',
     
     // 本地测试时可以改为:
     // BASE_URL: 'http://localhost:801',

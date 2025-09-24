@@ -242,7 +242,7 @@
                          "当需要执行操作时，请使用工具调用格式：\n" +
                          "<tool_call>{\"name\": \"capture_screen\"}</tool_call>\n" +
                          "<tool_call>{\"name\": \"analyze_image_with_yolo\"}</tool_call>\n" +
-                         "<tool_call>{\"name\": \"analyze_image_with_groundingdino\", \"arguments\": {\"prompt\": \"要检测的目标描述\"}}</tool_call>\n" +
+                         "<tool_call>{\"name\": \"analyze_image_with_groundingdino\", \"arguments\": {\"prompt\": \"要检测目标的英语描述,结尾要带个.符号,比如cat.dog.\"}}</tool_call>\n" +
                          "<tool_call>{\"name\": \"click_detected_object\", \"arguments\": {\"object_name\": \"指定对象名称\"}}</tool_call>\n\n" +
                          "请根据用户请求决定是否需要调用工具，并在调用后解释结果。当用户提到特定物体时（如'查找红色按钮'），使用GroundingDINO并提取目标描述；当需要通用物体检测时（如'分析图像中的物体'），使用YOLO。"
             }

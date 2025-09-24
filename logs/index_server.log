@@ -1,252 +1,716 @@
-2025-09-24 11:15:45,446 - __main__ - INFO - 已清空日志目录中的所有文件: ['controlxz.log', 'frp_client.log', 'groundingdino_server.log', 'index_server.log', 'llm_server.log', 'mouse_control.log', 'nginx.log', 'yolo_server.log']
-2025-09-24 11:15:45,447 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:45] "GET /api/clear-log HTTP/1.0" 200 -
-2025-09-24 11:15:45,531 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:45] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:15:45,533 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:45] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:15:45,551 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:45] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:45,557 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:45] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:45,798 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:45] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:15:45,926 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:45] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:15:45,928 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:45] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:46,119 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:46] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:48,062 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:48] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:15:48,065 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:48] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:15:48,067 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:48] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:15:48,072 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:48] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:48,082 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:48] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:48,564 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:48] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:15:48,569 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:48] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:48,629 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:48] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:53,390 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:53] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:15:53,398 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:53] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:53,404 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:53] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:15:53,406 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:53] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:15:53,409 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:53] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:53,481 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:53] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:15:53,485 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:53] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:53,661 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:53] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:58,370 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:58] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:15:58,374 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:58] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:58,376 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:58] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:15:58,384 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:58] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:58,458 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:58] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:15:58,458 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:58] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:15:58,635 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:58] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:15:58,637 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:15:58] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:03,363 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:03] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:03,382 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:03] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:03,390 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:03] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:03,392 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:03] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:03,397 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:03] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:03,470 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:03] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:03,475 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:03] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:03,934 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:03] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:08,374 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:08] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:08,374 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:08] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:08,374 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:08] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:08,374 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:08] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:08,390 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:08] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:08,403 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:08] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:08,457 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:08] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:08,565 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:08] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:13,070 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:13] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:13,079 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:13] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:13,086 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:13] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:13,092 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:13] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:13,097 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:13] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:13,098 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:13] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:13,169 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:13] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:13,172 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:13] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:18,063 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:18] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:18,069 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:18] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:18,073 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:18] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:18,076 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:18] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:18,236 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:18] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:18,241 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:18] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:18,332 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:18] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:18,336 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:18] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:23,380 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:23] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:23,385 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:23] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:23,390 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:23] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:23,394 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:23] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:23,395 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:23] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:23,462 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:23] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:23,569 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:23] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:23,641 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:23] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:28,385 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:28] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:28,395 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:28] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:28,400 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:28] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:28,404 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:28] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:28,406 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:28] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:28,470 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:28] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:28,488 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:28] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:28,649 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:28] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:33,378 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:33] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:33,384 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:33] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:33,388 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:33] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:33,391 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:33] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:33,394 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:33] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:33,488 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:33] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:33,546 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:33] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:33,644 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:33] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:38,379 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:38] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:38,379 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:38] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:38,384 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:38] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:38,461 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:38] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:38,543 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:38] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:38,624 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:38] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:38,641 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:38] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:38,656 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:38] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:43,384 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:43] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:43,386 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:43] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:43,391 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:43] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:43,394 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:43] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:43,403 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:43] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:43,569 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:43] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:43,584 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:43] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:43,646 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:43] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:48,377 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:48] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:48,379 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:48] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:48,383 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:48] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:48,396 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:48] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:48,477 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:48] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:48,552 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:48] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:48,556 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:48] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:48,646 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:48] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:53,403 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:53] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:16:53,408 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:53] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:53,410 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:53] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:53,414 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:53] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:16:53,416 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:53] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:16:53,418 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:53] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:16:53,492 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:53] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:16:53,565 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:16:53] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:05,952 - __main__ - INFO - 安全服务器运行在端口 8000
-2025-09-24 11:19:05,952 - __main__ - INFO - 允许访问的文件:
-2025-09-24 11:19:05,952 - __main__ - INFO -   - index.html
-2025-09-24 11:19:05,952 - __main__ - INFO -   - favicon.ico
-2025-09-24 11:19:05,952 - __main__ - INFO - 允许访问的文件夹:
-2025-09-24 11:19:05,952 - __main__ - INFO -   - html (文件夹内所有文件)
-2025-09-24 11:19:05,952 - __main__ - INFO -   - picture (文件夹内所有文件)
-2025-09-24 11:19:05,952 - __main__ - INFO -   - voice (文件夹内所有文件)
-2025-09-24 11:19:05,952 - __main__ - INFO -   - log (文件夹内所有文件)
-2025-09-24 11:19:05,952 - __main__ - INFO -   - logs (文件夹内所有文件)
-2025-09-24 11:19:05,952 - __main__ - INFO -   - readingroom (文件夹内所有文件)
-2025-09-24 11:19:05,952 - __main__ - INFO - 按 Ctrl+C 停止服务器
-2025-09-24 11:19:05,974 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-09-24 14:09:21,416 - __main__ - INFO - 已清空日志目录中的所有文件: ['controlxz.log', 'frp_client.log', 'groundingdino_server.log', 'index_server.log', 'llm_server.log', 'mouse_control.log', 'nginx.log', 'yolo_server.log']
+2025-09-24 14:09:21,416 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:21] "GET /api/clear-log HTTP/1.0" 200 -
+2025-09-24 14:09:21,484 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:21] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:21,486 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:21] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:21,507 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:21] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:09:21,512 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:21] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:09:21,516 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:21] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:09:21,522 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:21] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:21,538 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:21] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:09:21,547 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:21] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:24,511 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:24] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:24,512 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:24] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:24,535 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:24] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:09:24,538 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:24] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:09:24,544 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:24] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:09:24,550 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:24] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:24,563 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:24] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:09:24,574 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:24] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:29,514 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:29] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:29,516 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:29] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:29,540 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:29] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:09:29,543 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:29] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:09:29,546 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:29] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:09:29,560 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:29] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:29,567 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:29] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:09:29,578 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:29] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:34,516 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:34] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:34,523 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:34] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:34,525 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:34] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:09:34,543 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:34] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:09:34,546 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:34] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:09:34,559 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:34] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:34,572 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:34] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:09:34,597 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:34] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:39,535 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:39] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:39,540 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:39] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:39,547 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:39] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:09:39,552 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:39] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:09:39,553 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:39] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:09:39,558 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:39] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:39,592 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:39] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:09:39,604 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:39] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:44,524 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:44] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:44,527 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:44] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:44,530 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:44] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:09:44,545 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:44] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:09:44,546 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:44] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:09:44,555 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:44] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:44,577 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:44] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:09:44,590 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:44] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:49,612 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:49] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:49,614 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:49] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:49,636 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:49] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:09:49,638 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:49] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:09:49,643 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:49] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:09:49,661 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:49] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:49,665 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:49] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:09:49,678 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:49] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:55,015 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:55] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:55,017 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:55] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:09:55,042 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:55] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:09:55,049 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:55] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:09:55,051 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:55] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:55,065 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:55] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:09:55,070 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:55] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:09:55,077 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:09:55] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:00,011 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:00] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:00,016 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:00] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:00,019 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:00] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:00,034 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:00] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:00,040 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:00] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:00,051 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:00] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:00,067 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:00] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:00,077 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:00] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:05,024 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:05] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:05,026 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:05] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:05,037 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:05] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:05,041 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:05] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:05,044 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:05] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:05,058 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:05] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:05,081 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:05] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:05,092 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:05] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:10,011 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:10] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:10,012 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:10] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:10,037 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:10] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:10,039 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:10] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:10,042 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:10] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:10,057 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:10] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:10,065 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:10] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:10,076 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:10] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:15,014 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:15] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:15,014 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:15] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:15,023 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:15] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:15,040 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:15] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:15,044 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:15] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:15,056 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:15] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:15,076 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:15] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:15,077 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:15] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:20,088 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:20] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:20,095 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:20] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:20,113 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:20] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:20,116 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:20] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:20,121 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:20] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:20,136 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:20] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:20,175 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:20] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:20,177 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:20] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:25,011 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:25] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:25,012 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:25] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:25,041 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:25] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:25,046 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:25] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:25,049 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:25] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:25,065 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:25] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:25,069 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:25] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:25,078 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:25] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:31,005 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:31] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:31,010 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:31] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:31,011 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:31] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:31,029 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:31] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:31,031 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:31] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:31,047 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:31] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:31,066 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:31] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:31,071 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:31] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:36,996 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:36] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:37,002 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:37] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:37,003 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:37] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:37,012 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:37] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:37,027 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:37] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:37,050 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:37] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:37,062 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:37] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:37,063 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:37] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:43,012 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:43] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:43,025 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:43] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:43,026 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:43] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:43,031 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:43] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:43,037 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:43] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:43,046 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:43] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:43,068 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:43] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:43,088 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:43] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:49,006 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:49] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:49,009 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:49] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:49,029 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:49] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:10:49,036 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:49] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:10:49,037 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:49] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:10:49,044 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:49] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:10:49,063 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:49] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:10:49,077 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:10:49] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:15:38,971 - __main__ - INFO - 安全服务器运行在端口 8000
+2025-09-24 14:15:38,971 - __main__ - INFO - 允许访问的文件:
+2025-09-24 14:15:38,971 - __main__ - INFO -   - index.html
+2025-09-24 14:15:38,972 - __main__ - INFO -   - favicon.ico
+2025-09-24 14:15:38,972 - __main__ - INFO - 允许访问的文件夹:
+2025-09-24 14:15:38,972 - __main__ - INFO -   - html (文件夹内所有文件)
+2025-09-24 14:15:38,972 - __main__ - INFO -   - picture (文件夹内所有文件)
+2025-09-24 14:15:38,972 - __main__ - INFO -   - voice (文件夹内所有文件)
+2025-09-24 14:15:38,972 - __main__ - INFO -   - log (文件夹内所有文件)
+2025-09-24 14:15:38,972 - __main__ - INFO -   - logs (文件夹内所有文件)
+2025-09-24 14:15:38,973 - __main__ - INFO -   - readingroom (文件夹内所有文件)
+2025-09-24 14:15:38,973 - __main__ - INFO - 按 Ctrl+C 停止服务器
+2025-09-24 14:15:39,005 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
  * Running on http://192.168.1.3:8000
-2025-09-24 11:19:05,974 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-24 11:19:12,659 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:12] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:12,709 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:12] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:12,783 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:12] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:13,872 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:13] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:13,881 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:13] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,038 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,053 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,116 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,166 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,283 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,300 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,365 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,460 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,487 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,509 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,634 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,650 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,652 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,776 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,786 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,787 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,925 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,925 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:14,927 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:14] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:19:15,024 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:15] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:15,028 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:15] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:15,160 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:15] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:19:15,167 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:15] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:15,206 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:15] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:19:15,257 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:15] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:19:15,260 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:15] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:19:15,384 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:19:15] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:19:57,079 - __main__ - INFO - 安全服务器运行在端口 8000
-2025-09-24 11:19:57,079 - __main__ - INFO - 允许访问的文件:
-2025-09-24 11:19:57,079 - __main__ - INFO -   - index.html
-2025-09-24 11:19:57,079 - __main__ - INFO -   - favicon.ico
-2025-09-24 11:19:57,080 - __main__ - INFO - 允许访问的文件夹:
-2025-09-24 11:19:57,080 - __main__ - INFO -   - html (文件夹内所有文件)
-2025-09-24 11:19:57,080 - __main__ - INFO -   - picture (文件夹内所有文件)
-2025-09-24 11:19:57,080 - __main__ - INFO -   - voice (文件夹内所有文件)
-2025-09-24 11:19:57,080 - __main__ - INFO -   - log (文件夹内所有文件)
-2025-09-24 11:19:57,080 - __main__ - INFO -   - logs (文件夹内所有文件)
-2025-09-24 11:19:57,081 - __main__ - INFO -   - readingroom (文件夹内所有文件)
-2025-09-24 11:19:57,081 - __main__ - INFO - 按 Ctrl+C 停止服务器
-2025-09-24 11:19:57,100 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:8000
- * Running on http://192.168.1.3:8000
-2025-09-24 11:19:57,100 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-24 11:20:01,431 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:01] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:20:01,475 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:01] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:20:01,534 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:01] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:20:01,534 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:01] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:20:01,545 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:01] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
-2025-09-24 11:20:01,565 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:01] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
-2025-09-24 11:20:01,625 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:01] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
-2025-09-24 11:20:03,843 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:03] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:20:54,387 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:54] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
-2025-09-24 11:20:54,387 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:54] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
-2025-09-24 11:20:54,387 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:54] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
-2025-09-24 11:20:54,397 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:54] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
-2025-09-24 11:20:54,400 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 11:20:54] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
-2025-09-24 11:21:03,447 - __main__ - INFO - 安全服务器运行在端口 8000
-2025-09-24 11:21:03,462 - __main__ - INFO - 允许访问的文件:
-2025-09-24 11:21:03,462 - __main__ - INFO -   - index.html
-2025-09-24 11:21:03,462 - __main__ - INFO -   - favicon.ico
-2025-09-24 11:21:03,463 - __main__ - INFO - 允许访问的文件夹:
-2025-09-24 11:21:03,463 - __main__ - INFO -   - html (文件夹内所有文件)
-2025-09-24 11:21:03,463 - __main__ - INFO -   - picture (文件夹内所有文件)
-2025-09-24 11:21:03,463 - __main__ - INFO -   - voice (文件夹内所有文件)
-2025-09-24 11:21:03,463 - __main__ - INFO -   - log (文件夹内所有文件)
-2025-09-24 11:21:03,463 - __main__ - INFO -   - logs (文件夹内所有文件)
-2025-09-24 11:21:03,464 - __main__ - INFO -   - readingroom (文件夹内所有文件)
-2025-09-24 11:21:03,464 - __main__ - INFO - 按 Ctrl+C 停止服务器
-2025-09-24 11:21:03,484 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:8000
- * Running on http://192.168.1.3:8000
-2025-09-24 11:21:03,485 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-24 11:22:28,121 - __main__ - INFO - 安全服务器运行在端口 8000
-2025-09-24 11:22:28,121 - __main__ - INFO - 允许访问的文件:
-2025-09-24 11:22:28,121 - __main__ - INFO -   - index.html
-2025-09-24 11:22:28,122 - __main__ - INFO -   - favicon.ico
-2025-09-24 11:22:28,122 - __main__ - INFO - 允许访问的文件夹:
-2025-09-24 11:22:28,122 - __main__ - INFO -   - html (文件夹内所有文件)
-2025-09-24 11:22:28,122 - __main__ - INFO -   - picture (文件夹内所有文件)
-2025-09-24 11:22:28,122 - __main__ - INFO -   - voice (文件夹内所有文件)
-2025-09-24 11:22:28,122 - __main__ - INFO -   - log (文件夹内所有文件)
-2025-09-24 11:22:28,122 - __main__ - INFO -   - logs (文件夹内所有文件)
-2025-09-24 11:22:28,124 - __main__ - INFO -   - readingroom (文件夹内所有文件)
-2025-09-24 11:22:28,124 - __main__ - INFO - 按 Ctrl+C 停止服务器
-2025-09-24 11:22:28,147 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:8000
- * Running on http://192.168.1.3:8000
-2025-09-24 11:22:28,147 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-24 11:27:14,924 - __main__ - INFO - 安全服务器运行在端口 8000
-2025-09-24 11:27:14,924 - __main__ - INFO - 允许访问的文件:
-2025-09-24 11:27:14,924 - __main__ - INFO -   - index.html
-2025-09-24 11:27:14,925 - __main__ - INFO -   - favicon.ico
-2025-09-24 11:27:14,925 - __main__ - INFO - 允许访问的文件夹:
-2025-09-24 11:27:14,925 - __main__ - INFO -   - html (文件夹内所有文件)
-2025-09-24 11:27:14,925 - __main__ - INFO -   - picture (文件夹内所有文件)
-2025-09-24 11:27:14,925 - __main__ - INFO -   - voice (文件夹内所有文件)
-2025-09-24 11:27:14,925 - __main__ - INFO -   - log (文件夹内所有文件)
-2025-09-24 11:27:14,926 - __main__ - INFO -   - logs (文件夹内所有文件)
-2025-09-24 11:27:14,926 - __main__ - INFO -   - readingroom (文件夹内所有文件)
-2025-09-24 11:27:14,926 - __main__ - INFO - 按 Ctrl+C 停止服务器
-2025-09-24 11:27:14,946 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:8000
- * Running on http://192.168.1.3:8000
-2025-09-24 11:27:14,946 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-24 14:15:39,005 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-24 14:15:52,822 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:52] "GET /api/list-logs HTTP/1.0" 200 -
+2025-09-24 14:15:52,915 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:52] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:15:52,949 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:52] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:15:52,981 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:52] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:15:52,990 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:52] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:15:52,992 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:52] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:15:52,996 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:52] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:15:53,002 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:53] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:15:53,054 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:53] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:15:58,183 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:58] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:15:58,199 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:58] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:15:58,218 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:58] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:15:58,222 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:58] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:15:58,225 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:58] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:15:58,233 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:58] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:15:58,271 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:58] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:15:58,276 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:15:58] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:03,189 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:03] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:03,193 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:03] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:03,194 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:03] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:03,219 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:03] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:03,221 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:03] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:03,230 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:03] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:03,264 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:03] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:03,272 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:03] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:08,187 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:08] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:08,189 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:08] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:08,194 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:08] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:08,195 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:08] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:08,218 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:08] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:08,233 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:08] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:08,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:08] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:08,272 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:08] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:13,186 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:13] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:13,188 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:13] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:13,190 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:13] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:13,217 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:13] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:13,222 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:13] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:13,234 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:13] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:13,251 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:13] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:13,262 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:13] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:18,191 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:18] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:18,194 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:18] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:18,196 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:18] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:18,227 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:18] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:18,228 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:18] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:18,236 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:18] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:18,262 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:18] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:18,269 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:18] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:23,186 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:23] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:23,188 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:23] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:23,222 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:23] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:23,226 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:23] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:23,231 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:23] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:23,242 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:23] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:23,262 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:23] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:23,264 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:23] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:28,191 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:28] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:28,192 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:28] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:28,225 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:28] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:28,232 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:28] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:28,234 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:28] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:28,240 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:28] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:28,261 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:28] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:28,264 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:28] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:33,193 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:33] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:33,194 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:33] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:33,230 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:33] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:33,236 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:33] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:33,240 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:33] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:33,248 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:33] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:33,260 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:33] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:33,267 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:33] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:38,192 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:38] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:38,196 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:38] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:38,198 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:38] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:38,229 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:38] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:38,232 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:38] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:38,242 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:38] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:38,265 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:38] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:38,291 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:38] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:43,195 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:43] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:43,196 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:43] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:43,227 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:43] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:43,234 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:43] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:43,237 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:43] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:43,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:43] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:43,269 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:43] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:43,271 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:43] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:48,199 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:48] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:48,201 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:48] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:48,235 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:48] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:48,242 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:48] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:48,247 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:48] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:48,257 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:48] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:48,268 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:48] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:48,274 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:48] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:53,194 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:53] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:53,196 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:53] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:53,230 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:53] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:53,232 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:53] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:53,238 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:53] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:53,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:53] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:53,264 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:53] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:53,273 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:53] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:58,198 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:58] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:16:58,205 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:58] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:58,206 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:58] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:16:58,231 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:58] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:16:58,233 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:58] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:58,244 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:58] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:16:58,275 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:58] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:16:58,281 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:16:58] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:03,198 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:03] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:03,198 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:03] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:03,232 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:03] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:03,236 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:03] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:03,241 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:03] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:03,251 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:03] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:03,267 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:03] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:03,272 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:03] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:08,203 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:08] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:08,205 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:08] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:08,237 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:08] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:08,239 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:08] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:08,246 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:08] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:08,256 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:08] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:08,273 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:08] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:08,275 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:08] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:13,202 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:13] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:13,206 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:13] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:13,208 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:13] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:13,236 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:13] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:13,242 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:13] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:13,252 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:13] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:13,279 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:13] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:13,281 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:13] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:18,203 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:18] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:18,205 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:18] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:18,207 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:18] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:18,246 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:18] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:18,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:18] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:18,264 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:18] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:18,278 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:18] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:18,286 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:18] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:23,204 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:23] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:23,207 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:23] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:23,243 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:23] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:23,247 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:23] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:23,251 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:23] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:23,261 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:23] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:23,282 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:23] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:23,283 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:23] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:28,202 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:28] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:28,204 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:28] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:28,206 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:28] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:28,237 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:28] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:28,241 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:28] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:28,255 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:28] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:28,287 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:28] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:28,290 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:28] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:33,203 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:33] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:33,208 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:33] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:33,218 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:33] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:33,238 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:33] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:33,242 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:33] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:33,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:33] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:33,275 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:33] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:33,283 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:33] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:38,200 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:38] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:38,203 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:38] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:38,205 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:38] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:38,234 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:38] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:38,237 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:38] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:38,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:38] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:38,267 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:38] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:38,279 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:38] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:43,202 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:43] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:43,203 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:43] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:43,251 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:43] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:43,257 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:43] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:43,261 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:43] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:43,269 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:43] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:43,277 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:43] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:43,280 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:43] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:48,202 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:48] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:48,203 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:48] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:48,237 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:48] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:48,243 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:48] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:48,245 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:48] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:48,252 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:48] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:48,272 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:48] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:48,276 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:48] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:53,201 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:53] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:53,202 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:53] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:53,236 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:53] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:53,243 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:53] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:53,246 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:53] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:53,259 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:53] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:53,270 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:53] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:53,276 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:53] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:58,204 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:58] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:58,206 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:58] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:17:58,209 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:58] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:17:58,243 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:58] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:58,245 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:58] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:17:58,257 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:58] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:17:58,281 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:58] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:17:58,291 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:17:58] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:03,205 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:03] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:03,207 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:03] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:03,239 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:03] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:03,242 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:03] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:03,246 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:03] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:03,257 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:03] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:03,283 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:03] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:03,284 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:03] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:08,203 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:08] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:08,208 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:08] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:08,210 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:08] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:08,242 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:08] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:08,245 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:08] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:08,256 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:08] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:08,277 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:08] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:08,285 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:08] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:13,200 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:13] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:13,201 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:13] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:13,235 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:13] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:13,240 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:13] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:13,244 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:13] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:13,257 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:13] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:13,282 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:13] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:13,284 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:13] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:18,205 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:18] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:18,207 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:18] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:18,244 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:18] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:18,247 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:18] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:18,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:18] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:18,266 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:18] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:18,300 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:18] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:18,302 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:18] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:23,207 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:23] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:23,209 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:23] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:23,213 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:23] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:23,242 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:23] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:23,246 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:23] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:23,259 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:23] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:23,310 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:23] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:23,312 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:23] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:28,206 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:28] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:28,208 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:28] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:28,244 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:28] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:28,247 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:28] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:28,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:28] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:28,257 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:28] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:28,278 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:28] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:28,283 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:28] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:33,205 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:33] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:33,207 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:33] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:33,215 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:33] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:33,216 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:33] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:33,239 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:33] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:33,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:33] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:33,273 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:33] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:33,283 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:33] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:38,205 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:38] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:38,209 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:38] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:38,211 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:38] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:38,219 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:38] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:38,241 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:38] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:38,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:38] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:38,294 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:38] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:38,302 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:38] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:43,209 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:43] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:43,211 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:43] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:43,247 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:43] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:43,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:43] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:43,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:43] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:43,266 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:43] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:43,307 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:43] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:43,310 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:43] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:48,207 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:48] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:48,211 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:48] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:48,213 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:48] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:48,242 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:48] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:48,244 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:48] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:48,256 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:48] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:48,279 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:48] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:48,287 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:48] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:53,209 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:53] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:53,212 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:53] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:53,245 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:53] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:53,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:53] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:53,256 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:53] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:53,265 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:53] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:53,280 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:53] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:53,288 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:53] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:58,209 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:58] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:58,211 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:58] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:18:58,284 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:58] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:18:58,292 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:58] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:18:58,302 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:58] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:58,304 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:58] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:18:58,305 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:58] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:18:58,309 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:18:58] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:03,209 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:03] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:03,211 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:03] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:03,244 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:03] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:03,247 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:03] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:03,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:03] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:03,262 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:03] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:03,277 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:03] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:03,281 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:03] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:08,216 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:08] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:08,219 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:08] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:08,221 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:08] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:08,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:08] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:08,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:08] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:08,263 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:08] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:08,285 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:08] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:08,293 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:08] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:13,213 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:13] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:13,221 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:13] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:13,223 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:13] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:13,251 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:13] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:13,255 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:13] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:13,268 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:13] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:13,290 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:13] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:13,298 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:13] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:18,214 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:18] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:18,216 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:18] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:18,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:18] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:18,259 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:18] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:18,261 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:18] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:18,267 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:18] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:18,290 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:18] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:18,312 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:18] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:23,209 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:23] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:23,213 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:23] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:23,243 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:23] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:23,251 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:23] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:23,255 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:23] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:23,265 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:23] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:23,280 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:23] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:23,288 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:23] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:28,212 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:28] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:28,215 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:28] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:28,246 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:28] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:28,248 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:28] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:28,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:28] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:28,263 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:28] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:28,280 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:28] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:28,288 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:28] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:33,213 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:33] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:33,214 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:33] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:33,247 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:33] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:33,249 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:33] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:33,255 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:33] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:33,266 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:33] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:33,282 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:33] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:33,304 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:33] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:38,283 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:38] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:38,284 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:38] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:38,299 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:38] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:38,321 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:38] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:38,325 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:38] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:38,335 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:38] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:38,472 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:38] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:38,482 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:38] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:43,218 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:43] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:43,219 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:43] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:43,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:43] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:43,259 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:43] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:43,260 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:43] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:43,266 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:43] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:43,284 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:43] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:43,293 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:43] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:48,214 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:48] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:48,216 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:48] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:48,218 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:48] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:48,247 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:48] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:48,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:48] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:48,264 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:48] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:48,288 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:48] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:48,292 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:48] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:53,212 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:53] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:53,214 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:53] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:53,247 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:53] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:53,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:53] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:53,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:53] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:53,271 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:53] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:53,282 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:53] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:53,292 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:53] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:58,217 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:58] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:58,220 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:58] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:19:58,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:58] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:19:58,259 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:58] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:19:58,262 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:58] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:58,273 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:58] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:19:58,292 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:58] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:19:58,294 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:19:58] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:03,214 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:03] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:03,215 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:03] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:03,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:03] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:03,259 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:03] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:03,260 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:03] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:03,267 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:03] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:03,285 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:03] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:03,289 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:03] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:08,216 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:08] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:08,217 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:08] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:08,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:08] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:08,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:08] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:08,258 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:08] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:08,268 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:08] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:08,284 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:08] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:08,289 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:08] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:13,215 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:13] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:13,219 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:13] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:13,223 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:13] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:13,250 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:13] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:13,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:13] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:13,265 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:13] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:13,293 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:13] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:13,294 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:13] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:18,215 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:18] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:18,217 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:18] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:18,221 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:18] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:18,252 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:18] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:18,259 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:18] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:18,273 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:18] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:18,303 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:18] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:18,305 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:18] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:23,212 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:23] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:23,216 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:23] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:23,219 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:23] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:23,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:23] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:23,256 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:23] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:23,262 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:23] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:23,281 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:23] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:23,291 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:23] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:28,216 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:28] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:28,218 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:28] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:28,221 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:28] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:28,249 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:28] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:28,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:28] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:28,265 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:28] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:28,288 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:28] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:28,295 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:28] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:33,225 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:33] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:33,229 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:33] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:33,231 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:33] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:33,251 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:33] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:33,254 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:33] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:33,264 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:33] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:33,296 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:33] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:33,301 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:33] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:38,214 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:38] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:38,216 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:38] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:38,218 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:38] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:38,248 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:38] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:38,253 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:38] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:38,266 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:38] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:38,281 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:38] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:38,295 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:38] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:43,998 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:43] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:43,998 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:43] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:44,032 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:44] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:44,039 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:44] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:44,042 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:44] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:44,052 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:44] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:44,065 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:44] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:44,070 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:44] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:49,996 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:49] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:49,998 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:49] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:50,033 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:50] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:50,037 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:50] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:50,038 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:50] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:50,045 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:50] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:50,087 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:50] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:50,089 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:50] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:56,005 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:56] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:20:56,006 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:56] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:56,010 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:56] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:20:56,039 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:56] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:20:56,053 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:56] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:56,053 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:56] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:20:56,075 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:56] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:20:56,087 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:20:56] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:01,987 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:01] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:21:01,988 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:01] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:02,030 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:02] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:21:02,034 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:02] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:21:02,041 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:02] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:02,044 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:02] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:02,111 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:02] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:02,113 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:02] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:21:14,126 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:14] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:21:14,263 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:14] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:21:14,272 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:14] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:14,298 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:14] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:21:14,304 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:14] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:14,313 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:14] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:14,316 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:14] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:21:14,346 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:14] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:54,845 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:54] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:21:54,881 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:54] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:21:54,892 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:54] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:21:54,897 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:54] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:54,900 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:54] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:54,904 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:54] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:21:54,914 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:54] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:21:54,957 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:21:54] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:22:44,574 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:22:44] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:22:44,618 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:22:44] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:22:44,624 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:22:44] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:22:44,625 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:22:44] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:22:44,629 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:22:44] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:22:44,635 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:22:44] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:22:44,640 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:22:44] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:22:44,717 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:22:44] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:24:15,047 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:24:15] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:24:15,051 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:24:15] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:24:15,055 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:24:15] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:24:15,059 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:24:15] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:24:15,067 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:24:15] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:24:15,068 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:24:15] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:24:15,125 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:24:15] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:24:15,126 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:24:15] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:27:23,138 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:27:23] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:27:23,168 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:27:23] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:27:23,173 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:27:23] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:27:23,176 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:27:23] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:27:23,180 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:27:23] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:27:23,185 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:27:23] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:27:23,244 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:27:23] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:27:23,255 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:27:23] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:28:09,079 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:09] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:28:09,116 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:09] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:28:09,117 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:09] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:28:09,118 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:09] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:28:09,120 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:09] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:28:09,126 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:09] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:28:09,151 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:09] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:28:09,201 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:09] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -
+2025-09-24 14:28:32,065 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:32] "GET /api/get-log?file=controlxz.log HTTP/1.0" 200 -
+2025-09-24 14:28:32,068 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:32] "GET /api/get-log?file=frp_client.log HTTP/1.0" 200 -
+2025-09-24 14:28:32,103 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:32] "GET /api/get-log?file=mouse_control.log HTTP/1.0" 200 -
+2025-09-24 14:28:32,106 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:32] "GET /api/get-log?file=groundingdino_server.log HTTP/1.0" 200 -
+2025-09-24 14:28:32,112 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:32] "GET /api/get-log?file=llm_server.log HTTP/1.0" 200 -
+2025-09-24 14:28:32,121 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:32] "GET /api/get-log?file=index_server.log HTTP/1.0" 200 -
+2025-09-24 14:28:32,132 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:32] "GET /api/get-log?file=nginx.log HTTP/1.0" 200 -
+2025-09-24 14:28:32,134 - werkzeug - INFO - 127.0.0.1 - - [24/Sep/2025 14:28:32] "GET /api/get-log?file=yolo_server.log HTTP/1.0" 200 -

@@ -1,30 +1,6 @@
-2025-09-24 11:19:06,169 - __main__ - INFO - 启动控制服务...
-2025-09-24 11:19:06,170 - __main__ - INFO - 本机IP地址: 192.168.1.3
-2025-09-24 11:19:06,170 - __main__ - INFO - 请确保以管理员权限运行此程序
-2025-09-24 11:19:06,183 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-09-24 14:15:39,323 - __main__ - INFO - 启动控制服务...
+2025-09-24 14:15:39,323 - __main__ - INFO - 本机IP地址: 192.168.1.3
+2025-09-24 14:15:39,323 - __main__ - INFO - 请确保以管理员权限运行此程序
+2025-09-24 14:15:39,355 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://192.168.1.3:5001
-2025-09-24 11:19:06,183 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-24 11:19:57,291 - __main__ - INFO - 启动控制服务...
-2025-09-24 11:19:57,291 - __main__ - INFO - 本机IP地址: 192.168.1.3
-2025-09-24 11:19:57,291 - __main__ - INFO - 请确保以管理员权限运行此程序
-2025-09-24 11:19:57,313 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://192.168.1.3:5001
-2025-09-24 11:19:57,313 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-24 11:21:03,707 - __main__ - INFO - 启动控制服务...
-2025-09-24 11:21:03,707 - __main__ - INFO - 本机IP地址: 192.168.1.3
-2025-09-24 11:21:03,708 - __main__ - INFO - 请确保以管理员权限运行此程序
-2025-09-24 11:21:03,738 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://192.168.1.3:5001
-2025-09-24 11:21:03,739 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-24 11:22:28,323 - __main__ - INFO - 启动控制服务...
-2025-09-24 11:22:28,325 - __main__ - INFO - 本机IP地址: 192.168.1.3
-2025-09-24 11:22:28,325 - __main__ - INFO - 请确保以管理员权限运行此程序
-2025-09-24 11:22:28,349 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://192.168.1.3:5001
-2025-09-24 11:22:28,349 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-24 11:27:15,152 - __main__ - INFO - 启动控制服务...
-2025-09-24 11:27:15,152 - __main__ - INFO - 本机IP地址: 192.168.1.3
-2025-09-24 11:27:15,152 - __main__ - INFO - 请确保以管理员权限运行此程序
-2025-09-24 11:27:15,178 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://192.168.1.3:5001
-2025-09-24 11:27:15,178 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-24 14:15:39,355 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
