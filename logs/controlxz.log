@@ -11,8 +11,8 @@
 2025-09-22 14:03:00,996 - __main__ - INFO - 收到按键控制请求: action=release, key=X
 2025-09-22 14:03:01,001 - __main__ - INFO - 按键 X 状态更新为: release
 2025-09-22 14:03:01,319 - werkzeug - INFO - 127.0.0.1 - - [22/Sep/2025 14:03:01] "GET /socket.io/?EIO=4&transport=polling&t=Pbm1BNq&sid=OSK8OWUle0iPuToLAAAC HTTP/1.1" 200 -
-2025-09-22 14:04:23,379 - werkzeug - INFO -  * Detected change in 'e:\\llm-findwork\\python\\.venv\\Lib\\os.py', reloading
-2025-09-22 14:04:23,383 - werkzeug - INFO -  * Detected change in 'E:\\llm-findwork\\python\\.venv\\Lib\\os.py', reloading
+2025-09-22 14:04:23,379 - werkzeug - INFO -  * Detected change in 'e:\\mypage\\python\\.venv\\Lib\\os.py', reloading
+2025-09-22 14:04:23,383 - werkzeug - INFO -  * Detected change in 'E:\\mypage\\python\\.venv\\Lib\\os.py', reloading
 2025-09-22 14:04:30,188 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
 2025-09-22 14:04:33,689 - __main__ - INFO - 启动控制服务...
 2025-09-22 14:04:33,689 - __main__ - INFO - 请确保以管理员权限运行此程序
@@ -480,14 +480,14 @@
 2025-09-22 14:22:00,665 - __main__ - INFO - 按键 Z 状态更新为: release
 2025-09-22 14:24:02,257 - __main__ - INFO - 客户端已断开连接
 2025-09-22 14:24:02,257 - werkzeug - INFO - 192.168.1.6 - - [22/Sep/2025 14:24:02] "GET /socket.io/?EIO=4&transport=websocket&sid=1brTkrm-ptF4KgsZAAAC HTTP/1.1" 200 -
-2025-09-22 14:24:33,793 - werkzeug - INFO -  * Detected change in 'E:\\llm-findwork\\python\\start_frpc.py', reloading
+2025-09-22 14:24:33,793 - werkzeug - INFO -  * Detected change in 'E:\\mypage\\python\\start_frpc.py', reloading
 2025-09-22 14:24:54,970 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
 2025-09-22 14:24:58,542 - __main__ - INFO - 启动控制服务...
 2025-09-22 14:24:58,546 - __main__ - INFO - 请确保以管理员权限运行此程序
 2025-09-22 14:24:58,628 - werkzeug - WARNING -  * Debugger is active!
 2025-09-22 14:24:58,634 - werkzeug - INFO -  * Debugger PIN: 961-224-502
-2025-09-22 14:26:45,712 - werkzeug - INFO -  * Detected change in 'E:\\llm-findwork\\python\\controlxz.py', reloading
-2025-09-22 14:26:45,714 - werkzeug - INFO -  * Detected change in 'E:\\llm-findwork\\python\\controlxz.py', reloading
+2025-09-22 14:26:45,712 - werkzeug - INFO -  * Detected change in 'E:\\mypage\\python\\controlxz.py', reloading
+2025-09-22 14:26:45,714 - werkzeug - INFO -  * Detected change in 'E:\\mypage\\python\\controlxz.py', reloading
 2025-09-22 14:26:58,135 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
 2025-09-22 14:27:01,836 - __main__ - INFO - 启动控制服务...
 2025-09-22 14:27:01,842 - __main__ - INFO - 请确保以管理员权限运行此程序

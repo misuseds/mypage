@@ -142,3 +142,4 @@
  * Running on http://127.0.0.1:5000
  * Running on http://192.168.1.5:5000
 2025-09-22 18:32:48,719 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-24 10:38:35,983 - __main__ - INFO - YOLO模型加载成功

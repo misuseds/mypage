@@ -1,0 +1,1 @@
+nginx: [emerg] location "/llm-sw/" is outside location "/mouse/" in E:/mypage/nginx/conf/nginx.conf:156

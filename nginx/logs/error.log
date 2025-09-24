@@ -1,10 +1,11 @@
 2025/09/22 16:11:01 [notice] 17208#19068: signal process started
 2025/09/22 16:11:01 [error] 17208#19068: OpenEvent("Global\ngx_reload_19944") failed (2: The system cannot find the file specified)
-2025/09/22 16:13:43 [warn] 9608#9004: server name "http://103.236.92.21:58272/" has suspicious symbols in E:\llm-findwork\nginx/conf/nginx.conf:35
+2025/09/22 16:13:43 [warn] 9608#9004: server name "http://103.236.92.21:58272/" has suspicious symbols in E:\mypage\nginx/conf/nginx.conf:35
 2025/09/22 16:13:43 [notice] 9608#9004: signal process started
-2025/09/22 16:13:43 [warn] 25088#16568: server name "http://103.236.92.21:58272/" has suspicious symbols in E:/llm-findwork/nginx/conf/nginx.conf:35
+2025/09/22 16:13:43 [warn] 25088#16568: server name "http://103.236.92.21:58272/" has suspicious symbols in E:/mypage/nginx/conf/nginx.conf:35
 2025/09/22 16:14:53 [notice] 14488#22116: signal process started
 2025/09/22 16:24:03 [notice] 7904#7668: signal process started
-2025/09/22 18:11:29 [emerg] 22332#8784: "proxy_pass" cannot have URI part in location given by regular expression, or inside named location, or inside "if" statement, or inside "limit_except" block in E:/llm-findwork/nginx/conf/nginx.conf:89
+2025/09/22 18:11:29 [emerg] 22332#8784: "proxy_pass" cannot have URI part in location given by regular expression, or inside named location, or inside "if" statement, or inside "limit_except" block in E:/mypage/nginx/conf/nginx.conf:89
 2025/09/22 18:29:09 [error] 6604#14056: *2 upstream timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while reading response header from upstream, client: 127.0.0.1, server: localhost, request: "POST /chat HTTP/1.1", upstream: "http://127.0.0.1:5003/chat", host: "103.236.92.21:58272", referrer: "http://103.236.92.21:58272/html/job-finder.html"
-2025/09/22 18:29:09 [error] 6604#14056: *2 CreateFile() "E:\llm-findwork\nginx/html/50x.html" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "POST /chat HTTP/1.1", upstream: "http://127.0.0.1:5003/chat", host: "103.236.92.21:58272", referrer: "http://103.236.92.21:58272/html/job-finder.html"
+2025/09/22 18:29:09 [error] 6604#14056: *2 CreateFile() "E:\mypage\nginx/html/50x.html" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "POST /chat HTTP/1.1", upstream: "http://127.0.0.1:5003/chat", host: "103.236.92.21:58272", referrer: "http://103.236.92.21:58272/html/job-finder.html"
+2025/09/24 10:38:32 [emerg] 19996#20196: location "/llm-sw/" is outside location "/mouse/" in E:/mypage/nginx/conf/nginx.conf:156

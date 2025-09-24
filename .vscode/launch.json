@@ -5,25 +5,25 @@
       "name": "启动 mouse_control 服务",
       "type": "debugpy",
       "request": "launch",
-      "program": "E:/llm-findwork/python/mousecontrol.py",
+      "program": "E:/mypage/python/mousecontrol.py",
       "console": "internalConsole",
-      "args": ["--log-file", "E:/llm-findwork/logs/mouse_control.log"]
+      "args": ["--log-file", "E:/mypage/logs/mouse_control.log"]
     },
     {
       "name": "启动 llm 服务",
       "type": "debugpy",
       "request": "launch",
-      "program": "E:/llm-findwork/python/llm_server.py",
+      "program": "E:/mypage/python/llm_server.py",
       "console": "internalConsole",
-      "args": ["--log-file", "E:/llm-findwork/logs/llm_server.log"]
+      "args": ["--log-file", "E:/mypage/logs/llm_server.log"]
     },
     {
       "name": "启动 ipadxz 服务",
       "type": "debugpy",
       "request": "launch",
-      "program": "E:/llm-findwork/python/controlxz.py",
+      "program": "E:/mypage/python/controlxz.py",
       "console": "internalConsole",
-      "args": ["--log-file", "E:/llm-findwork/logs/controlxz.log"]
+      "args": ["--log-file", "E:/mypage/logs/controlxz.log"]
     },
     {
       "name": "启动 YOLO 服务",
@@ -34,7 +34,7 @@
       "cwd": "E:/yolo-local/",
       "env": {},
       "python": "E:/yolo-local/.venv/python.exe",
-      "args": ["--log-file", "E:/llm-findwork/logs/yolo_server.log"]
+      "args": ["--log-file", "E:/mypage/logs/yolo_server.log"]
     },
     {
       "name": "启动 GroundingDINO 服务",
@@ -44,46 +44,46 @@
       "console": "internalConsole",
       "cwd": "e:/my_GroundingDINO/",
       "python": "e:/my_GroundingDINO/.venv/python.exe",
-      "args": ["--log-file", "E:/llm-findwork/logs/groundingdino_server.log"]
+      "args": ["--log-file", "E:/mypage/logs/groundingdino_server.log"]
     },
     {
       "name": "启动 index 服务",
       "type": "debugpy",
       "request": "launch",
-      "program": "E:/llm-findwork/secure_server.py",
+      "program": "E:/mypage/secure_server.py",
       "console": "internalConsole",
-      "args": ["--log-file", "E:/llm-findwork/logs/index_server.log"]
+      "args": ["--log-file", "E:/mypage/logs/index_server.log"]
     },
     {
       "name": "启动FRP 客户端",
       "type": "debugpy",
       "request": "launch",
-      "program": "E:/llm-findwork/python/start_frpc.py",
+      "program": "E:/mypage/python/start_frpc.py",
       "console": "internalConsole",
       "cwd": "${workspaceFolder}",
       "args": [
-        "E:/llm-findwork/python/mefrpc.exe",
+        "E:/mypage/python/mefrpc.exe",
         "-t",
         "fce7119c467660bf844e2a0d35033fe6",
         "-p",
         "117714",
         "--log-file",
-        "E:/llm-findwork/logs/frp_client.log"
+        "E:/mypage/logs/frp_client.log"
       ]
     },
     {
       "name": "启动 Nginx 服务",
       "type": "debugpy",
       "request": "launch",
-      "program": "E:/llm-findwork/python/start_nginx.py",
+      "program": "E:/mypage/python/start_nginx.py",
       "console": "internalConsole",
-      "cwd": "E:/llm-findwork/nginx/",
+      "cwd": "E:/mypage/nginx/",
       "args": [
-        "E:/llm-findwork/nginx/nginx.exe",
+        "E:/mypage/nginx/nginx.exe",
         "--config",
-        "E:/llm-findwork/nginx/conf/nginx.conf",
+        "E:/mypage/nginx/conf/nginx.conf",
         "--log-file",
-        "E:/llm-findwork/logs/nginx.log"
+        "E:/mypage/logs/nginx.log"
       ]
     },
     {
@@ -93,7 +93,7 @@
       "program": "e:/llm_sw/llm.py",
       "console": "internalConsole",
       "python": "e:/llm_sw/.venv/python.exe",
-      "args": ["--log-file", "E:/llm-findwork/logs/llm_sw.log"]
+      "args": ["--log-file", "E:/mypage/logs/llm_sw.log"]
     }
   ],
   "compounds": [
