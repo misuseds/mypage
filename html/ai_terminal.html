@@ -233,13 +233,15 @@
                 content: "你是一个智能助手，能够帮助用户解决问题和提供信息。你还可以调用工具来执行特定操作。\n" +
                          "可用工具列表：\n" +
                          "1. capture_screen - 截取屏幕截图\n" +
-                         "2. analyze_image - 分析当前截图中的对象\n" +
-                         "3. click_detected_object - 点击检测到的对象\n\n" +
+                         "2. analyze_image_with_yolo - 使用YOLO进行通用目标检测\n" +
+                         "3. analyze_image_with_groundingdino - 使用GroundingDINO进行特定目标检测，需要提供prompt参数\n" +
+                         "4. click_detected_object - 点击检测到的对象\n\n" +
                          "当需要执行操作时，请使用工具调用格式：\n" +
                          "<tool_call>{\"name\": \"capture_screen\"}</tool_call>\n" +
-                         "</tool_call>{\"name\": \"analyze_image\"}</tool_call>\n" +
+                         "<tool_call>{\"name\": \"analyze_image_with_yolo\"}</tool_call>\n" +
+                         "<tool_call>{\"name\": \"analyze_image_with_groundingdino\", \"arguments\": {\"prompt\": \"要检测的目标描述\"}}</tool_call>\n" +
                          "<tool_call>{\"name\": \"click_detected_object\", \"arguments\": {\"object_name\": \"指定对象名称\"}}</tool_call>\n\n" +
-                         "请根据用户请求决定是否需要调用工具，并在调用后解释结果。"
+                         "请根据用户请求决定是否需要调用工具，并在调用后解释结果。当用户提到特定物体时（如'查找红色按钮'），使用GroundingDINO并提取目标描述；当需要通用物体检测时（如'分析图像中的物体'），使用YOLO。"
             }
         ];
         
@@ -259,7 +261,7 @@
         
         // 事件监听器
         captureScreenBtn.addEventListener('click', captureScreen);
-        analyzeBtn.addEventListener('click', analyzeImage);
+        analyzeBtn.addEventListener('click', analyzeImageWithYOLO);
         resetBtn.addEventListener('click', resetAll);
         sendBtn.addEventListener('click', sendMessage);
         analyzeImageBtn.addEventListener('click', analyzeCurrentImage);
@@ -315,8 +317,8 @@
             }
         }
         
-        // 分析图像 - 添加计时
-        async function analyzeImage() {
+        // 使用YOLO分析图像 - 添加计时
+        async function analyzeImageWithYOLO() {
             if (!capturedImage) {
                 addMessage('请先截取屏幕', 'system');
                 return;
@@ -357,12 +359,12 @@
                     detectionData = predictionResult;
                     
                     // 显示检测结果
-                    displayDetectionResults(predictionResult);
+                    displayDetectionResults(predictionResult, 'YOLO');
                     
                     const endTime = performance.now();
                     const duration = endTime - startTime;
-                    console.log(`图像分析完成，总耗时: ${duration.toFixed(2)}ms`);
-                    addMessage(`图像分析完成，总耗时: ${duration.toFixed(2)}ms`, 'system');
+                    console.log(`YOLO图像分析完成，总耗时: ${duration.toFixed(2)}ms`);
+                    addMessage(`YOLO图像分析完成，总耗时: ${duration.toFixed(2)}ms`, 'system');
                     analyzeImageBtn.disabled = false;
                     
                     // 如果检测到对象，启用点击按钮
@@ -372,24 +374,101 @@
                 } else {
                     const endTime = performance.now();
                     const duration = endTime - startTime;
-                    console.error(`分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`);
-                    addMessage(`分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`, 'system');
+                    console.error(`YOLO分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`);
+                    addMessage(`YOLO分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`, 'system');
                 }
             } catch (error) {
                 const endTime = performance.now();
                 const duration = endTime - startTime;
-                console.error(`分析图像时出错，总耗时: ${duration.toFixed(2)}ms:`, error);
-                addMessage(`分析图像时出错，总耗时: ${duration.toFixed(2)}ms: ${error.message}`, 'system');
+                console.error(`YOLO分析图像时出错，总耗时: ${duration.toFixed(2)}ms:`, error);
+                addMessage(`YOLO分析图像时出错，总耗时: ${duration.toFixed(2)}ms: ${error.message}`, 'system');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // 使用GroundingDINO分析图像 - 添加计时
+        async function analyzeImageWithGroundingDINO(prompt) {
+            if (!capturedImage) {
+                addMessage('请先截取屏幕', 'system');
+                return;
+            }
+            
+            if (!prompt) {
+                addMessage('缺少检测目标描述', 'system');
+                return;
+            }
+            
+            const startTime = performance.now();
+            console.log('开始调用GroundingDINO服务...');
+            addMessage(`调用GroundingDINO服务，检测目标: ${prompt}`, 'system');
+            showLoading(true);
+            
+            try {
+                // 使用配置文件中的 BASE_URL
+                const response = await fetch(`${BASE_URL}/groundingdino/predict`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        image: capturedImage.split(',')[1], // 移除 data:image/png;base64, 前缀
+                        prompt: prompt
+                    })
+                });
+                
+                const proxyResponseTime = performance.now();
+                const proxyDuration = proxyResponseTime - startTime;
+                console.log(`GroundingDINO服务响应时间: ${proxyDuration.toFixed(2)}ms`);
+                
+                const predictionResult = await response.json();
+                const proxyResultTime = performance.now();
+                const proxyResultDuration = proxyResultTime - startTime;
+                console.log(`GroundingDINO服务结果解析时间: ${proxyResultDuration.toFixed(2)}ms`);
+                
+                if (predictionResult.status === 'success') {
+                    // 显示处理后的图像
+                    imagePreview.src = 'data:image/png;base64,' + predictionResult.processed_image;
+                    capturedImage = imagePreview.src;
+                    
+                    // 保存检测数据
+                    detectionData = predictionResult;
+                    
+                    // 显示检测结果
+                    displayDetectionResults(predictionResult, 'GroundingDINO');
+                    
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.log(`GroundingDINO图像分析完成，总耗时: ${duration.toFixed(2)}ms`);
+                    addMessage(`GroundingDINO图像分析完成，总耗时: ${duration.toFixed(2)}ms`, 'system');
+                    analyzeImageBtn.disabled = false;
+                    
+                    // 如果检测到对象，启用点击按钮
+                    if (predictionResult.detection_count > 0) {
+                        clickDetectedBtn.disabled = false;
+                    }
+                } else {
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    console.error(`GroundingDINO分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`);
+                    addMessage(`GroundingDINO分析失败，总耗时: ${duration.toFixed(2)}ms: ${predictionResult.error || '未知错误'}`, 'system');
+                }
+            } catch (error) {
+                const endTime = performance.now();
+                const duration = endTime - startTime;
+                console.error(`GroundingDINO分析图像时出错，总耗时: ${duration.toFixed(2)}ms:`, error);
+                addMessage(`GroundingDINO分析图像时出错，总耗时: ${duration.toFixed(2)}ms: ${error.message}`, 'system');
             } finally {
                 showLoading(false);
             }
         }
         
         // 显示检测结果
-        function displayDetectionResults(data) {
+        function displayDetectionResults(data, modelType = 'Unknown') {
             detectionInfo.style.display = 'block';
             
             let html = `
+                <p><strong>模型类型:</strong> ${modelType}</p>
                 <p><strong>检测用时:</strong> ${data.processing_time.toFixed(2)} 秒</p>
                 <p><strong>检测到对象数:</strong> ${data.detection_count}</p>
             `;
@@ -417,7 +496,7 @@
                 return;
             }
             
-            await analyzeImage();
+            await analyzeImageWithYOLO();
         }
         
         // 点击检测到的对象 - 添加计时
@@ -614,18 +693,36 @@
                             });
                             break;
                             
-                        case 'analyze_image':
-                            await analyzeImage();
+                        case 'analyze_image_with_yolo':
+                            await analyzeImageWithYOLO();
                             if (detectionData && detectionData.detections) {
-                                let detectionInfo = `检测到 ${detectionData.detection_count} 个对象: `;
+                                let detectionInfo = `使用YOLO检测到 ${detectionData.detection_count} 个对象: `;
                                 detectionInfo += detectionData.detections.map(d => d.class_name).join(', ');
                                 results.push({
-                                    name: 'analyze_image',
+                                    name: 'analyze_image_with_yolo',
                                     result: detectionInfo
                                 });
                             } else {
                                 results.push({
-                                    name: 'analyze_image',
+                                    name: 'analyze_image_with_yolo',
+                                    result: "图像分析完成，未检测到对象"
+                                });
+                            }
+                            break;
+                            
+                        case 'analyze_image_with_groundingdino':
+                            const prompt = toolCall.arguments.prompt;
+                            await analyzeImageWithGroundingDINO(prompt);
+                            if (detectionData && detectionData.detections) {
+                                let detectionInfo = `使用GroundingDINO检测到 ${detectionData.detection_count} 个对象: `;
+                                detectionInfo += detectionData.detections.map(d => d.class_name).join(', ');
+                                results.push({
+                                    name: 'analyze_image_with_groundingdino',
+                                    result: detectionInfo
+                                });
+                            } else {
+                                results.push({
+                                    name: 'analyze_image_with_groundingdino',
                                     result: "图像分析完成，未检测到对象"
                                 });
                             }

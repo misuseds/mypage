@@ -37,6 +37,15 @@
       "args": ["--log-file", "E:/llm-findwork/logs/yolo_server.log"]
     },
     {
+      "name": "启动 GroundingDINO 服务",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "e:/my_GroundingDINO/groundingdino_server.py",
+      "console": "internalConsole",
+      "cwd": "e:/my_GroundingDINO/",
+      "args": ["--log-file", "E:/llm-findwork/logs/groundingdino_server.log"]
+    },
+    {
       "name": "启动 index 服务",
       "type": "debugpy",
       "request": "launch",
@@ -75,10 +84,17 @@
         "--log-file",
         "E:/llm-findwork/logs/nginx.log"
       ]
+    },
+    {
+      "name": "启动 llm-sw 服务",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "e:/llm_sw/llm.py",
+      "console": "internalConsole",
+      "args": ["--log-file", "E:/llm-findwork/logs/llm_sw.log"]
     }
   ],
   "compounds": [
-   
     {
       "name": "启动所有服务 (包括 Nginx)",
       "configurations": [
@@ -87,7 +103,8 @@
         "启动 index 服务",
         "启动 llm 服务",
         "启动 ipadxz 服务",
-        "启动 YOLO 服务",
+        "启动 GroundingDINO 服务",
+        "启动 llm-sw 服务",
         "启动 Nginx 服务"
       ],
       "stopAll": true
