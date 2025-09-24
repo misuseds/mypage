@@ -105,6 +105,7 @@
         "启动 ipadxz 服务",
         "启动 GroundingDINO 服务",
         "启动 llm-sw 服务",
+        "启动 YOLO 服务",
         "启动 Nginx 服务"
       ],
       "stopAll": true
