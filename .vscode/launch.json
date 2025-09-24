@@ -43,6 +43,7 @@
       "program": "e:/my_GroundingDINO/groundingdino_server.py",
       "console": "internalConsole",
       "cwd": "e:/my_GroundingDINO/",
+      "python": "e:/my_GroundingDINO/.venv/python.exe",
       "args": ["--log-file", "E:/llm-findwork/logs/groundingdino_server.log"]
     },
     {
@@ -91,6 +92,7 @@
       "request": "launch",
       "program": "e:/llm_sw/llm.py",
       "console": "internalConsole",
+      "python": "e:/llm_sw/.venv/python.exe",
       "args": ["--log-file", "E:/llm-findwork/logs/llm_sw.log"]
     }
   ],

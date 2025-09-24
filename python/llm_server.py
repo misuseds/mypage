@@ -52,7 +52,10 @@ class LLMService:
         # 解析 URL（去掉协议部分）
         parsed = urlparse(f"{self.api_url}/chat/completions")
         host, path = parsed.hostname, parsed.path
-        
+        if not host:
+            logger.error("API URL 无效，无法解析主机名")
+            raise ValueError("API URL 无效，无法解析主机名")
+
         # 创建 HTTP 连接
         conn = http.client.HTTPSConnection(host)
 
