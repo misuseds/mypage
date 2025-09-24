@@ -1,1 +1,2 @@
-test
+
+curl -X POST http://localhost:5003/chat -H "Content-Type: application/json" -d "{\"model\": \"deepseek-chat\", \"messages\": [{\"role\": \"user\", \"content\": \"你好\"}], \"temperature\": 0.7}"

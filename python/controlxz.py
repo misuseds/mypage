@@ -221,7 +221,31 @@ def handle_health_check():
     health_info = control_health_check()
     return jsonify(health_info)
 
+import subprocess
+import re
+from flask_socketio import SocketIO, emit
+
+def get_local_ip():
+    """获取本机局域网IP地址"""
+    try:
+        # 方法1: 使用ipconfig命令(Windows)
+        result = subprocess.run(['ipconfig'], capture_output=True, text=True, encoding='gbk')
+        # 匹配IPv4地址(排除127.0.0.1)
+        ip_pattern = r'IPv4.*?(\d+\.\d+\.\d+\.\d+)'
+        matches = re.findall(ip_pattern, result.stdout)
+        # 返回第一个非回环地址
+        for ip in matches:
+            if not ip.startswith('127.'):
+                return ip
+        return '127.0.0.1'
+    except Exception as e:
+        logger.warning(f"获取IP地址失败: {e}")
+        return '0.0.0.0'
+
+# 在主程序中使用
 if __name__ == '__main__':
-    logger.info("启动控制服务...")
+    local_ip = get_local_ip()
+    logger.info(f"启动控制服务...")
+    logger.info(f"本机IP地址: {local_ip}")
     logger.info("请确保以管理员权限运行此程序")
-    socketio.run(app, host='192.168.1.5', port=5001, debug=True,use_reloader=False)
+    socketio.run(app, host=local_ip, port=5001, debug=True, use_reloader=False)

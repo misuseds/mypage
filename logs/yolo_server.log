@@ -1,145 +1,45 @@
-2025-09-22 14:30:48,832 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 14:30:49,393 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 14:30:49,401 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 14:30:49,401 - __main__ - INFO - 监听端口: 5000
-2025-09-22 14:30:49,427 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-09-24 11:19:09,549 - __main__ - INFO - YOLO模型加载成功
+2025-09-24 11:19:09,776 - __main__ - INFO - 启动YOLO预测服务...
+2025-09-24 11:19:09,779 - __main__ - INFO - 启动Flask服务器...
+2025-09-24 11:19:09,779 - __main__ - INFO - 监听端口: 5000
+2025-09-24 11:19:09,789 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 14:30:49,427 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 15:00:34,076 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 15:00:34,623 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 15:00:34,623 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 15:00:34,631 - __main__ - INFO - 监听端口: 5000
-2025-09-22 15:00:34,648 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://192.168.1.3:5000
+2025-09-24 11:19:09,789 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-24 11:20:00,596 - __main__ - INFO - YOLO模型加载成功
+2025-09-24 11:20:00,830 - __main__ - INFO - 启动YOLO预测服务...
+2025-09-24 11:20:00,833 - __main__ - INFO - 启动Flask服务器...
+2025-09-24 11:20:00,833 - __main__ - INFO - 监听端口: 5000
+2025-09-24 11:20:00,841 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 15:00:34,648 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 15:02:30,419 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 15:02:30,954 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 15:02:30,962 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 15:02:30,962 - __main__ - INFO - 监听端口: 5000
-2025-09-22 15:02:30,991 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://192.168.1.3:5000
+2025-09-24 11:20:00,841 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-24 11:21:07,188 - __main__ - INFO - YOLO模型加载成功
+2025-09-24 11:21:07,448 - __main__ - INFO - 启动YOLO预测服务...
+2025-09-24 11:21:07,450 - __main__ - INFO - 启动Flask服务器...
+2025-09-24 11:21:07,450 - __main__ - INFO - 监听端口: 5000
+2025-09-24 11:21:07,460 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 15:02:30,991 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 15:12:55,573 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 15:12:56,099 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 15:12:56,107 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 15:12:56,107 - __main__ - INFO - 监听端口: 5000
-2025-09-22 15:12:56,131 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://192.168.1.3:5000
+2025-09-24 11:21:07,460 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-24 11:22:31,646 - __main__ - INFO - YOLO模型加载成功
+2025-09-24 11:22:31,883 - __main__ - INFO - 启动YOLO预测服务...
+2025-09-24 11:22:31,887 - __main__ - INFO - 启动Flask服务器...
+2025-09-24 11:22:31,887 - __main__ - INFO - 监听端口: 5000
+2025-09-24 11:22:31,900 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 15:12:56,131 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 15:18:00,930 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 15:18:01,447 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 15:18:01,455 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 15:18:01,455 - __main__ - INFO - 监听端口: 5000
-2025-09-22 15:18:01,480 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://192.168.1.3:5000
+2025-09-24 11:22:31,900 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-24 11:27:18,494 - __main__ - INFO - YOLO模型加载成功
+2025-09-24 11:27:18,701 - __main__ - INFO - 启动YOLO预测服务...
+2025-09-24 11:27:18,709 - __main__ - INFO - 启动Flask服务器...
+2025-09-24 11:27:18,709 - __main__ - INFO - 监听端口: 5000
+2025-09-24 11:27:18,721 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 15:18:01,480 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 15:18:46,277 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 15:18:46,828 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 15:18:46,838 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 15:18:46,838 - __main__ - INFO - 监听端口: 5000
-2025-09-22 15:18:46,869 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 15:18:46,869 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 15:46:58,704 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 15:46:59,185 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 15:46:59,193 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 15:46:59,193 - __main__ - INFO - 监听端口: 5000
-2025-09-22 15:46:59,210 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 15:46:59,210 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 15:54:10,857 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 15:54:11,355 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 15:54:11,362 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 15:54:11,363 - __main__ - INFO - 监听端口: 5000
-2025-09-22 15:54:11,379 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 15:54:11,379 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 16:01:45,635 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 16:01:46,079 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 16:01:46,086 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 16:01:46,086 - __main__ - INFO - 监听端口: 5000
-2025-09-22 16:01:46,104 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 16:01:46,104 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 16:05:14,236 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 16:05:14,712 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 16:05:14,712 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 16:05:14,712 - __main__ - INFO - 监听端口: 5000
-2025-09-22 16:05:14,738 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 16:05:14,738 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 16:10:43,393 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 16:10:43,820 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 16:10:43,820 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 16:10:43,820 - __main__ - INFO - 监听端口: 5000
-2025-09-22 16:10:43,845 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 16:10:43,845 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 16:12:27,170 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 16:12:27,784 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 16:12:27,784 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 16:12:27,784 - __main__ - INFO - 监听端口: 5000
-2025-09-22 16:12:27,808 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 16:12:27,808 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 16:18:35,582 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 16:18:36,031 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 16:18:36,039 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 16:18:36,039 - __main__ - INFO - 监听端口: 5000
-2025-09-22 16:18:36,058 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 16:18:36,058 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 18:14:28,549 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 18:14:29,139 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 18:14:29,148 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 18:14:29,148 - __main__ - INFO - 监听端口: 5000
-2025-09-22 18:14:29,169 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 18:14:29,169 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 18:26:28,742 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 18:26:29,176 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 18:26:29,181 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 18:26:29,181 - __main__ - INFO - 监听端口: 5000
-2025-09-22 18:26:29,198 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 18:26:29,198 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-22 18:32:48,253 - __main__ - INFO - YOLO模型加载成功
-2025-09-22 18:32:48,693 - __main__ - INFO - 启动YOLO预测服务...
-2025-09-22 18:32:48,698 - __main__ - INFO - 启动Flask服务器...
-2025-09-22 18:32:48,698 - __main__ - INFO - 监听端口: 5000
-2025-09-22 18:32:48,719 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.1.5:5000
-2025-09-22 18:32:48,719 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-09-24 10:38:35,983 - __main__ - INFO - YOLO模型加载成功
+ * Running on http://192.168.1.3:5000
+2025-09-24 11:27:18,721 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

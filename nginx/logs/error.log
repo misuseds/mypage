@@ -9,3 +9,12 @@
 2025/09/22 18:29:09 [error] 6604#14056: *2 upstream timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while reading response header from upstream, client: 127.0.0.1, server: localhost, request: "POST /chat HTTP/1.1", upstream: "http://127.0.0.1:5003/chat", host: "103.236.92.21:58272", referrer: "http://103.236.92.21:58272/html/job-finder.html"
 2025/09/22 18:29:09 [error] 6604#14056: *2 CreateFile() "E:\mypage\nginx/html/50x.html" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "POST /chat HTTP/1.1", upstream: "http://127.0.0.1:5003/chat", host: "103.236.92.21:58272", referrer: "http://103.236.92.21:58272/html/job-finder.html"
 2025/09/24 10:38:32 [emerg] 19996#20196: location "/llm-sw/" is outside location "/mouse/" in E:/mypage/nginx/conf/nginx.conf:156
+2025/09/24 10:40:37 [emerg] 18480#17336: location "/llm-sw/" is outside location "/mouse/" in E:/mypage/nginx/conf/nginx.conf:156
+2025/09/24 10:46:56 [emerg] 3632#6264: location "/llm-sw/" is outside location "/mouse/" in E:/mypage/nginx/conf/nginx.conf:156
+2025/09/24 10:47:08 [emerg] 6372#8176: location "/llm-sw/" is outside location "/mouse/" in E:/mypage/nginx/conf/nginx.conf:156
+2025/09/24 10:48:02 [emerg] 18936#9304: location "/llm-sw/" is outside location "/mouse/" in E:/mypage/nginx/conf/nginx.conf:156
+2025/09/24 10:49:21 [emerg] 15948#8168: location "/llm-sw/" is outside location "/mouse/" in E:/mypage/nginx/conf/nginx.conf:156
+2025/09/24 10:51:40 [emerg] 14172#19916: CreateDirectory() "E:\mypage\nginx/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2025/09/24 10:53:07 [emerg] 15880#15252: CreateDirectory() "E:\mypage\nginx/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2025/09/24 10:54:24 [emerg] 13740#8292: CreateDirectory() "E:\mypage\nginx/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2025/09/24 11:23:28 [error] 11340#11308: *3 CreateFile() "E:/mypage/robots.txt" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /robots.txt HTTP/1.1", host: "171.80.1.215:21815"

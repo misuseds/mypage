@@ -1,6 +1,6 @@
-[1;34m2025-09-24 10:38:36.389 [I] [sub/root.go:187] 开始启动 ME Frp 隧道, 当前正在使用快捷启动
-[0m[1;34m2025-09-24 10:38:36.394 [I] [client/service.go:274] 尝试连接到节点...
-[0m[1;34m2025-09-24 10:38:36.529 [I] [client/service.go:262] [1310f56c2ea99d2a] 登录节点成功, RunId: [1310f56c2ea99d2a]
-[0m[1;34m2025-09-24 10:38:36.530 [I] [proxy/proxy_manager.go:173] [1310f56c2ea99d2a] 隧道 [fce7119c467660bf844e2a0d35033fe6.llm] 登记成功
-[0m[1;33m2025-09-24 10:38:36.639 [W] [client/control.go:168] [1310f56c2ea99d2a] 启动隧道 [fce7119c467660bf844e2a0d35033fe6.llm] 失败: 隧道校验失败: Post "https://api.mefrp.com/api/frp/proxyStarted": tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2025-08-01T23:46:28+08:00 is before 2025-08-12T00:00:00Z
+[1;34m2025-09-24 11:27:14.918 [I] [sub/root.go:187] 开始启动 ME Frp 隧道, 当前正在使用快捷启动
+[0m[1;34m2025-09-24 11:27:14.928 [I] [client/service.go:274] 尝试连接到节点...
+[0m[1;34m2025-09-24 11:27:15.104 [I] [client/service.go:262] [821e87dada0bf07b] 登录节点成功, RunId: [821e87dada0bf07b]
+[0m[1;34m2025-09-24 11:27:15.104 [I] [proxy/proxy_manager.go:173] [821e87dada0bf07b] 隧道 [fce7119c467660bf844e2a0d35033fe6.llm2] 登记成功
+[0m[1;34m2025-09-24 11:27:15.182 [I] [client/control.go:199] [821e87dada0bf07b] 启动 [tcp] 隧道 [fce7119c467660bf844e2a0d35033fe6.llm2] 成功, 您可以使用 [171.80.1.215:21815] 访问您的服务
 [0m
