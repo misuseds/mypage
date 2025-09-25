@@ -98,7 +98,7 @@
   ],
   "compounds": [
     {
-      "name": "启动所有服务 (包括 Nginx)",
+      "name": "启动所有服务 ",
       "configurations": [
         "启动 mouse_control 服务",
         "启动FRP 客户端",
@@ -108,6 +108,21 @@
         "启动 GroundingDINO 服务",
         "启动 llm-sw 服务",
         "启动 YOLO 服务",
+        "启动 Nginx 服务"
+      ],
+      "stopAll": true
+    },
+        {
+      "name": "启动强化学习服务",
+      "configurations": [
+        "启动 mouse_control 服务",
+        "启动FRP 客户端",
+        "启动 index 服务",
+      
+       
+      
+    
+      
         "启动 Nginx 服务"
       ],
       "stopAll": true
